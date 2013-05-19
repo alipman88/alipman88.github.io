@@ -2,7 +2,7 @@ Aaron Lipman, May 2013
 
 -----About:----------------
 
-This project demonstrates a jQuery script which uses FaceBook's Graph API to map data from a FaceBook user to HTML form fields, and executes a callback function.
+This project demonstrates a jQuery script which uses FaceBook's Graph API to map data from a FaceBook profile to HTML form fields.
 
 The applicable parameters are stored in an external .json file, providing a degree of abstraction so that the code may be easily repurposed.
 
