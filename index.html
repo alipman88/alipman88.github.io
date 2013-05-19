@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+		<script src="script.js" type="text/javascript"></script>
+		<link href="custom.css" type= "text/css" rel="stylesheet"/>
+		<title>Story Project</title>
+	</head>
+	<body>
+
+		<div id="fb-root"></div><!-- ¡Important for IE users! -->
+
+		<h3>Tell your story:</h3>
+		<fb:login-button id="facebook_button" show-faces="false" width="200" max-rows="1" perms="email,user_location">
+			Tell my story with Facebook
+		</fb:login-button>
+
+		<!-- This img is set to be displayed by the callback function -->
+		<img id="profile_pic" src="" hidden="true"/>
+		
+		<form id="story_form">
+			<p>Name: <input type="text" id="name_field"><span class="hide"> Bonus jQuery! Sweet!</span></p>
+			<p>Email: <input type="text" id="email_field"><span class="hide"> Bonus jQuery! Excellent!</span></p>
+			<p>Location: <input type="text" id="location_field"><span class="hide"> Bonus jQuery! Awesome!</span></p>
+			<p>
+				My Story:<br/>
+				<textarea id="story_field" rows="5" cols="60"></textarea><span class="hide"> Bonus jQuery! Cool!</span>
+			</p>
+			<input type="submit" value="Tell my story!">
+		</form>
+	</body>
+</html>
+
+<!-- Bonus jQuery action! -->
+<script>
+$("textarea,input").focus(function () {
+	$(".hide").fadeOut(100);
+	$(this).next("span").fadeIn(100);
+});
+</script>
