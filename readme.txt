@@ -19,7 +19,7 @@ Before deploying to production, be sure to disable "Sandbox Mode" and update you
 -----Config & Mapping:-----
 The form selector, Facebook App ID, mapping instructions, and callback function parameters are passed to the authAndLogin() function.
 
-The "form selector" parameter identifies a jQuery selector for relevant form.
+The "form selector" parameter identifies a jQuery selector for the relevant form.
 
 The "mapping" parameter is a JSON object, instructing the script what form fields to map the Facebook user data to.
 
@@ -32,13 +32,12 @@ link
 hometown
 location
 gender
-email
 timezone
 locale
 verified
 updated_time
 
-Certain additional information, such as language, religion and work can be requested by adding additional permissions to the scope section of the FB.login() function, in script.js. (Currently set to "email".)
+Certain additional information, such as email, language, religion and work can be requested by adding additional permissions to the scope section of the FB.login() function, in script.js. (Currently set to "email".)
 
 For more info on permissions and available user data, refer to:
 https://developers.facebook.com/docs/reference/api/user/
