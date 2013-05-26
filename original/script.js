@@ -27,9 +27,7 @@ FB.Event.subscribe('auth.authResponseChange', function(response) {
 	// The following block runs whenever our Facebook application requests authorization. 
 	if (response.status === 'connected') {
 		// Once the user has logged into Facebook OK'd authorization for our app,
-		// Execute the following jQuery to map Facebook data to form fields:
-		// Once the user has logged into Facebook OK'd authorization for our app,
-		// Execute the following jQuery to map Facebook data to form fields:
+		// execute the following jQuery to map Facebook data to form fields:
 		FB.api('/me', function(user) {
 				$.each(objects.mapping, function(key, value) {
 					$(objects.form_selector).find(value).val(user[key]);

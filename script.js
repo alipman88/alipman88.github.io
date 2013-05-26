@@ -45,12 +45,12 @@ function authAndLogin(form_selector, app_ID, mapping, callback) {
 // Connect to FaceBook and check log-in status
 window.fbAsyncInit = function () {
 	// This event is fired for any authentication related change, such as login, logout or session refresh.
-	// Whenever someone who was previously logged out tries to log in again, the correct case below will be handled. 
+	// We take advantage of this to run the data-mapping chunk of our code. 
 	FB.Event.subscribe('auth.authResponseChange', function (response) {
 		// The following block runs whenever our Facebook application requests authorization. 
 		if (response.status === 'connected') {
 			// Once the user has logged into Facebook OK'd authorization for our app,
-			// Execute the following jQuery to map Facebook data to form fields:
+			// execute the following jQuery to map Facebook data to form fields:
 			FB.api('/me', function (user) {
 				$.each(xmapping, function (key, value) {
 					$(xform_selector).find(value).val(user[key]);
