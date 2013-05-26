@@ -6,7 +6,7 @@ This project demonstrates a jQuery script which uses FaceBook's Graph API to map
 
 The applicable parameters are stored in an external .json file, providing a degree of abstraction so that the code may be easily repurposed.
 -----UPDATE!---------------
-Parameters are now passed directly to the function. The original version of the script is available in the "original" directory
+Parameters are now passed directly to the function. The old version of the script is available in the "original" directory.
 
 
 -----Deployment:-----------
@@ -19,15 +19,11 @@ Before deploying to production, be sure to disable "Sandbox Mode" and update you
 
 
 -----Config & Mapping:-----
+The form selector, Facebook App ID, mapping instructions, and callback function parameters are passed to the authAndLogin() function.
 
-The config, mapping, and form_selector parameters are stored as a JSON object, "configuration.json"
+The "form selector" parameter identifies a jQuery selector for relevant form.
 
-The "config" parameters in configuration.json refer to a Facebook app ID.
-Note the FB_app_Channel field is unnecessary unless you will utilize cross-site-scripting.
-
-The "form_selector" parameter creates a jQuery selector for the form to be updated.
-
-The "mapping" parameters instruct the script what form fields to map the Facebook user data to.
+The "mapping" parameter is a JSON object, instructing the script what form fields to map the Facebook user data to.
 
 The Facebook user data available from your app is:
 id
@@ -44,7 +40,7 @@ locale
 verified
 updated_time
 
-Certain additional information, such as language, religion and work can be requested by adding additional permissions to the "perms" attribute of the <fb:login-button> HTML tag. 
+Certain additional information, such as language, religion and work can be requested by adding additional permissions to the scope section of the FB.login() function, in script.js. (Currently set to "email".)
 
 For more info on permissions and available user data, refer to:
 https://developers.facebook.com/docs/reference/api/user/
