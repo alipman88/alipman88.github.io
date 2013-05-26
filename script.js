@@ -1,1 +1,72 @@
-var _0xe185=["\x61\x6A\x61\x78\x53\x65\x74\x75\x70","\x2F\x63\x6F\x6E\x66\x69\x67\x75\x72\x61\x74\x69\x6F\x6E\x2E\x6A\x73\x6F\x6E","\x67\x65\x74\x4A\x53\x4F\x4E","\x66\x62\x41\x73\x79\x6E\x63\x49\x6E\x69\x74","\x46\x42\x5F\x61\x70\x70\x5F\x49\x44","\x63\x6F\x6E\x66\x69\x67","\x2F\x2F\x61\x6C\x69\x70\x6D\x61\x6E\x2E\x73\x69\x74\x65\x34\x34\x2E\x63\x6F\x6D","\x69\x6E\x69\x74","\x61\x75\x74\x68\x2E\x61\x75\x74\x68\x52\x65\x73\x70\x6F\x6E\x73\x65\x43\x68\x61\x6E\x67\x65","\x73\x74\x61\x74\x75\x73","\x63\x6F\x6E\x6E\x65\x63\x74\x65\x64","\x2F\x6D\x65","\x6D\x61\x70\x70\x69\x6E\x67","\x76\x61\x6C","\x66\x69\x6E\x64","\x66\x6F\x72\x6D\x5F\x73\x65\x6C\x65\x63\x74\x6F\x72","\x6E\x61\x6D\x65","\x65\x61\x63\x68","\x68\x74\x74\x70\x73\x3A\x2F\x2F\x67\x72\x61\x70\x68\x2E\x66\x61\x63\x65\x62\x6F\x6F\x6B\x2E\x63\x6F\x6D\x2F","\x69\x64","\x2F\x70\x69\x63\x74\x75\x72\x65\x3F","\x73\x69\x7A\x65\x5F\x61\x74\x74\x72","\x61\x70\x69","\x6E\x6F\x74\x5F\x61\x75\x74\x68\x6F\x72\x69\x7A\x65\x64","\x6C\x6F\x67\x69\x6E","\x73\x75\x62\x73\x63\x72\x69\x62\x65","\x45\x76\x65\x6E\x74","\x66\x61\x63\x65\x62\x6F\x6F\x6B\x2D\x6A\x73\x73\x64\x6B","\x73\x63\x72\x69\x70\x74","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x73\x42\x79\x54\x61\x67\x4E\x61\x6D\x65","\x67\x65\x74\x45\x6C\x65\x6D\x65\x6E\x74\x42\x79\x49\x64","\x63\x72\x65\x61\x74\x65\x45\x6C\x65\x6D\x65\x6E\x74","\x61\x73\x79\x6E\x63","\x73\x72\x63","\x2F\x2F\x63\x6F\x6E\x6E\x65\x63\x74\x2E\x66\x61\x63\x65\x62\x6F\x6F\x6B\x2E\x6E\x65\x74\x2F\x65\x6E\x5F\x55\x53\x2F\x61\x6C\x6C\x2E\x6A\x73","\x69\x6E\x73\x65\x72\x74\x42\x65\x66\x6F\x72\x65","\x70\x61\x72\x65\x6E\x74\x4E\x6F\x64\x65","\x61\x74\x74\x72","\x23\x70\x72\x6F\x66\x69\x6C\x65\x5F\x70\x69\x63","\x73\x68\x6F\x77","\x68\x69\x64\x65","\x23\x66\x61\x63\x65\x62\x6F\x6F\x6B\x5F\x62\x75\x74\x74\x6F\x6E"];$[_0xe185[0]]({async:false});$[_0xe185[2]](_0xe185[1],function (_0xe42bx1){objects=_0xe42bx1;} );window[_0xe185[3]]=function (){FB[_0xe185[7]]({appId:objects[_0xe185[5]][_0xe185[4]],channelUrl:_0xe185[6],status:true,cookie:true,xfbml:true});FB[_0xe185[26]][_0xe185[25]](_0xe185[8],function (_0xe42bx2){if(_0xe42bx2[_0xe185[9]]===_0xe185[10]){FB[_0xe185[22]](_0xe185[11],function (_0xe42bx3){$[_0xe185[17]](_0xe42bx3,function (_0xe42bx4,_0xe42bx5){$[_0xe185[17]](objects[_0xe185[12]],function (_0xe42bx6,_0xe42bx7){if(_0xe42bx4===_0xe42bx6){$(objects[_0xe185[15]])[_0xe185[14]](_0xe42bx7)[_0xe185[13]](_0xe42bx5);if(_0xe42bx5[_0xe185[16]]){$(_0xe42bx7)[_0xe185[13]](_0xe42bx5[_0xe185[16]]);} ;} ;} );} );image_url=_0xe185[18]+_0xe42bx3[_0xe185[19]]+_0xe185[20]+objects[_0xe185[12]][_0xe185[21]];callback();} );} else {if(_0xe42bx2[_0xe185[9]]===_0xe185[23]){FB[_0xe185[24]]();} else {FB[_0xe185[24]]();} ;} ;} );} ;(function (_0xe42bx8){var _0xe42bx9,_0xe42bxa=_0xe185[27],_0xe42bxb=_0xe42bx8[_0xe185[29]](_0xe185[28])[0];if(_0xe42bx8[_0xe185[30]](_0xe42bxa)){return ;} ;_0xe42bx9=_0xe42bx8[_0xe185[31]](_0xe185[28]);_0xe42bx9[_0xe185[19]]=_0xe42bxa;_0xe42bx9[_0xe185[32]]=true;_0xe42bx9[_0xe185[33]]=_0xe185[34];_0xe42bxb[_0xe185[36]][_0xe185[35]](_0xe42bx9,_0xe42bxb);} (document));function callback(){$(_0xe185[38])[_0xe185[37]](_0xe185[33],image_url);$(_0xe185[38])[_0xe185[39]]();$(_0xe185[41])[_0xe185[40]]();} ;
+// Aaron Lipman
+// May 2013
+
+// This script uses Facebook's API and jQuery to map Facebook user data (name, email, location, etc.)
+// To to various form fields in an HTML document. A url is generated for the user's profile pic as well.
+// the function callback() is triggered after a succesful authorization request.
+
+// Loads the Facebook Javascript SDK
+(function (d) {
+	var js, id = 'facebook-jssdk',
+		ref = d.getElementsByTagName('script')[0];
+	if (d.getElementById(id)) {
+		return;
+	}
+	js = d.createElement('script');
+	js.id = id;
+	js.async = true;
+	js.src = "//connect.facebook.net/en_US/all.js";
+	ref.parentNode.insertBefore(js, ref);
+}(document));
+
+// Initializes a "tunnel" to Facebook Graph API
+function authAndLogin(form_selector, app_ID, mapping, callback) {
+	xform_selector = form_selector;
+	xapp_ID = app_ID;
+	xmapping = mapping;
+	FB.init({
+		appId: xapp_ID, // App ID
+		channelUrl: "//www.optional.com/channel", // Not necessary unless using cross-site scripting
+		status: true, // check login status
+		cookie: true, // enable cookies to allow the server to access the session
+		xfbml: false // -- we'll use our own HTML instead of Facebook's login buttons
+	});
+	FB.login(function (response) {
+		if (response.authResponse) {
+			FB.api('/me', function (response) {
+				callback();
+			});
+		}
+	}, {
+		scope: 'email'
+	});
+}
+
+// Connect to FaceBook and check log-in status
+window.fbAsyncInit = function () {
+	// This event is fired for any authentication related change, such as login, logout or session refresh.
+	// Whenever someone who was previously logged out tries to log in again, the correct case below will be handled. 
+	FB.Event.subscribe('auth.authResponseChange', function (response) {
+		// The following block runs whenever our Facebook application requests authorization. 
+		if (response.status === 'connected') {
+			// Once the user has logged into Facebook OK'd authorization for our app,
+			// Execute the following jQuery to map Facebook data to form fields:
+			FB.api('/me', function (user) {
+				$.each(xmapping, function (key, value) {
+					$(xform_selector).find(value).val(user[key]);
+					// Since Facebook returns a user's city as "location.name" instead of "location",
+					// We need this extra step if we're requesting a location.
+					try {
+						if (user[key].name) {
+							$(value).val(user[key].name);
+						}
+					} catch (err) {}
+				});
+
+				// Generates a url top the user's profile pic
+				image_url = 'https://graph.facebook.com/' + user.id + '/picture?' + xmapping.size_attr
+
+			});
+		}
+	});
+};

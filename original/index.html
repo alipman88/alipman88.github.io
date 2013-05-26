@@ -11,12 +11,13 @@
 
 		<div id="fb-root"></div><!-- ¡Important for IE users! -->
 
+		<div id="result"></div>
+
 		<h3>Tell your story:</h3>
+		<a id="fb_login" href="#" onclick="FB.login()">
+			Tell my story with Facebook
+		</a>
 
-		<a id="fb_login" href="#">
-			Tell my story with Facebook!</a>
-
-		<!-- This img is set to be displayed by the callback function -->
 		<img id="profile_pic" src="" hidden="true"/>
 		
 		<form id="story_form">
@@ -29,36 +30,12 @@
 			</p>
 			<input type="submit" value="Tell my story!">
 		</form>
+
 	</body>
 </html>
 
+<!-- Bonus jQuery action! -->
 <script>
-
-// Triggers the function to request a Facebook login, pull user data, and map it to $(#storyform)
-$("#fb_login").click(function() {
-	authAndLogin("#story_form", app_ID, mapping, function() {
-		// Code to execute after the authorization is completed and the data plugged into the form:
-		// Displays a profile pic
-		$('#profile_pic').attr('src', image_url);
-		$('#profile_pic').show();
-		// Hides Facebook login button after successful login
-		$('#fb_login').hide();
-	});
-});
-
-// Because this app makes heavy use of asynchrony,
-// these input parameters can be defined on the fly,
-// but they'd better be defined before somebody clicks "Tell my story with Facebook!"
-app_ID = "167074973460096";
-mapping = {		// 
-	"name"			: "#name_field",
-	"email"			: "#email_field",
-	"location"		: "#location_field",
-//  "gender"		: "#gender_field",	etc. 
-	"size_attr"		: "width=400"
-};
-
-// Bonus jQuery Action!
 $("textarea,input").focus(function () {
 	$(".hide").fadeOut(100);
 	$(this).next("span").fadeIn(100);

@@ -1,0 +1,6 @@
+{
+	"name"			: "#name_field",
+	"email"			: "#email_field",
+	"location"		: "#location_field",
+	"size_attr"		: "width=400"
+}

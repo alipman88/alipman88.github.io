@@ -1,0 +1,17 @@
+{
+	"config" :
+		{
+			"FB_app_ID"			: "167074973460096",
+			"FB_app_Channel"	: "//www.example.com/channel"
+		},
+
+	"form_selector"	: "#story_form",
+
+	"mapping" :
+	{
+		"name"			: "#name_field",
+		"email"			: "#email_field",
+		"location"		: "#location_field",
+		"size_attr"		: "width=400"
+	}
+}
