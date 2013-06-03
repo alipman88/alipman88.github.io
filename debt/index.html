@@ -46,7 +46,9 @@ $("#submit").click(function() {
 	r = 0.01 * apr / 12;
 	//monthly_payment = principle * (r + r / ((1+r)^months - 1) );
 	months = Math.log( 1 + r / (monthly_payment/principle - r) ) / Math.log(1 + r);
-	alert("The interest you'll pay on your loan is $" + (monthly_payment * months - principle));
+	yrs = Math.floor(months / 12);
+	mns = Math.floor(months - yrs*12);
+	alert("The interest you'll pay on your loan is $" + Math.floor(monthly_payment * months - principle) + ". It will take " + yrs + " years and " + mns + " months until you've paid off your loan.");
 });
 
 </script>
