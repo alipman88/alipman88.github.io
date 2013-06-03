@@ -1,9 +1,52 @@
+<!DOCTYPE html>
 <html>
 	<head>
-		Debt Project
+		<meta charset="UTF-8">
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+		<title>Debt Project</title>
 	</head>
 
 	<body>
-
+		<form id="debt_form">
+			<table>
+				<tr>
+					<td>Total loan:</td>
+					<td><input type="text" id="principle_field" value="20000"></td>
+				</tr>
+				<tr>
+					<td>Monthly payment:</td>
+					<td><input type="text" id="monthly_payment_field" value="150"></td>
+				</tr>
+				<tr>
+					<td>Scenario:</td>
+					<td>
+						<select id="interest_rate">
+						<option value="0.75">Warren's bill passes</option>
+						<option value="3.4">Interest stays at 3.4%</option>
+						<option value="6.8">Congress does nothing - interest doubles</option>
+						</select>
+					</td>
+				</tr>
+				<tr>
+					<td></td>
+					<td><input type="submit" id="submit" value="Calculate!"></td>
+				</tr>
+			</table>
+		</form>
+		<p>
 	</body>
 </html>
+
+<script>
+
+$("#submit").click(function() {
+	principle = $("#principle_field").val();
+	monthly_payment = $("#monthly_payment_field").val();
+	apr = $("#interest_rate").val();
+	r = 0.01 * apr / 12;
+	//monthly_payment = principle * (r + r / ((1+r)^months - 1) );
+	months = Math.log( 1 + r / (monthly_payment/principle - r) ) / Math.log(1 + r);
+	alert("The interest you'll pay on your loan is $" + (monthly_payment * months - principle));
+});
+
+</script>
