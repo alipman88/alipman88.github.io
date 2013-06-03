@@ -1,0 +1,76 @@
+body {
+	width: 800px;
+	background-color: #eee;
+	font-family:"Helvetica Neue","Helvetica",Helvetica,Arial,sans-serif;font-size:14px;line-height:1;
+}
+
+#warren {
+	background-color: #9f9;
+}
+
+#no_change {
+	background-color: #fc9;	
+}
+
+#no_action {
+	background-color: #f99;	
+}
+
+.graph {
+	height: 2.6em;
+	margin-bottom: 0.4em;
+	/* margin-bottom: 5px; */
+	width: 0px;
+}
+
+.fixed {
+	width: 800px;
+	overflow-x: auto;
+}
+
+.test {
+	position: relative;
+	top: 3px;
+	margin-left: 5px;
+	height: 0px;
+	-webkit-user-select: none; /* Chrome/Safari */        
+	-moz-user-select: none; /* Firefox */
+	-ms-user-select: none; /* IE10+ */
+	/* Rules below not implemented in browsers yet */
+	-o-user-select: none;
+	user-select: none;
+}
+
+table.center {
+	margin:auto; 
+}
+
+td {
+	text-align: left;
+}
+
+.center {
+	text-align: center;
+}
+
+.warren {
+	background-color: #9f9;
+}
+
+.no_change {
+	background-color: #fc9;	
+}
+
+.no_action {
+	background-color: #f99;	
+}
+
+.color-sample {
+	margin-left: 0.2em;
+	padding-left: 1.2em;
+	margin-right: 1em;
+}
+
+.hidden {
+	display: none;
+}
