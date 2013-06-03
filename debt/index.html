@@ -8,36 +8,27 @@
 	</head>
 
 	<body>
+		<p>Big banks enjoy government interest rates as low as 0.75 percent. Meanwhile, student loans for our neediest students are set to double if Congress doesn't take any action. If House Republicans have their way, rates could rise even higher!</p>
+		<p>Senator Elizabeth Warren has proposed a bill tying student loan interest rates to the rate big banks pay. Use our calculator to explore various proposals would affect your future.</p>
 		<form id="debt_form">
 			<table class="center">
 				<tr>
 					<td>Total loan:</td>
-					<td><input type="text" id="principle_field" value="20000"></td>
+					<td><input type="text" id="principle_field" size="26" value="26000"></td>
 				</tr>
 				<tr>
 					<td>Monthly payment:</td>
-					<td><input type="text" id="monthly_payment_field" value="150"></td>
+					<td><input type="text" id="monthly_payment_field" size="26" value="180"></td>
 				</tr>
 				<!-- Obama proposal based on recent 12-month average of 1.8 + 0.93-->
-				<!--<tr>
-					<td>Scenario:</td>
-					<td>
-						<select id="interest_rate">
-						<option value="0.75">Warren's bill passes</option>
-						<option value="2.73">Obama's proposal passes</option>
-						<option value="3.4">Interest stays at 3.4%</option>
-						<option value="6.8">Congress does nothing - interest doubles</option>
-						</select>
-					</td>
-				</tr>-->
 				<tr>
 					<td></td>
-					<td><input type="submit" value="Calculate!"/></td>
+					<td><input type="submit" value="How much interest will I pay?"/></td>
 					<!-- <td><input type="button" id="submit" value="Calculate!"></td> -->
 				</tr>
 			</table>
 		</form>
-		<p class="center">(Based on proposed changes to Subsidized Stafford Loan Rates.)
+		<p class="center">(Based on <a href= "http://www.motherjones.com/politics/2013/05/student-loan-interest-rate-plan-obama-republican-warren" target="_BLANK">proposed changes</a> to Subsidized Stafford Loan Rates.)
 		<p class="center hidden">
 			Senator Warren's bill:<span class="warren color-sample"></span>
 			Current interest rates:<span class="no_change color-sample"></span>
