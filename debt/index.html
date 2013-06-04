@@ -65,7 +65,7 @@
 			<div id="m_gop_plan" class="test"></div><div id="gop_plan" class="graph"></div>
 		</div>
 
-		<p class="center"><button id="fb-share" class="hidden center" value="Share"><img src="facebook.png" width="16px" height="16px"> Share!</button></p>
+		<p class="center"><button id="fb-share" class="hidden center" value="Share"><img src="facebook.png" width="16px" height="16px"> <b>Share!</b></button></p>
 
 	</body>
 </html>
@@ -207,7 +207,7 @@ function do_api_share(at, img_url, text) {
  
 //Calling the function
  
-$("#facebook_share").click(function() {
+$("#fb-share").click(function() {
 	// alert('test');
 	share_image("http://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg", fb_message);
 });
