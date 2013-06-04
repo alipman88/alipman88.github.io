@@ -65,14 +65,29 @@
 			<div id="m_gop_plan" class="test"></div><div id="gop_plan" class="graph"></div>
 		</div>
 
-		<p class="center"><button id="fb-share" class="hidden2 center" value="Share"><img src="facebook.png" width="16px" height="16px"> <b>Share!</b></button></p>
+		<p id="canvas">
+			<canvas id="myCanvas" width="200" height="100"></canvas>
+		</p>
+
+		<p class="center"><button id="fb-share" class="hidden2 center"><img src="facebook.png" width="16px" height="16px"> <b>Share!</b></button></p>
+
+		<p class="center"><button id="imgur-share" class="center" onclick="imgur_share()"><b>Imgur!</b></button></p>
 
 	</body>
 </html>
 
 <script>
 
-// $("#submit").click(function() {
+$(document).ready(function() {
+	var c=document.getElementById("myCanvas");
+	var ctx=c.getContext("2d");
+	ctx.font="30px Arial";
+	ctx.strokeText("Hello World",10,50);
+	var canvas = document.getElementById("myCanvas");
+	var img = canvas.toDataURL("image/jpg");
+	photo = img;
+});
+
 $("#debt_form").submit(function() {
 	principle = Number($("#principle_field").val());
 	monthly_payment = Number($("#monthly_payment_field").val());
@@ -205,10 +220,43 @@ function do_api_share(at, img_url, text) {
 		});
 }
  
-//Calling the function
+
+function imgur_share(){
+    var canvas = document.getElementById("myCanvas");
+    try {
+        var img = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
+    } catch(e) {
+        var img = canvas.toDataURL().split(',')[1];
+    }
+    // open the popup in the click handler so it will not be blocked
+    var w = window.open();
+    w.document.write('Uploading...');
+    // upload to imgur using jquery/CORS
+    // https://developer.mozilla.org/En/HTTP_access_control
+    $.ajax({
+        url: 'http://api.imgur.com/2/upload.json',
+        type: 'POST',
+        data: {
+            type: 'base64',
+            // get your key here, quick and fast http://imgur.com/register/api_anon
+            key: 'a99bb8d1259dab1',
+            name: 'neon.jpg',
+            title: 'test title',
+            caption: 'test caption',
+            image: img
+        },
+        dataType: 'json'
+    }).success(function(data) {
+        w.location.href = data['upload']['links']['imgur_page'];
+    }).error(function() {
+        alert('Could not reach api.imgur.com. Sorry :(');
+        w.close();
+    });
+}
  
 $("#fb-share").click(function() {
-	// alert('test');
+	alert(photo);
+	// share_image(img, fb_message);
 	share_image("http://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg", fb_message);
 });
 
