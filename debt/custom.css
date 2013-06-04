@@ -86,3 +86,12 @@ td {
 .hidden {
 	display: none;
 }
+
+#fb-share {
+	height: 30px;
+	width: 100px;
+}
+
+img {
+	vertical-align: -2.5px;
+}
