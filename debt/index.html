@@ -71,7 +71,7 @@
 
 		<p class="center"><button id="fb-share" class="hidden2 center"><img src="facebook.png" width="16px" height="16px"> <b>Share!</b></button></p>
 
-		<p class="center"><button id="imgur-share" class="center" onclick="imgur_share()"><b>Imgur!</b></button></p>
+		<p class="center"><button id="imgur-share" class="center" onclick="imgur_share()"><b>Imgur?</b></button></p>
 
 	</body>
 </html>
@@ -228,6 +228,7 @@ function imgur_share(){
     } catch(e) {
         var img = canvas.toDataURL().split(',')[1];
     }
+    alert(img);
     // open the popup in the click handler so it will not be blocked
     var w = window.open();
     w.document.write('Uploading...');
@@ -245,12 +246,14 @@ function imgur_share(){
             caption: 'test caption',
             image: img
         },
-        dataType: 'json'
-    }).success(function(data) {
-        w.location.href = data['upload']['links']['imgur_page'];
-    }).error(function() {
-        alert('Could not reach api.imgur.com. Sorry :(');
-        w.close();
+        dataType: 'json',
+        success: function() {
+        	w.location.href = data['upload']['links']['imgur_page'];
+        },
+        error: function () {
+	        alert('Could not reach api.imgur.com. Sorry :(');
+	        w.close();
+        }
     });
 }
  
