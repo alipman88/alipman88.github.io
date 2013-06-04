@@ -8,6 +8,27 @@
 	</head>
 
 	<body>
+
+		<script>
+	        window.fbAsyncInit = function() {
+	          FB.init({
+	            appId      : '198667233618182', // App ID
+	            // channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+	            status     : true, // check login status
+	            cookie     : true, // enable cookies to allow the server to access the session
+	            xfbml      : true  // parse XFBML
+	          });
+	        };
+	        // Load the SDK Asynchronously
+	        (function(d, s, id){
+	           var js, fjs = d.getElementsByTagName(s)[0];
+	           if (d.getElementById(id)) {return;}
+	           js = d.createElement(s); js.id = id;
+	           js.src = "//connect.facebook.net/en_US/all.js";
+	           fjs.parentNode.insertBefore(js, fjs);
+	         }(document, 'script', 'facebook-jssdk'));
+		</script>
+
 		<p>Big banks enjoy government interest rates as low as 0.75 percent. Meanwhile, student loans are set to double if Congress doesn't take any action. If House Republicans have their way, rates could rise even higher!</p>
 		<p>Senator Elizabeth Warren has proposed a bill tying student loan interest rates to the rate big banks pay. Use our calculator to explore how various proposals would affect your future.</p>
 		<form id="debt_form">
@@ -43,6 +64,9 @@
 			<div id="m_no_action" class="test"></div><div id="no_action" class="graph"></div>
 			<div id="m_gop_plan" class="test"></div><div id="gop_plan" class="graph"></div>
 		</div>
+
+		<input type="button" id="facebook_share" value="Share">
+
 	</body>
 </html>
 
@@ -100,6 +124,15 @@ $("#debt_form").submit(function() {
 		message1 = "$" + interest1 + "<br/>You'll have your loan paid off by " + (2014 + yrs1) + ".";
 		message2 = "$" + interest2 + "<br/>You'll have your loan paid off by " + (2014 + yrs2) + ".";
 		message3 = "$" + interest3 + "<br/>You'll have your loan paid off by " + (2014 + yrs3) + ".";
+		
+		if (isFinite(interest3) == false) {
+			gop_message = "would never pay off their loan!"
+		} else {
+			gop_message = "would pay $" + interest3 + "!"
+		}
+
+		fb_message = "If my student loan interest was the same rate Wall Street pays, I'd only pay $" + interest0 + " in interest. If the right wing has it's way, a student like me " + gop_message;
+
 		if (isFinite(interest0) == false) {
 			interest0 = 800 * SCALE;
 			message0 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
@@ -130,6 +163,53 @@ $("#debt_form").submit(function() {
 		$('#gop_plan').animate({width: interest3 / SCALE}, 1000, function() {$('#m_gop_plan').html(message3);});
 	}
 	return false;
+});
+
+function share_image(img_url, text) {
+	//Check to see if the user has authenticated the App.
+	FB.getLoginStatus(function (response) {
+
+		if (response.status === 'connected') {
+			//If you want the user's Facebook ID or their access token, this is how you get them.
+			var uid = response.authResponse.userID;
+			var access_token = response.authResponse.accessToken;
+
+			do_api_share(access_token, img_url, text);
+
+		} else {
+
+			//If they haven't, call the FB.login method
+			FB.login(function (response) {
+
+				if (response.authResponse) {
+
+					//If you want the user's Facebook ID or their access token, this is how you get them.
+					var uid = response.authResponse.userID;
+					var access_token = response.authResponse.accessToken;
+
+					do_api_share(access_token, img_url, text);
+				} else {
+					alert("You must install the application to share your greeting.");
+				}
+			}, {
+				scope: 'publish_stream'
+			});
+		}
+	});
+}
+
+
+function do_api_share(at, img_url, text) {
+	FB.api("/me/photos", 'post',  {message: text, access_token: at, url: img_url}, function (response) {
+			console.log(response);
+		});
+}
+ 
+//Calling the function
+ 
+$("#facebook_share").click(function() {
+	// alert('test');
+	share_image("http://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg", fb_message);
 });
 
 </script>
