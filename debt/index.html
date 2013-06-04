@@ -65,7 +65,7 @@
 			<div id="m_gop_plan" class="test"></div><div id="gop_plan" class="graph"></div>
 		</div>
 
-		<p class="center"><button id="fb-share" class="hidden center" value="Share"><img src="facebook.png" width="16px" height="16px"> <b>Share!</b></button></p>
+		<p class="center"><button id="fb-share" class="hidden2 center" value="Share"><img src="facebook.png" width="16px" height="16px"> <b>Share!</b></button></p>
 
 	</body>
 </html>
@@ -157,7 +157,7 @@ $("#debt_form").submit(function() {
 		$('#m_no_action').html('');
 		$('#m_gop_plan').html('');
 
-		$('#warren').animate({width: interest0 / SCALE}, 1000, function() {$('#m_warren').html(message0);});
+		$('#warren').animate({width: interest0 / SCALE}, 1000, function() {$('#m_warren').html(message0); $('.hidden2').show(); });
 		$('#no_change').animate({width: interest1 / SCALE}, 1000, function() {$('#m_no_change').html(message1);});
 		$('#no_action').animate({width: interest2 / SCALE}, 1000, function() {$('#m_no_action').html(message2);});
 		$('#gop_plan').animate({width: interest3 / SCALE}, 1000, function() {$('#m_gop_plan').html(message3);});
