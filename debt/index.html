@@ -31,15 +31,17 @@
 			</table>
 		</form>
 		<p class="center">(Based on <a href= "http://www.motherjones.com/politics/2013/05/student-loan-interest-rate-plan-obama-republican-warren" target="_BLANK">proposed changes</a> to Subsidized Stafford Loan Rates.)
-		<p class="center hidden">
-			Senator Warren's bill:<span class="warren color-sample"></span>
-			Current interest rates:<span class="no_change color-sample"></span>
-			What Will happen if Congress does nothing:<span class="no_action color-sample"></span>
+		<p class="center hidden spaced">
+			<span class="warren color-sample"></span>Senator Warren's bill
+			<span class="no_change color-sample"></span>Current interest rates
+			<br/><span class="no_action color-sample"></span>What will happen if Congress fails to act
+			<span class="gop_plan color-sample"></span>What could happen if House Republicans have their way
 		</p>
 		<div class="fixed">
 			<div id="m_warren" class="test"></div><div id="warren" class="graph"></div>
 			<div id="m_no_change" class="test"></div><div id="no_change" class="graph"></div>
 			<div id="m_no_action" class="test"></div><div id="no_action" class="graph"></div>
+			<div id="m_gop_plan" class="test"></div><div id="gop_plan" class="graph"></div>
 		</div>
 	</body>
 </html>
@@ -48,68 +50,85 @@
 
 // $("#submit").click(function() {
 $("#debt_form").submit(function() {
-	principle = $("#principle_field").val();
-	monthly_payment = $("#monthly_payment_field").val();
-	apr = $("#interest_rate").val();
-	r = 0.01 * apr / 12;
-	r0 = 0.01 * 0.75 / 12;
-	r1 = 0.01 * 3.4 / 12;
-	r2 = 0.01 * 6.8 / 12;
-	//monthly_payment = principle * (r + r / ((1+r)^months - 1) );
+	principle = Number($("#principle_field").val());
+	monthly_payment = Number($("#monthly_payment_field").val());
+	if (isNaN(principle) || isNaN(monthly_payment)) {
+		alert('Please enter positive numbers.');
+	} else {
+		apr = $("#interest_rate").val();
+		r = 0.01 * apr / 12;
+		r0 = 0.01 * 0.75 / 12;
+		r1 = 0.01 * 3.4 / 12;
+		r2 = 0.01 * 6.8 / 12;
+		r3 = 0.01 * 8.5 / 12;
+		//monthly_payment = principle * (r + r / ((1+r)^months - 1) );
 
-	months = Math.log( 1 + r / (monthly_payment/principle - r) ) / Math.log(1 + r);
-	interest = Math.floor(monthly_payment * months - principle);
+		months = Math.log( 1 + r / (monthly_payment/principle - r) ) / Math.log(1 + r);
+		interest = Math.floor(monthly_payment * months - principle);
 
-	months0 = Math.log( 1 + r0 / (monthly_payment/principle - r0) ) / Math.log(1 + r0);
-	interest0 = Math.floor(monthly_payment * months0 - principle);
-	months1 = Math.log( 1 + r1 / (monthly_payment/principle - r1) ) / Math.log(1 + r1);
-	interest1 = Math.floor(monthly_payment * months1 - principle);
-	months2 = Math.log( 1 + r2 / (monthly_payment/principle - r2) ) / Math.log(1 + r2);
-	interest2 = Math.floor(monthly_payment * months2 - principle);
+		months0 = Math.log( 1 + r0 / (monthly_payment/principle - r0) ) / Math.log(1 + r0);
+		interest0 = Math.floor(monthly_payment * months0 - principle);
+		months1 = Math.log( 1 + r1 / (monthly_payment/principle - r1) ) / Math.log(1 + r1);
+		interest1 = Math.floor(monthly_payment * months1 - principle);
+		months2 = Math.log( 1 + r2 / (monthly_payment/principle - r2) ) / Math.log(1 + r2);
+		interest2 = Math.floor(monthly_payment * months2 - principle);
+		months3 = Math.log( 1 + r3 / (monthly_payment/principle - r3) ) / Math.log(1 + r3);
+		interest3 = Math.floor(monthly_payment * months3 - principle);
 
-	yrs = Math.floor(months / 12);
-	mns = Math.floor(months - yrs*12);
+		// yrs = Math.floor(months / 12);
+		// mns = Math.floor(months - yrs*12);
 
-	yrs0 = Math.floor(months0 / 12);
-	mns0 = Math.floor(months0 - yrs0*12);
-	yrs1 = Math.floor(months1 / 12);
-	mns1 = Math.floor(months1 - yrs1*12);
-	yrs2 = Math.floor(months2 / 12);
-	mns2 = Math.floor(months2 - yrs2*12);
+		yrs0 = Math.floor(months0 / 12);
+		mns0 = Math.floor(months0 - yrs0*12);
+		yrs1 = Math.floor(months1 / 12);
+		mns1 = Math.floor(months1 - yrs1*12);
+		yrs2 = Math.floor(months2 / 12);
+		mns2 = Math.floor(months2 - yrs2*12);
+		yrs3 = Math.floor(months3 / 12);
+		mns3 = Math.floor(months3 - yrs3*12);
 
-	// if (isNaN(interest) == true)
-	// {
-	// 	alert("At this rate, you'll never pay off your student loan!");
-	// } else {
-	// 	alert("The interest you'll pay on your loan is $" + interest + ". It will take " + yrs + " years and " + mns + " months until you've paid off your loan.");
-	// }
+		// if (isNaN(interest) == true)
+		// {
+		// 	alert("At this rate, you'll never pay off your student loan!");
+		// } else {
+		// 	alert("The interest you'll pay on your loan is $" + interest + ". It will take " + yrs + " years and " + mns + " months until you've paid off your loan.");
+		// }
 
-	SCALE = 80;
+		SCALE = 80;
 
-	message0 = "$" + interest0 + "<br/>You'll have your loan paid off by " + (2014 + yrs0) + ".";
-	message1 = "$" + interest1 + "<br/>You'll have your loan paid off by " + (2014 + yrs1) + ".";
-	message2 = "$" + interest2 + "<br/>You'll have your loan paid off by " + (2014 + yrs2) + ".";
-	if (isNaN(interest0) == true) {
-		interest0 = 800 * SCALE;
-		message0 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+		message0 = "$" + interest0 + "<br/>You'll have your loan paid off by " + (2014 + yrs0) + ".";
+		message1 = "$" + interest1 + "<br/>You'll have your loan paid off by " + (2014 + yrs1) + ".";
+		message2 = "$" + interest2 + "<br/>You'll have your loan paid off by " + (2014 + yrs2) + ".";
+		message3 = "$" + interest3 + "<br/>You'll have your loan paid off by " + (2014 + yrs3) + ".";
+		if (isFinite(interest0) == false) {
+			interest0 = 800 * SCALE;
+			message0 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+		}
+		if (isFinite(interest1) == false) {
+			interest1 = 800 * SCALE + interest0;
+			message1 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+		}
+		if (isFinite(interest2) == false) {
+			interest2 = 800 * SCALE + interest1;
+			message2 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+		}
+		if (isFinite(interest3) == false) {
+			interest3 = 800 * SCALE + interest2;
+			message3 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+		}
+
+		$('.hidden').show();
+
+		$('#m_warren').html('');
+		$('#m_no_change').html('');
+		$('#m_no_action').html('');
+		$('#m_gop_plan').html('');
+
+		$('#warren').animate({width: interest0 / SCALE}, 1000, function() {$('#m_warren').html(message0);});
+		$('#no_change').animate({width: interest1 / SCALE}, 1000, function() {$('#m_no_change').html(message1);});
+		$('#no_action').animate({width: interest2 / SCALE}, 1000, function() {$('#m_no_action').html(message2);});
+		$('#gop_plan').animate({width: interest3 / SCALE}, 1000, function() {$('#m_gop_plan').html(message3);});
 	}
-	if (isNaN(interest1) == true) {
-		interest1 = 800 * SCALE + interest0;
-		message1 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
-	}
-	if (isNaN(interest2) == true) {
-		interest2 = 800 * SCALE + interest1;
-		message2 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
-	}
-
-	$('.hidden').show();
-
-	$('#m_warren').html('');
-	$('#m_no_change').html('');
-	$('#m_no_action').html('');
-	$('#warren').animate({width: interest0 / SCALE}, 1000, function() {$('#m_warren').html(message0);});
-	$('#no_change').animate({width: interest1 / SCALE}, 1000, function() {$('#m_no_change').html(message1);});
-	$('#no_action').animate({width: interest2 / SCALE}, 1000, function() {$('#m_no_action').html(message2);});
 	return false;
 });
 

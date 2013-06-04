@@ -5,15 +5,35 @@ body {
 }
 
 #warren {
-	background-color: #9f9;
+	background-color: #5f5;
 }
 
 #no_change {
-	background-color: #fc9;	
+	background-color: #fd0;
 }
 
 #no_action {
-	background-color: #f99;	
+	background-color: #f95;	
+}
+
+#gop_plan {
+	background-color: #f55;	
+}
+
+.warren {
+	background-color: #5f5;
+}
+
+.no_change {
+	background-color: #fd0;	
+}
+
+.no_action {
+	background-color: #f95;	
+}
+
+.gop_plan {
+	background-color: #f55;	
 }
 
 .graph {
@@ -53,22 +73,14 @@ td {
 	text-align: center;
 }
 
-.warren {
-	background-color: #9f9;
-}
-
-.no_change {
-	background-color: #fc9;	
-}
-
-.no_action {
-	background-color: #f99;	
+.spaced {
+	line-height: 1.4em;
 }
 
 .color-sample {
-	margin-left: 0.2em;
-	padding-left: 1.2em;
-	margin-right: 1em;
+	margin-right: 0.2em;
+	padding-right: 1.2em;
+	margin-left: 1em;
 }
 
 .hidden {
