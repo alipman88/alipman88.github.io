@@ -9,11 +9,12 @@
   <script>
   $(document).ready(function() {
     $.getImageData({
-      url: "http://farm4.static.flickr.com/3002/2758349058_ab6dc9cfdc_z.jpg?zz=1",
+      url: "http://farm4.static.flickr.com/3002/2758349058_ab6dc9cfdc_z.jpg",
       success: function(image){
-        // Do something with the now local version of the image
+        alert('win');
       },
       error: function(xhr, text_status){
+        console.log(xhr);
         // Handle your error here
       }
     });
