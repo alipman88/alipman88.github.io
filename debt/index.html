@@ -76,27 +76,6 @@
 
 <script>
 
-$(document).ready(function() {
-    var c=document.getElementById("myCanvas");
-    var ctx=c.getContext("2d");
-    var grd=ctx.createLinearGradient(0,0,200,0);
-    grd.addColorStop(0,"red");
-    grd.addColorStop(1,"white");
-
-    // Fill with gradient
-    ctx.fillStyle=grd;
-    ctx.fillRect(10,10,150,80);
-    ctx.font="30px Arial";
-    ctx.strokeText("Hello World",10,50);
-    var canvas = document.getElementById("myCanvas");
-    try {
-        img = canvas.toDataURL('image/png', 0.9).split(',')[1];
-    } catch(e) {
-        img = canvas.toDataURL().split(',')[1];
-    }
-    upload();
-});
-
 $("#debt_form").submit(function() {
 	principle = Number($("#principle_field").val());
 	monthly_payment = Number($("#monthly_payment_field").val());
@@ -186,6 +165,26 @@ $("#debt_form").submit(function() {
 		$('#no_action').animate({width: interest2 / SCALE}, 1000, function() {$('#m_no_action').html(message2);});
 		$('#gop_plan').animate({width: interest3 / SCALE}, 1000, function() {$('#m_gop_plan').html(message3);});
 	}
+
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var grd=ctx.createLinearGradient(0,0,200,0);
+    grd.addColorStop(0,"red");
+    grd.addColorStop(1,"white");
+
+    // Fill with gradient
+    ctx.fillStyle=grd;
+    ctx.fillRect(0,0,200,100);
+    ctx.font="30px Arial";
+    ctx.strokeText('$' + interest0,10,35);
+    var canvas = document.getElementById("myCanvas");
+    try {
+        img = canvas.toDataURL('image/png', 0.9).split(',')[1];
+    } catch(e) {
+        img = canvas.toDataURL().split(',')[1];
+    }
+    upload();
+
 	return false;
 });
 
@@ -247,7 +246,6 @@ function upload() {
     /* Lets build a FormData object*/
     var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
     fd.append("image", img); // Append the file
-    // fd.append("authorization", "a99bb8d1259dab1"); // Get your own key http://api.imgur.com/
     var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
     xhr.open("POST", "https://api.imgur.com/3/image"); // Boooom!
     xhr.setRequestHeader('Authorization', 'Client-ID '+ 'a99bb8d1259dab1');
