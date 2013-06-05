@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<link href="custom.css" type="text/css" rel="stylesheet"/>
 		<title>Debt Project</title>
 	</head>
@@ -71,21 +71,30 @@
 
 		<p class="center"><button id="fb-share" class="hidden2 center"><img src="facebook.png" width="16px" height="16px"> <b>Share!</b></button></p>
 
-		<p class="center"><button id="imgur-share" class="center" onclick="imgur_share()"><b>Imgur?</b></button></p>
-
 	</body>
 </html>
 
 <script>
 
 $(document).ready(function() {
-	var c=document.getElementById("myCanvas");
-	var ctx=c.getContext("2d");
-	ctx.font="30px Arial";
-	ctx.strokeText("Hello World",10,50);
-	var canvas = document.getElementById("myCanvas");
-	var img = canvas.toDataURL("image/jpg");
-	photo = img;
+    var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+    var grd=ctx.createLinearGradient(0,0,200,0);
+    grd.addColorStop(0,"red");
+    grd.addColorStop(1,"white");
+
+    // Fill with gradient
+    ctx.fillStyle=grd;
+    ctx.fillRect(10,10,150,80);
+    ctx.font="30px Arial";
+    ctx.strokeText("Hello World",10,50);
+    var canvas = document.getElementById("myCanvas");
+    try {
+        img = canvas.toDataURL('image/png', 0.9).split(',')[1];
+    } catch(e) {
+        img = canvas.toDataURL().split(',')[1];
+    }
+    upload();
 });
 
 $("#debt_form").submit(function() {
@@ -213,55 +222,49 @@ function share_image(img_url, text) {
 	});
 }
 
-
 function do_api_share(at, img_url, text) {
 	FB.api("/me/photos", 'post',  {message: text, access_token: at, url: img_url}, function (response) {
 			console.log(response);
 		});
 }
  
-
-function imgur_share(){
-    var canvas = document.getElementById("myCanvas");
-    try {
-        var img = canvas.toDataURL('image/jpeg', 0.9).split(',')[1];
-    } catch(e) {
-        var img = canvas.toDataURL().split(',')[1];
-    }
-    // alert(img);
-    // open the popup in the click handler so it will not be blocked
-    var w = window.open();
-    w.document.write('Uploading...');
-    // upload to imgur using jquery/CORS
-    // https://developer.mozilla.org/En/HTTP_access_control
-    $.ajax({
-        url: 'https://api.imgur.com/3/image',
-        type: 'POST',
-        data: {
-            type: 'file',//base64',
-            // get your key here, quick and fast http://imgur.com/register/api_anon
-            key: 'a99bb8d1259dab1',
-            name: 'neon.jpg',
-            decription: 'test',
-            title: 'test title',
-            caption: 'test caption',
-            image: "http://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg"//img,
-        },
-        dataType: 'json',
-        success: function() {
-        	w.location.href = data['upload']['links']['imgur_page'];
-        },
-        error: function () {
-	        alert('error');
-	        w.close();
-        }
-    });
-}
- 
 $("#fb-share").click(function() {
-	alert(photo);
-	// share_image(img, fb_message);
-	share_image("http://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg", fb_message);
+	alert(photo_url);
+	share_image(photo_url, fb_message);
+	// share_image("http://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg", fb_message);
 });
+
+function upload() {
+
+    // console.log(file.name);
+
+    /* Is the file an image? */
+    // if (!file || !file.type.match(/image.*/)) return;
+
+    /* It is! */
+    document.body.className = "uploading";
+
+    /* Lets build a FormData object*/
+    var fd = new FormData(); // I wrote about it: https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
+    fd.append("image", img); // Append the file
+    // fd.append("authorization", "a99bb8d1259dab1"); // Get your own key http://api.imgur.com/
+    var xhr = new XMLHttpRequest(); // Create the XHR (Cross-Domain XHR FTW!!!) Thank you sooooo much imgur.com
+    xhr.open("POST", "https://api.imgur.com/3/image"); // Boooom!
+    xhr.setRequestHeader('Authorization', 'Client-ID '+ 'a99bb8d1259dab1');
+    xhr.onload = function() {
+        // Big win!
+        // document.querySelector("#link").href = JSON.parse(xhr.responseText).upload.links.imgur_page;
+        // console.log(xhr.responseText);
+        console.log(xhr.responseText);
+        photo_url = JSON.parse(xhr.responseText).data.link;
+        console.log(photo_url);
+        // alert(photo_url);
+        // document.body.className = "uploaded";
+    }
+    // Ok, I don't handle the errors. An exercice for the reader.
+
+    /* And now, we send the formdata */
+    xhr.send(fd);
+}
 
 </script>
