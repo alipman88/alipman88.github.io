@@ -178,7 +178,7 @@ $("#debt_form").submit(function() {
     ctx.font="30px Arial";
     ctx.strokeText('$' + interest0,10,35);
     
-    upload();
+    // upload();
 
 	return false;
 });
@@ -204,7 +204,7 @@ function share_image(img_url, text) {
 					//If you want the user's Facebook ID or their access token, this is how you get them.
 					var uid = response.authResponse.userID;
 					var access_token = response.authResponse.accessToken;
-
+					upload();
 					do_api_share(access_token, img_url, text);
 				} else {
 					alert("You must install the application to share your greeting.");
@@ -223,13 +223,14 @@ function do_api_share(at, img_url, text) {
 }
  
 $("#fb-share").click(function() {
-	alert(photo_url);
-	share_image(photo_url, fb_message);
-	// share_image("http://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg", fb_message);
+	upload( function() {
+		// alert('test');
+		// share_image(photo_url, fb_message);
+	});
+	//share_image(photo_url, fb_message);
 });
 
-function upload() {
-
+function upload(callback) {
 	var canvas = document.getElementById("myCanvas");
     try {
         img = canvas.toDataURL('image/png', 0.9).split(',')[1];
@@ -255,7 +256,8 @@ function upload() {
         // console.log(xhr.responseText);
         console.log(xhr.responseText);
         photo_url = JSON.parse(xhr.responseText).data.link;
-        console.log(photo_url);
+        console.log('photo_url');
+        share_image(photo_url, fb_message);
         // alert(photo_url);
         // document.body.className = "uploaded";
     }
@@ -263,6 +265,7 @@ function upload() {
 
     /* And now, we send the formdata */
     xhr.send(fd);
+    callback();
 }
 
 </script>
