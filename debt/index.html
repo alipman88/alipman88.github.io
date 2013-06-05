@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="UTF-8">
-		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.4.3/jquery.min.js"></script>
+		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script></script>
 		<link href="custom.css" type="text/css" rel="stylesheet"/>
 		<title>Debt Project</title>
 	</head>
@@ -228,7 +228,7 @@ function imgur_share(){
     } catch(e) {
         var img = canvas.toDataURL().split(',')[1];
     }
-    alert(img);
+    // alert(img);
     // open the popup in the click handler so it will not be blocked
     var w = window.open();
     w.document.write('Uploading...');
@@ -237,22 +237,22 @@ function imgur_share(){
     $.ajax({
         url: 'https://api.imgur.com/3/image',
         type: 'POST',
-        // data: {
-            type: 'base64',
+        data: {
+            type: 'file',//base64',
             // get your key here, quick and fast http://imgur.com/register/api_anon
             key: 'a99bb8d1259dab1',
             name: 'neon.jpg',
             decription: 'test',
             title: 'test title',
             caption: 'test caption',
-            image: img,
-        // },
+            image: "http://upload.wikimedia.org/wikipedia/commons/4/41/Siberischer_tiger_de_edit02.jpg"//img,
+        },
         dataType: 'json',
         success: function() {
         	w.location.href = data['upload']['links']['imgur_page'];
         },
         error: function () {
-	        alert('Could not reach api.imgur.com. Sorry :(');
+	        alert('error');
 	        w.close();
         }
     });
