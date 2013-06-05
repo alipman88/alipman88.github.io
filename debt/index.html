@@ -65,7 +65,7 @@
 			<div id="m_gop_plan" class="test"></div><div id="gop_plan" class="graph"></div>
 		</div>
 
-		<p id="canvas">
+		<p class="center hidden2">
 			<canvas id="myCanvas" width="200" height="100"></canvas>
 		</p>
 
@@ -177,12 +177,7 @@ $("#debt_form").submit(function() {
     ctx.fillRect(0,0,200,100);
     ctx.font="30px Arial";
     ctx.strokeText('$' + interest0,10,35);
-    var canvas = document.getElementById("myCanvas");
-    try {
-        img = canvas.toDataURL('image/png', 0.9).split(',')[1];
-    } catch(e) {
-        img = canvas.toDataURL().split(',')[1];
-    }
+    
     upload();
 
 	return false;
@@ -235,7 +230,12 @@ $("#fb-share").click(function() {
 
 function upload() {
 
-    // console.log(file.name);
+	var canvas = document.getElementById("myCanvas");
+    try {
+        img = canvas.toDataURL('image/png', 0.9).split(',')[1];
+    } catch(e) {
+        img = canvas.toDataURL().split(',')[1];
+    }
 
     /* Is the file an image? */
     // if (!file || !file.type.match(/image.*/)) return;
