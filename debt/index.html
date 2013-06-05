@@ -134,7 +134,7 @@ $("#debt_form").submit(function() {
 			gop_message = "would pay $" + interest3 + "!"
 		}
 
-		fb_message = "If my student loan interest was the same rate Wall Street pays, I'd only pay $" + interest0 + " in interest. If the right wing has it's way, a student like me " + gop_message;
+		fb_message = "alipman88.github.io/debt If my student loan interest was the same rate Wall Street pays, I'd only pay $" + interest0 + " in interest. If the right wing has it's way, a student like me " + gop_message;
 
 		if (isFinite(interest0) == false) {
 			interest0 = 800 * SCALE;
@@ -183,16 +183,19 @@ $("#debt_form").submit(function() {
 	return false;
 });
 
-function share_image(img_url, text) {
+function share_image(text) {
 	//Check to see if the user has authenticated the App.
 	FB.getLoginStatus(function (response) {
 
 		if (response.status === 'connected') {
 			//If you want the user's Facebook ID or their access token, this is how you get them.
-			var uid = response.authResponse.userID;
-			var access_token = response.authResponse.accessToken;
+			uid = response.authResponse.userID;
+			access_token = response.authResponse.accessToken;
 
-			do_api_share(access_token, img_url, text);
+
+			upload( function() {
+
+			});
 
 		} else {
 
@@ -202,10 +205,11 @@ function share_image(img_url, text) {
 				if (response.authResponse) {
 
 					//If you want the user's Facebook ID or their access token, this is how you get them.
-					var uid = response.authResponse.userID;
-					var access_token = response.authResponse.accessToken;
-					upload();
-					do_api_share(access_token, img_url, text);
+					uid = response.authResponse.userID;
+					access_token = response.authResponse.accessToken;
+					upload( function() {
+						
+					});
 				} else {
 					alert("You must install the application to share your greeting.");
 				}
@@ -223,11 +227,7 @@ function do_api_share(at, img_url, text) {
 }
  
 $("#fb-share").click(function() {
-	upload( function() {
-		// alert('test');
-		// share_image(photo_url, fb_message);
-	});
-	//share_image(photo_url, fb_message);
+	share_image(fb_message);
 });
 
 function upload(callback) {
@@ -254,10 +254,10 @@ function upload(callback) {
         // Big win!
         // document.querySelector("#link").href = JSON.parse(xhr.responseText).upload.links.imgur_page;
         // console.log(xhr.responseText);
-        console.log(xhr.responseText);
+        // console.log(xhr.responseText);
         photo_url = JSON.parse(xhr.responseText).data.link;
-        console.log('photo_url');
-        share_image(photo_url, fb_message);
+        do_api_share(access_token, photo_url, fb_message);
+        // share_image(photo_url, fb_message);
         // alert(photo_url);
         // document.body.className = "uploaded";
     }
