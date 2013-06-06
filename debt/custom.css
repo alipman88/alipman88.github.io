@@ -46,15 +46,17 @@ body {
 }
 
 .width {
-	width: 90px;
+	width: 95px;
 }
 
 .right {
 	text-align: right;
+	position: relative;
+	right: 5px;
 }
 
 .fixed {
-	width: 640px;
+	width: 700px;
 	overflow-x: auto;
 }
 

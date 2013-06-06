@@ -188,19 +188,19 @@ $("#debt_form").submit(function() {
 		$('#fb_form').html(fb_message);
 
 		if (isFinite(interest0) == false) {
-			interest0 = 640 * SCALE;
+			interest0 = 700 * SCALE;
 			message0 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest1) == false) {
-			interest1 = 640 * SCALE + interest0;
+			interest1 = 700 * SCALE + interest0;
 			message1 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest2) == false) {
-			interest2 = 640 * SCALE + interest1;
+			interest2 = 700 * SCALE + interest1;
 			message2 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest3) == false) {
-			interest3 = 640 * SCALE + interest2;
+			interest3 = 700 * SCALE + interest2;
 			message3 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
 		}
 
