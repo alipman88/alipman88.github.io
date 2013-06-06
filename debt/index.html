@@ -80,6 +80,10 @@
 			</tr>
 		</table>
 
+		<p class="center legend">
+			<a href="http://youpower.democracyforamerica.com/petitions/search?q=student+loan" target="_BLANK">Sign a Petition!</a> Or, share your story on Facebook:
+		</p>
+
 		<p class="center hidden2">
 			<textarea id="fb_form" ></textarea>
 			<br/><button id="fb-share" ><img src="facebook.png" width="16px" height="16px"> <b id="sharing">Share!</b></button>
@@ -211,7 +215,7 @@ $("#debt_form").submit(function() {
 		$('#m_no_action').html('');
 		$('#m_gop_plan').html('');
 
-		$('#warren').animate({width: interest0 / SCALE}, 1000, function() {$('#m_warren').html(message0); $('.hidden2').show(); });
+		$('#warren').animate({width: interest0 / SCALE}, 1000, function() {$('#m_warren').html(message0); $('.hidden2').show(); $('.legend').show(); });
 		$('#no_change').animate({width: interest1 / SCALE}, 1000, function() {$('#m_no_change').html(message1);});
 		$('#no_action').animate({width: interest2 / SCALE}, 1000, function() {$('#m_no_action').html(message2);});
 		$('#gop_plan').animate({width: interest3 / SCALE}, 1000, function() {$('#m_gop_plan').html(message3);});
