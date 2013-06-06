@@ -37,20 +37,31 @@ body {
 }
 
 .graph {
+	border:1px solid #ccc;
 	height: 2.6em;
 	margin-bottom: 0.4em;
 	/* margin-bottom: 5px; */
 	width: 0px;
+	margin-right: 1px;
+}
+
+.width {
+	width: 90px;
+}
+
+.right {
+	text-align: right;
 }
 
 .fixed {
-	width: 800px;
+	width: 640px;
 	overflow-x: auto;
 }
 
 .test {
 	position: relative;
 	top: 3px;
+	color: #333;
 	margin-left: 5px;
 	height: 0px;
 	-webkit-user-select: none; /* Chrome/Safari */        
@@ -67,6 +78,21 @@ table.center {
 
 td {
 	text-align: left;
+	vertical-align: top;
+}
+
+.spaced-p {
+	color: #333;
+	border:1px solid #ccc;
+	text-align: right;
+	height: 34px;
+	margin-top: 0px;
+	margin-bottom: 6px;
+	margin-right: 1px;
+	padding-top: 2px;
+	padding-bottom: 0px;
+	padding-right: 5px;
+	padding-left: 5px;
 }
 
 .center {
