@@ -221,7 +221,7 @@ function share_image(text) {
 					alert("You must install the application to share your story!");
 				}
 			}, {
-				scope: 'publish_stream, upload_file'
+				scope: 'publish_stream'
 			});
 		}
 	});
@@ -239,7 +239,7 @@ $("#fb-share").click(function() {
 
 function upload(callback) {
 	image_url = 'https://graph.facebook.com/' + uid + '/picture?' + 'width=400';
-	// alert(image_url);
+	alert(image_url);
     var temp_img = new Image()
     temp_img.crossOrigin = 'anonymous';
     temp_img.src = image_url;
@@ -268,11 +268,10 @@ function upload(callback) {
         ctx.putImageData(imageData, 0, 0);
 
     ctx.font="30px Arial";
-    ctx.fillStyle="#FF0000";
-    ctx.strokeStyle="#550000";
+    ctx.fillStyle="#FFFFFF";
+    ctx.strokeStyle="#555555";
     ctx.lineWidth=2;
     wrapText(ctx, fb_message, 5, 30, width - 10, 30);
-
 	var canvas = document.getElementById("myCanvas");
     try {
         img = canvas.toDataURL('image/png', 0.9).split(',')[1];
