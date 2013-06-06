@@ -163,9 +163,10 @@ $("#debt_form").submit(function() {
 		message3 = "$" + interest3 + "<br/>You'll have your loan paid off by " + (2014 + yrs3) + ".";
 		
 		if (isFinite(interest3) == false) {
-			gop_message = "might never be able to get out of debt!"
+			// gop_message = "might never be able to get out of debt!"
+			gop_message = "could pay more than $" + (Math.floor(40.74 * interest0)) + "!";
 		} else {
-			gop_message = "could pay $" + interest3 + "!"
+			gop_message = "could pay $" + interest3 + "!";
 		}
 
 		fb_message = "If my student loan interest was the same rate Wall Street pays, I'd only pay $" + interest0 + " in interest. If the right wing has it's way, a student like me " + gop_message;
