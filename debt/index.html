@@ -109,7 +109,7 @@ document.getElementById("fb-share").disabled = false;
 $("#debt_form").submit(function() {
 	principle = Number($("#principle_field").val());
 	monthly_payment = Number($("#monthly_payment_field").val());
-	if (isNaN(principle) || isNaN(monthly_payment)) {
+	if (isNaN(principle) || isNaN(monthly_payment) || principle <= 0 || monthly_payment <= 0) {
 		alert('Please enter positive numbers.');
 	} else {
 		apr = $("#interest_rate").val();
