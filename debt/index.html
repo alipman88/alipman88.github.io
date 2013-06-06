@@ -261,6 +261,8 @@ function share_image() {
 						
 					// });
 				} else {
+					$('#sharing').html("Share!");
+					document.getElementById("fb-share").disabled = false;
 					alert("You must install the application to share your story!");
 				}
 			}, {
