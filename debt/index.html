@@ -54,8 +54,8 @@
 		<p class="center">(Based on <a href= "http://www.motherjones.com/politics/2013/05/student-loan-interest-rate-plan-obama-republican-warren" target="_BLANK">proposed changes</a> to Subsidized Stafford Loan Rates.)
 		<p class="center hidden spaced">
 			<span class="warren color-sample"></span>Senator Warren's bill
-			<span class="no_change color-sample"></span>Current interest rates
-			<br/><span class="no_action color-sample"></span>What will happen if Congress fails to act
+			<span class="no_action color-sample"></span>What will happen if Congress fails to act
+			<br/><span class="no_change color-sample"></span>Current interest rates
 			<span class="gop_plan color-sample"></span>What could happen if House Republicans have their way
 		</p>
 		<div class="fixed">
@@ -109,12 +109,16 @@ document.getElementById("fb-share").disabled = false;
 $("#debt_form").submit(function() {
 	principle = Number($("#principle_field").val());
 	monthly_payment = Number($("#monthly_payment_field").val());
+	r0 = 0.01 * 0.75 / 12;
+	months0 = Math.log( 1 + r0 / (monthly_payment/principle - r0) ) / Math.log(1 + r0);
 	if (isNaN(principle) || isNaN(monthly_payment) || principle <= 0 || monthly_payment <= 0) {
-		alert('Please enter positive numbers.');
+		alert('Error: Please enter positive numbers.');
+	} else if (isFinite(months0) == false) {
+		alert('Error: Monthly payment too low.');
 	} else {
 		apr = $("#interest_rate").val();
 		r = 0.01 * apr / 12;
-		r0 = 0.01 * 0.75 / 12;
+		// r0 = 0.01 * 0.75 / 12;
 		r1 = 0.01 * 3.4 / 12;
 		r2 = 0.01 * 6.8 / 12;
 		r3 = 0.01 * 8.5 / 12;
@@ -123,7 +127,7 @@ $("#debt_form").submit(function() {
 		months = Math.log( 1 + r / (monthly_payment/principle - r) ) / Math.log(1 + r);
 		interest = Math.floor(monthly_payment * months - principle);
 
-		months0 = Math.log( 1 + r0 / (monthly_payment/principle - r0) ) / Math.log(1 + r0);
+		// months0 = Math.log( 1 + r0 / (monthly_payment/principle - r0) ) / Math.log(1 + r0);
 		interest0 = Math.floor(monthly_payment * months0 - principle);
 		months1 = Math.log( 1 + r1 / (monthly_payment/principle - r1) ) / Math.log(1 + r1);
 		interest1 = Math.floor(monthly_payment * months1 - principle);
