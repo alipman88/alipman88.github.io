@@ -52,14 +52,8 @@
 			</table>
 		</form>
 		<p class="center">(Based on <a href= "http://www.motherjones.com/politics/2013/05/student-loan-interest-rate-plan-obama-republican-warren" target="_BLANK">proposed changes</a> to Subsidized Stafford Loan Rates.)
-		<!--<p class="center hidden spaced">
-			<span class="warren color-sample"></span>Senator Warren's bill
-			<span class="no_action color-sample"></span>What will happen if Congress fails to act
-			<br/><span class="no_change color-sample"></span>Current interest rates
-			<span class="gop_plan color-sample"></span>What could happen if House Republicans have their way
-		</p>-->
 
-		<table>
+		<!--<table>
 			<tr>
 				<td>
 					<div class="hidden">
@@ -69,14 +63,25 @@
 						<div class="test right">GOP<br/>Proposal:</div><div class="graph width gop_plan"></div>
 					</div>
 				</td>
-				<td>
-					<div class="fixed hidden">
+				<td>-->
+					<div class="fixed-alt hidden">
 						<div id="m_warren" class="test"></div><div id="warren" class="graph"></div>
 						<div id="m_no_change" class="test"></div><div id="no_change" class="graph"></div>
 						<div id="m_no_action" class="test"></div><div id="no_action" class="graph"></div>
 						<div id="m_gop_plan" class="test"></div><div id="gop_plan" class="graph"></div>
 					</div>
-				</td>
+				<!--</td>
+			</tr>
+		</table>-->
+
+		<table class="center hidden2">
+			<tr>
+				<td><span class="warren color-sample"></span>Senator Warren's bill</td>
+				<td><span class="no_action color-sample"></span>What will happen if Congress fails to act</td>
+			<tr/>
+			<tr>
+				<td><span class="no_change color-sample"></span>Current interest rates</td>
+				<td><span class="gop_plan color-sample"></span>What could happen if House Republicans have their way</td>
 			</tr>
 		</table>
 
@@ -188,19 +193,19 @@ $("#debt_form").submit(function() {
 		$('#fb_form').html(fb_message);
 
 		if (isFinite(interest0) == false) {
-			interest0 = 700 * SCALE;
+			interest0 = 800 * SCALE;
 			message0 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest1) == false) {
-			interest1 = 700 * SCALE + interest0;
+			interest1 = 800 * SCALE + interest0;
 			message1 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest2) == false) {
-			interest2 = 700 * SCALE + interest1;
+			interest2 = 800 * SCALE + interest1;
 			message2 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest3) == false) {
-			interest3 = 700 * SCALE + interest2;
+			interest3 = 800 * SCALE + interest2;
 			message3 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
 		}
 

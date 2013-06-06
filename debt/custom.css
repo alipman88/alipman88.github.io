@@ -63,6 +63,11 @@ body {
 	overflow-x: auto;
 }
 
+.fixed-alt {
+	width: 800px;
+	overflow-x: auto;
+}
+
 .test {
 	position: relative;
 	top: 3px;
@@ -109,6 +114,7 @@ td {
 }
 
 .color-sample {
+	border:1px solid #ccc;
 	margin-right: 0.2em;
 	padding-right: 1.2em;
 	margin-left: 1em;
