@@ -72,7 +72,7 @@
 
 		<p class="center hidden3">
 			<span id="thank-you"></span>
-			<button id="fb-upload" class="center hidden4"><img src="facebook.png" width="16px" height="16px"> <b id="uploading">Upload!</b></button>
+			<button id="fb-upload" class="center"><img src="facebook.png" width="16px" height="16px"> <b id="uploading">Upload!</b></button>
 			<br/><canvas id="myCanvas" width="0" height="0"></canvas>
 		</p>
 
@@ -215,8 +215,8 @@ function share_image() {
 			access_token = response.authResponse.accessToken;
 
 	        fb_message = $('#fb_form').html();
-	        // alert(fb_message);
 	        image_url = 'https://graph.facebook.com/' + uid + '/picture?' + 'width=400';
+
 			var wallPost = {
 			    message : fb_message,
 			    caption : "Powered by Democracy for America",
@@ -226,12 +226,10 @@ function share_image() {
 			    picture: image_url
 			};
 		    FB.api('me/feed', 'post', wallPost, function(response) {
-		    	drawPic();
+			    
+	        	drawImage();
+
 		    });
-
-			// upload( function() {
-
-			// });
 
 		} else {
 
@@ -245,7 +243,7 @@ function share_image() {
 					access_token = response.authResponse.accessToken;
 			        fb_message = $('#fb_form').html();
 			        image_url = 'https://graph.facebook.com/' + uid + '/picture?' + 'width=400';
-			        // alert(fb_message);
+
 					var wallPost = {
 					    message : fb_message,
 					    caption : "Powered by Democracy for America",
@@ -254,12 +252,13 @@ function share_image() {
 					    name : "Student Loan Calculator",
 					    picture: image_url
 					};
+
 				    FB.api('me/feed', 'post', wallPost, function(response) {
-				    	drawPic();
+					    
+			        	drawImage();
+
 				    });
-					// upload( function() {
-						
-					// });
+
 				} else {
 					$('#sharing').html("Share!");
 					document.getElementById("fb-share").disabled = false;
@@ -290,34 +289,34 @@ $("#fb-upload").click(function() {
 	upload();
 });
 
-function drawPic() {
-    var temp_img = new Image()
-    temp_img.crossOrigin = 'anonymous';
-    temp_img.src = image_url;
-    var height = temp_img.height;
-    var width = temp_img.width;
+function drawImage(temp_img) {
+    var height = 400;//temp_img.height;
+    var width = 400;//temp_img.width;
+    // alert(temp_img.width);
     $('#myCanvas').attr('width', width);
     $('#myCanvas').attr('height', height);
 	var c=document.getElementById("myCanvas");
     var ctx=c.getContext("2d");
-    ctx.drawImage(temp_img,0,0);
 
-    var imageData = ctx.getImageData(0, 0, width, height);
-    var data = imageData.data;
+		    // ctx.drawImage(temp_img,0,0);
+		    // // alert(temp_img.width);
+		    // var imageData = ctx.getImageData(0, 0, width, height);
+		    // var data = imageData.data;
 
-    for(var i = 0; i < data.length; i += 4) {
-      var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
-      // red
-      data[i] = brightness;
-      // green
-      data[i + 1] = brightness;
-      // blue
-      data[i + 2] = brightness;
-    }
+		    // for(var i = 0; i < data.length; i += 4) {
+		    //   var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+		    //   // red
+		    //   data[i] = brightness;
+		    //   // green
+		    //   data[i + 1] = brightness;
+		    //   // blue
+		    //   data[i + 2] = brightness;
+		    // }
 
-    // overwrite original image
-    ctx.putImageData(imageData, 0, 0);
-
+		    // // overwrite original image
+		    // ctx.putImageData(imageData, 0, 0);
+	ctx.fillStyle="#000000";
+    ctx.fillRect(0,00,width,height); 
     font = (height) + 'px Arial';
     ctx.font=font;
     ctx.fillStyle="#FFFFFF";
@@ -330,9 +329,9 @@ function drawPic() {
     // } catch(e) {
     //     img = canvas.toDataURL().split(',')[1];
     // }
-
-	ctx.fillText('$', width*0.33, height*0.83);
-	ctx.strokeText('$', width*0.33, height*0.83);
+    ctx.fill
+	ctx.fillText('$', width*.23, height*0.83);
+	ctx.strokeText('$', width*.23, height*0.83);
 
 	FB.api('/me', function (user) {
 		name = user.first_name;
