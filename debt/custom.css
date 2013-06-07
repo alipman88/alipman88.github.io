@@ -84,6 +84,8 @@ body {
 
 table.center {
 	margin:auto; 
+	padding-right: 25px;
+	padding-left: 25px;
 }
 
 td {
@@ -130,6 +132,14 @@ td {
 
 .legend {
 	display: none;
+}
+
+.bordered {
+	padding: 6px;
+	position: relative;
+	left: 4px;
+	background-color: #ddd;
+	border: 1px solid #ccc;
 }
 
 .hidden3 {
