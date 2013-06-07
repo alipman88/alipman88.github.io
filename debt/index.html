@@ -12,7 +12,7 @@
 		<script>
 	        window.fbAsyncInit = function() {
 	          FB.init({
-	            appId      : '198667233618182', // App ID
+	            appId      : '560421450674756', // App ID
 	            // channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
 	            status     : true, // check login status
 	            cookie     : true, // enable cookies to allow the server to access the session
@@ -81,7 +81,7 @@
 		</table>
 
 		<p class="center legend">
-			<a href="http://youpower.democracyforamerica.com/petitions/search?q=student+loan" target="_BLANK">Sign a Petition!</a> Or, share your story on Facebook:
+			<a href="http://youpower.democracyforamerica.com/petitions/search?q=Student+loans" target="_BLANK">Sign a Petition!</a> Or, share your story on Facebook:
 		</p>
 
 		<p class="center hidden2">
@@ -99,6 +99,58 @@
 </html>
 
 <script>
+
+var temp_img = new Image; // insert image url here
+// temp_img.crossOrigin = 'Anonymous';
+
+temp_img.onload = function() {
+    var height = this.height;
+    var width = this.width;
+    $('#myCanvas').attr('width', 600);
+    $('#myCanvas').attr('height', 400);
+	var c=document.getElementById("myCanvas");
+    var ctx=c.getContext("2d");
+
+    // ctx.drawImage(this,0,0);
+    // var imageData = ctx.getImageData(0, 0, width, height);
+    // var data = imageData.data;
+
+    // for(var i = 0; i < data.length; i += 4) {
+    //   var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+    //   // red
+    //   data[i] = brightness;
+    //   // green
+    //   data[i + 1] = brightness;
+    //   // blue
+    //   data[i + 2] = brightness;
+    // }
+
+    // overwrite original image
+    // ctx.putImageData(imageData, 0, 0);
+
+    font = (height) + 'px Arial';
+    ctx.font=font;
+    ctx.fillStyle="#FFFFFF";
+    ctx.strokeStyle="#555555";
+    ctx.lineWidth=3;
+    // wrapText(ctx, fb_message, 5, 30, width - 10, 30);
+    // var canvas = document.getElementById("myCanvas");
+    // try {
+    //     img = canvas.toDataURL('image/png', 0.9).split(',')[1];
+    // } catch(e) {
+    //     img = canvas.toDataURL().split(',')[1];
+    // }
+    ctx.fillRect(0,0,width,height);
+	ctx.fillText('$', width*.23, height*0.83);
+	ctx.strokeText('$', width*.23, height*0.83);
+
+	FB.api('/me', function (user) {
+		name = user.first_name;
+		$('#thank-you').html("<b>Thanks, " + name + "! One more favor - Change your profile pic:</b><br/>Right-click on this picture to save it to your computer, or click the<br/>'Upload' button to post it directly to your Facebook timeline.<br/>");
+		$('.hidden2').hide();
+		$('.hidden3').show();
+	});
+};
 
 document.getElementById("fb-upload").disabled = false;
 document.getElementById("fb-share").disabled = false;
@@ -234,7 +286,7 @@ function share_image() {
 			access_token = response.authResponse.accessToken;
 
 	        fb_message = $('#fb_form').html();
-	        image_url = 'https://graph.facebook.com/' + uid + '/picture?' + 'width=400';
+	        image_url = 'http://graph.facebook.com/' + uid + '/picture?' + 'width=400';
 
 			var wallPost = {
 			    message : fb_message,
@@ -245,7 +297,9 @@ function share_image() {
 			    picture: image_url
 			};
 		    FB.api('me/feed', 'post', wallPost, function(response) {
-	        	drawImage();
+	    		// temp_img = new Image();
+	    		// temp_img.crossOrigin = "Anonymous";
+				temp_img.src = 'http://profile-a.xx.fbcdn.net/hprofile-ash3/s480x480/21535_527425029045_8055345_n.jpg';
 		    });
 
 		} else {
@@ -259,7 +313,7 @@ function share_image() {
 					uid = response.authResponse.userID;
 					access_token = response.authResponse.accessToken;
 			        fb_message = $('#fb_form').html();
-			        image_url = 'https://graph.facebook.com/' + uid + '/picture?' + 'width=400';
+			        image_url = 'http://graph.facebook.com/' + uid + '/picture?' + 'width=400';
 
 					var wallPost = {
 					    message : fb_message,
@@ -271,7 +325,12 @@ function share_image() {
 					};
 
 				    FB.api('me/feed', 'post', wallPost, function(response) {
-			        	drawImage();
+			    		// temp_img.crossOrigin = "Anonymous";
+						// temp_img.onload = function() {
+						// 	// alert('test');
+						// 	drawImage(temp_img);
+						// };
+						temp_img.src = 'http://profile-a.xx.fbcdn.net/hprofile-ash3/s480x480/21535_527425029045_8055345_n.jpg';
 				    });
 
 				} else {
@@ -280,7 +339,7 @@ function share_image() {
 					alert("You must install the application to share your story!");
 				}
 			}, {
-				scope: 'publish_stream, publish_actions'
+				scope: 'publish_actions'
 			});
 		}
 	});
@@ -304,56 +363,8 @@ $("#fb-upload").click(function() {
 	upload();
 });
 
-function drawImage(temp_img) {
-    var height = 400;//temp_img.height;
-    var width = 400;//temp_img.width;
-    // alert(temp_img.width);
-    $('#myCanvas').attr('width', width);
-    $('#myCanvas').attr('height', height);
-	var c=document.getElementById("myCanvas");
-    var ctx=c.getContext("2d");
+function drawImage(fb_img) {
 
-		    // ctx.drawImage(temp_img,0,0);
-		    // // alert(temp_img.width);
-		    // var imageData = ctx.getImageData(0, 0, width, height);
-		    // var data = imageData.data;
-
-		    // for(var i = 0; i < data.length; i += 4) {
-		    //   var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
-		    //   // red
-		    //   data[i] = brightness;
-		    //   // green
-		    //   data[i + 1] = brightness;
-		    //   // blue
-		    //   data[i + 2] = brightness;
-		    // }
-
-		    // // overwrite original image
-		    // ctx.putImageData(imageData, 0, 0);
-	ctx.fillStyle="#000000";
-    ctx.fillRect(0,00,width,height); 
-    font = (height) + 'px Arial';
-    ctx.font=font;
-    ctx.fillStyle="#FFFFFF";
-    ctx.strokeStyle="#555555";
-    ctx.lineWidth=3;
-    // wrapText(ctx, fb_message, 5, 30, width - 10, 30);
-    // var canvas = document.getElementById("myCanvas");
-    // try {
-    //     img = canvas.toDataURL('image/png', 0.9).split(',')[1];
-    // } catch(e) {
-    //     img = canvas.toDataURL().split(',')[1];
-    // }
-    ctx.fill
-	ctx.fillText('$', width*.23, height*0.83);
-	ctx.strokeText('$', width*.23, height*0.83);
-
-	FB.api('/me', function (user) {
-		name = user.first_name;
-		$('#thank-you').html("<b>Thanks, " + name + "! One more favor - Change your profile pic:</b><br/>Right-click on this picture to save it to your computer, or click the<br/>'Upload' button to post it directly to your Facebook timeline.<br/>");
-		$('.hidden2').hide();
-		$('.hidden3').show();
-	});
 }
 
 function upload() {

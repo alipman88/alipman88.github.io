@@ -12,7 +12,7 @@
 		<script>
 	        window.fbAsyncInit = function() {
 	          FB.init({
-	            appId      : '198667233618182', // App ID
+	            appId      : '560421450674756', // App ID
 	            // channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
 	            status     : true, // check login status
 	            cookie     : true, // enable cookies to allow the server to access the session
@@ -86,12 +86,13 @@
 		</table>
 
 		<p class="center legend">
-			<a href="http://youpower.democracyforamerica.com/petitions/search?q=student+loan" target="_BLANK">Sign a Petition!</a> Or, share your story on Facebook:
+			<a href="http://youpower.democracyforamerica.com/petitions/search?q=Student+loans" target="_BLANK">Sign a Petition!</a> Or, share your story on Facebook:
 		</p>
 
 		<p class="center hidden2">
 			<textarea id="fb_form" ></textarea>
-			<br/><button id="fb-share" ><img src="facebook.png" width="16px" height="16px"> <b id="sharing">Share!</b></button>
+			<br/>
+			<button id="fb-share" ><img src="facebook.png" width="16px" height="16px"> <b id="sharing">Share!</b></button>
 		</p>
 
 
@@ -286,7 +287,7 @@ function share_image() {
 					alert("You must install the application to share your story!");
 				}
 			}, {
-				scope: 'publish_stream, publish_actions'
+				scope: 'publish_actions'
 			});
 		}
 	});
