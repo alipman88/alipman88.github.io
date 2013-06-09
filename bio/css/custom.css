@@ -38,7 +38,7 @@ contact {
 
 content {
 	display: block;
-	padding-top: 1.5in;
+	padding-top: 1.375in;
 	text-align: center;
 	width: 4.5in;
 	margin: auto;
@@ -69,5 +69,6 @@ blurb:first-line {
 	font-style:italic;
 }
 
-a:link{color:#069;}
+a:link{color:#069; font-style: normal;}
+
 a:hover{opacity: 0.5;}
