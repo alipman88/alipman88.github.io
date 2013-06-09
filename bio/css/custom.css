@@ -11,7 +11,7 @@ body {
 	font-family: 'Gill Sans', 'Futura', 'Georgia';
 	color: #000;
 	line-height: 1.2em;
-	width: 7.5in;
+	width: 6.5in;
 	padding: 1in;
 	margin-top: 10px;
 	margin-bottom: 10px;
@@ -44,14 +44,17 @@ content {
 	margin: auto;
 }
 
-section {
+job {
 	display: block;
-	margin-bottom: 1.2em;
+	margin-bottom: 0em;
 }
 
 section:first-line {
 	text-decoration: underline;
-	text-align: center;
+}
+
+section {
+	margin-bottom: 1em;
 }
 
 p {
