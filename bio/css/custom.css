@@ -9,6 +9,7 @@ body {
 	background-size:100%;
 	background-position: .5in 1in;
 	font-family: 'Gill Sans', 'Futura', 'Georgia';
+	color: #000;
 	line-height: 1.2em;
 	width: 7.5in;
 	padding: 1in;
@@ -17,6 +18,10 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	min-height: 9in;
+}
+
+name, contact, content {
+	opacity: 0.67;
 }
 
 name {
