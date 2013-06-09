@@ -1,0 +1,61 @@
+html{
+	background-color: #333;
+}
+
+body {
+	background-color: #fff;
+	font-family: 'Gill Sans';
+	line-height: 1.2em;
+	width: 7.5in;
+	padding: 1in;
+	margin: auto;
+	min-height: 9in;
+}
+
+name {
+	float: left;
+	font-size: 2em;
+	text-decoration: underline;
+	height: 0px;
+}
+
+contact {
+	float: right;
+	text-align: right;
+}
+
+content {
+	display: block;
+	padding-top: 1.25in;
+	text-align: center;
+	width: 4.5in;
+	margin: auto;
+}
+
+section {
+	display: block;
+	margin-bottom: 1.2em;
+}
+
+section:first-line {
+	text-decoration: underline;
+	text-align: center;
+}
+
+p {
+	text-align: left;
+	margin-bottom: 0px;
+}
+
+blurb {
+	/*color: #777;*/
+	text-align: center;
+	display: block;
+}
+
+blurb:first-line {
+	font-style:italic;
+}
+
+a:link{color:#08c;}
+a:hover{opacity: 0.5;}
