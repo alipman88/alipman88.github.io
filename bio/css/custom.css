@@ -44,11 +44,6 @@ content {
 	margin: auto;
 }
 
-job {
-	display: block;
-	margin-bottom: 0em;
-}
-
 section:first-line {
 	text-decoration: underline;
 }
@@ -59,19 +54,24 @@ section {
 
 p {
 	text-align: left;
-	margin-bottom: 1em;
+	margin-bottom: 0em;
+}
+
+job {
+	display: block;
+	margin-bottom: 0em;
 }
 
 blurb {
-	/*color: #777;*/
 	text-align: center;
 	display: block;
+	margin-bottom: 1em;
 }
 
 blurb:first-line {
 	font-style:italic;
 }
 
-a:link{color:#069; font-style: normal;}
+a:link{color:#069;}
 
 a:hover{opacity: 0.5;}
