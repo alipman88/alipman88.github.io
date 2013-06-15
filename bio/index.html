@@ -1,18 +1,10 @@
 <!DOCTYPE html>
 
-<!--
-		You're reading the source?
-		That's a good sign!
-		How about offering me a job?
+<!-- If you're reading this,
+	 I'd like to mention that I write clean, efficient code,
+	 and possess a thorough knowledge of the command line.						-->
 
-		If you're reading this far,
-		I'd like to mention that I write clean, efficient code,
-		and possess a thorough knowledge of the command line.
-
-		References available upon request.
-												-->
-
-<!--	Background: floreo.com/2010/03/04/how-to-make-a-coffee-stain-on-purpose/ -->
+<!-- Background: floreo.com/2010/03/04/how-to-make-a-coffee-stain-on-purpose/	-->
 
 <html>
 	<head>
@@ -31,6 +23,8 @@
 			<br/>Github: <a href="https://github.com/alipman88/alipman88.github.io" target="_BLANK">alipman88</a>
 		</contact>
 
+		<br/><br/>
+
 		<content>
 
 			<section>
@@ -41,7 +35,7 @@
 
 			<section>
 				What I care about:
-				<br/>Empowering communities and building
+				<br/>Empowering communities and strengthening
 				<br/>democracy by creating dynamic technology
 			</section>
 
@@ -53,7 +47,7 @@
 
 			<section>
 				What I'm learning:
-				<br/>node.js &amp; SQL
+				<br/>node.js, Postgres &amp; MySQL
 			</section>
 
 			<section>
@@ -98,7 +92,7 @@
 					<blurb>
 						Intern Web Developer
 						<br/><a href="http://www.democracyforamerica.com" target="_BLANK">democracyforamerica.com</a>
-						<p>I'm currently working with Democracy for America as a Ruby on Rails developer, where I enjoy the opportunity to hone my coding skills while contributing towards progressive causes. Two major projects I've been working on include a <a href="http://alipman88.github.io/debt" target="_BLANK">student-loan calculator</a> featuring social media integration, and building the 2013 <a href="http://xavier-danger-room.herokuapp.com" target="_BLANK">Heroes and Villains</a> website, a grassroots-driven project to identify rising progressive leaders.</p>
+						<p>I'm currently working with Democracy for America as a Ruby on Rails developer, where I enjoy the opportunity to hone my coding skills while contributing towards progressive causes. Two major projects I've been working on include a <a href="http://democracyforamerica.com/studentloandebt\" target="_BLANK">student-loan calculator</a> featuring social media integration, and building the 2013 <a href="http://xavier-danger-room.herokuapp.com" target="_BLANK">Heroes and Villains</a> website, a grassroots-driven project to identify rising progressive leaders.</p>
 					</blurb>
 				</job>
 				<job>
@@ -145,6 +139,13 @@
 						<p>This was my first project while learning Rails. I used Bootstrap as my style framework, and the <a href="http://ruby.railstutorial.org/" target="_BLANK">Ruby on Rails Tutorial</a> by Michael Hartl as my go-to coding resource.</p>
 					</blurb>
 				</job>
+				<job>
+					<a class="accordion-toggle">HTML5 canvas &amp; Facebook</a>
+					<blurb>
+						<a href="">Coming soon</a>
+						<p>To enhance the impact of social sharing actions on projects involving Facebook's API I contribute towards, I'm working on a flexible, mostly front-end script that pulls a user's Facebook profile picture via a lightweight RAILS image proxy, customizes it through an HTML5 canvas, and posts this image to a user's timeline via imgur's API or Amazon Web Services.</p>
+					</blurb>
+				</job>
 			</section>
 
 			<section>
@@ -172,8 +173,14 @@
 <script>
 	$(document).ready(function() {
 		$('blurb').hide();
+		$('.accordion-toggle').append(" <btn>+</btn>");
 	});
 	$('.accordion-toggle').click(function () {
-		$(this).next('blurb').slideToggle();
+		test = $(this).next('blurb').slideToggle();
+		if ($(this).children('btn').text() == '+') {
+			$(this).children('btn').text("-");
+		} else {
+			$(this).children('btn').text("+");
+		}
 	});
 </script>

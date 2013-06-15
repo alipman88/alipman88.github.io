@@ -38,7 +38,7 @@ contact {
 
 content {
 	display: block;
-	padding-top: 1.375in;
+	padding-top: 10em;
 	text-align: center;
 	width: 4.5in;
 	margin: auto;
@@ -62,6 +62,15 @@ job {
 	margin-bottom: 0em;
 }
 
+btn {
+	font-family: 'Menlo', 'Courier';
+}
+
+.accordion-toggle:before
+{ 
+content: <btn>+</btn>;
+}
+
 blurb {
 	text-align: center;
 	display: block;
@@ -71,7 +80,5 @@ blurb {
 blurb:first-line {
 	font-style:italic;
 }
-
-a:link{color:#069;}
 
 a:hover{opacity: 0.5;}
