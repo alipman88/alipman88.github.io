@@ -64,6 +64,10 @@ job {
 
 btn {
 	font-family: 'Menlo', 'Courier';
+	padding-left: 0.33em;
+	padding-right: 0.33em;
+	border-radius: 1em;
+	box-shadow: inset 0px 0px 4px #999;
 }
 
 .accordion-toggle:before
