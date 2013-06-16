@@ -10,6 +10,7 @@
 	<head>
 		<meta charset="UTF-8">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+		<LINK REL="Shortcut Icon" HREF="img/sprocket.ico">
 		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 		<link rel="stylesheet" type="text/css" href="css/custom.css">
 		<title>Aaron Lipman | Bio</title>
@@ -20,10 +21,8 @@
 
 		<contact>
 			<a href="mailto:alipman88@gmail.com">alipman88@gmail.com</a> | +8025225603
-			<br/>Github: <a href="https://github.com/alipman88/" target="_BLANK">alipman88</a>
+			<br/><a href="https://github.com/alipman88/" target="_BLANK"><img src="img/favicon.ico"> alipman88</a>
 		</contact>
-
-		<br/><br/>
 
 		<content>
 
@@ -92,7 +91,7 @@
 					<blurb>
 						Intern Web Developer
 						<br/><a href="http://www.democracyforamerica.com" target="_BLANK">democracyforamerica.com</a>
-						<p>I'm currently working with Democracy for America as a Ruby on Rails developer, where I enjoy the opportunity to hone my coding skills while contributing towards progressive causes. Two major projects I've been working on include a <a href="http://democracyforamerica.com/studentloandebt" target="_BLANK">student-loan calculator</a> featuring social media integration, and building the 2013 <a href="http://xavier-danger-room.herokuapp.com" target="_BLANK">Heroes and Villains</a> website, a grassroots-driven project to identify rising progressive leaders.</p>
+						<p>I'm currently working with Democracy for America as a Ruby on Rails developer, where I enjoy the opportunity to hone my coding skills while contributing towards progressive causes. Two major projects I've been working on include a <a href="http://democracyforamerica.com/studentloandebt/" target="_BLANK">student-loan calculator</a> featuring social media integration, and building the 2013 <a href="http://xavier-danger-room.herokuapp.com" target="_BLANK">Heroes and Villains</a> website, a grassroots-driven project to identify rising progressive leaders.</p>
 					</blurb>
 				</job>
 				<job>
@@ -131,7 +130,7 @@
 			</section>
 
 			<section>
-			Miscellaneous:
+			Miscellany:
 				<job>
 					<a class="accordion-toggle">To-do list</a>
 					<blurb>
@@ -173,7 +172,7 @@
 <script>
 	$(document).ready(function() {
 		$('blurb').hide();
-		$('.accordion-toggle').append(" <btn>+</btn>");
+		// $('.accordion-toggle').append(" <btn>+</btn>");
 	});
 	$('.accordion-toggle').click(function () {
 		test = $(this).next('blurb').slideToggle();
