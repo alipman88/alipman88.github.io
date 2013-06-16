@@ -34,7 +34,8 @@ name {
 }
 
 contact {
-	float: right;
+	display: block;
+	height: 2em;
 	text-align: right;
 }
 
