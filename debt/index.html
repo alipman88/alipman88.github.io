@@ -4,7 +4,11 @@
 		<meta charset="UTF-8">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<link href="custom.css" type="text/css" rel="stylesheet"/>
-		<title>Debt Project</title>
+		<meta property="og:url" content="http://alipman88.github.io/debt/index.html"/>
+		<meta property="og:site_name" content="Student Loan Interest Calculator"/>
+		<meta property="og:type" content="website" />
+		<meta property="og:description" content="What will happen if student loan interest rates double? Find out the real costs to students' futures." />
+		<title>Student Loan Interest Calculator</title>
 	</head>
 
 	<body>
@@ -96,27 +100,27 @@
 document.getElementById("fb-upload").disabled = false;
 document.getElementById("fb-share").disabled = false;
 
-  function wrapText(context, text, x, y, maxWidth, lineHeight) {
-    var words = text.split(' ');
-    var line = '';
+function wrapText(context, text, x, y, maxWidth, lineHeight) {
+	var words = text.split(' ');
+	var line = '';
 
-    for(var n = 0; n < words.length; n++) {
-      var testLine = line + words[n] + ' ';
-      var metrics = context.measureText(testLine);
-      var testWidth = metrics.width;
-      if(testWidth > maxWidth) {
-      	context.strokeText(line, x, y);
-        context.fillText(line, x, y);
-        line = words[n] + ' ';
-        y += lineHeight;
-      }
-      else {
-        line = testLine;
-      }
-    }
-    context.strokeText(line, x, y);
-    context.fillText(line, x, y);
-  }
+	for(var n = 0; n < words.length; n++) {
+		var testLine = line + words[n] + ' ';
+		var metrics = context.measureText(testLine);
+		var testWidth = metrics.width;
+		if(testWidth > maxWidth) {
+			context.strokeText(line, x, y);
+			context.fillText(line, x, y);
+			line = words[n] + ' ';
+			y += lineHeight;
+		}
+		else {
+			line = testLine;
+		}
+	}
+	context.strokeText(line, x, y);
+	context.fillText(line, x, y);
+}
 
 $("#debt_form").submit(function() {
 	principle = Number($("#principle_field").val());
@@ -128,7 +132,6 @@ $("#debt_form").submit(function() {
 	} else if (isFinite(months0) == false) {
 		alert('Error: Monthly payment too low.');
 	} else {
-		r = 0.01 * apr / 12;
 		r1 = 0.01 * 3.4 / 12;
 		r2 = 0.01 * 6.8 / 12;
 		r3 = 0.01 * 8.5 / 12;
@@ -159,13 +162,13 @@ $("#debt_form").submit(function() {
 		message3 = "$" + interest3 + "<br/>You'll have your loan paid off by " + (2014 + yrs3) + ".";
 		
 		if (isFinite(interest3) == false) {
-			// gop_message = "might never be able to get out of debt!"
 			gop_message = "could pay more than $" + (Math.floor(40.74 * interest0)) + "!";
 		} else {
 			gop_message = "could pay $" + interest3 + "!";
 		}
 
-		fb_message = "If my student loan interest was the same rate Wall Street pays, I'd only pay $" + interest0 + " in interest. If the right wing has it's way, a student like me " + gop_message;
+		var fb_message = "If my student loan interest was the same rate Wall Street pays, I'd only pay $" + interest0 + " in interest. If the right wing has it's way, a student like me " + gop_message;
+
 		$('#fb_form').html(fb_message);
 
 		if (isFinite(interest0) == false) {
@@ -208,22 +211,13 @@ function share_image() {
 		if (response.status === 'connected') {
 			//If you want the user's Facebook ID or their access token, this is how you get them.
 			uid = response.authResponse.userID;
-			access_token = response.authResponse.accessToken;
+			FB_access_token = response.authResponse.accessToken;
 
-	        fb_message = $('#fb_form').html();
-	        image_url = 'http://www.corsproxy.com/http://graph.facebook.com/' + uid + '/picture?width=400';
-
-			var wallPost = {
-			    message : fb_message,
-			    caption : "Powered by Democracy for America",
-			    description: "Big banks enjoy government interest rates as low as 0.75 percent. Meanwhile, student loans are set to double if Congress doesn't take any action. How will your future be effected?",
-			    link : "alipman88.github.io/debt",
-			    name : "Student Loan Calculator",
-			    picture: 'http://www.corsproxy.com/' + image_url
-			};
-		    FB.api('me/feed', 'post', wallPost, function(response) {
-	        	drawImage();
-		    });
+	        FB.api('/me/picture?width=400', function(response) {
+	        	console.log(response.data.url);
+	        	image_url = response.data.url.replace("https://","");
+	        	image_to_share.src = 'http://www.corsproxy.com/' + image_url;
+	        });
 
 		} else {
 
@@ -234,22 +228,13 @@ function share_image() {
 
 					//If you want the user's Facebook ID or their access token, this is how you get them.
 					uid = response.authResponse.userID;
-					access_token = response.authResponse.accessToken;
-			        fb_message = $('#fb_form').html();
-			        image_url = 'http://www.corsproxy.com/http://graph.facebook.com/' + uid + '/picture?width=400';
+					FB_access_token = response.authResponse.accessToken;
 
-					var wallPost = {
-					    message : fb_message,
-					    caption : "Powered by Democracy for America",
-					    description: "Big banks enjoy government interest rates as low as 0.75 percent. Meanwhile, student loans are set to double if Congress doesn't take any action. How will your future be effected?",
-					    link : "alipman88.github.io/debt",
-					    name : "Student Loan Calculator",
-					    picture: image_url
-					};
-
-				    FB.api('me/feed', 'post', wallPost, function(response) {
-			        	drawImage();
-				    });
+			        FB.api('/me/picture?width=400', function(response) {
+			        	console.log(response.data.url);
+			        	image_url = response.data.url.replace("https","http");
+			        	image_to_share.src = 'http://www.corsproxy.com/' + image_url;
+			        });
 
 				} else {
 					$('#sharing').html("Share!");
@@ -263,10 +248,10 @@ function share_image() {
 	});
 }
 
-function do_api_share(at, img_url, text) {
+function post_to_facebook(at, img_url, text) {
 	FB.api("/me/photos", 'post',  {message: text, access_token: at, url: img_url}, function (response) {
-			$('#uploading').html("Done!");
-		});
+		$('#uploading').html("Done!");
+	});
 }
  
 $("#fb-share").click(function() {
@@ -278,84 +263,74 @@ $("#fb-share").click(function() {
 $("#fb-upload").click(function() {
 	document.getElementById("fb-upload").disabled = true;
 	$('#uploading').html("Uploading...");
-	upload();
+	upload('myCanvas');
 });
 
-function drawImage(temp_img) {
-    var height = temp_img.height;
-    var width = temp_img.width;
-    // alert(temp_img.width);
+var image_to_share = new Image();
+image_to_share.crossOrigin = "Anonymous";
+image_to_share.onload = function() {
+    var height = image_to_share.height;
+    var width = image_to_share.width;
     $('#myCanvas').attr('width', width);
     $('#myCanvas').attr('height', height);
 	var c=document.getElementById("myCanvas");
     var ctx=c.getContext("2d");
 
-		    // ctx.drawImage(temp_img,0,0);
-		    // // alert(temp_img.width);
-		    // var imageData = ctx.getImageData(0, 0, width, height);
-		    // var data = imageData.data;
+    ctx.drawImage(image_to_share,0,0);
+    var imageData = ctx.getImageData(0, 0, width, height);
+    var data = imageData.data;
 
-		    // for(var i = 0; i < data.length; i += 4) {
-		    //   var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
-		    //   // red
-		    //   data[i] = brightness;
-		    //   // green
-		    //   data[i + 1] = brightness;
-		    //   // blue
-		    //   data[i + 2] = brightness;
-		    // }
+    for(var i = 0; i < data.length; i += 4) {
+      var brightness = 0.34 * data[i] + 0.5 * data[i + 1] + 0.16 * data[i + 2];
+      data[i] = brightness;
+      data[i + 1] = brightness;
+      data[i + 2] = brightness;
+    }
 
-		    // // overwrite original image
-		    // ctx.putImageData(imageData, 0, 0);
-	ctx.fillStyle="#000000";
-    ctx.fillRect(0,00,width,height); 
-    font = (height) + 'px Arial';
+    ctx.putImageData(imageData, 0, 0);
+
+    font = '30px Arial';
     ctx.font=font;
     ctx.fillStyle="#FFFFFF";
     ctx.strokeStyle="#555555";
     ctx.lineWidth=3;
-    // wrapText(ctx, fb_message, 5, 30, width - 10, 30);
-    // var canvas = document.getElementById("myCanvas");
-    // try {
-    //     img = canvas.toDataURL('image/png', 0.9).split(',')[1];
-    // } catch(e) {
-    //     img = canvas.toDataURL().split(',')[1];
-    // }
-    ctx.fill
-	ctx.fillText('$', width*.23, height*0.83);
-	ctx.strokeText('$', width*.23, height*0.83);
 
-	FB.api('/me', function (user) {
-		name = user.first_name;
-		$('#thank-you').html("<b>Thanks, " + name + "! One more favor - Change your profile pic:</b><br/>Right-click on this picture to save it to your computer, or click the<br/>'Upload' button to post it directly to your Facebook timeline.<br/>");
-		$('.hidden2').hide();
-		$('.hidden3').show();
-	});
-}
-
-function upload() {
-
-	var canvas = document.getElementById("myCanvas");
+    var fb_message = $('#fb_form').val();
+    wrapText(ctx, fb_message, 5, 30, width - 10, 30);
+    var canvas = document.getElementById("myCanvas");
     try {
         img = canvas.toDataURL('image/png', 0.9).split(',')[1];
     } catch(e) {
         img = canvas.toDataURL().split(',')[1];
     }
 
-    /* It is! */
+	FB.api('/me', function (user) {
+		name = user.first_name;
+		$('#thank-you').html("<b>OK, " + name + ". Here's a custom-generated image:</b><br/>Right-click on this picture to save it to your computer, or click the<br/>'Upload' button to post it directly to your Facebook timeline.<br/>");
+		$('.hidden2').hide();
+		$('.hidden3').show();
+	});
+}
+
+function upload(canvas) {
+	var c = document.getElementById(canvas);
+    try {
+        img = c.toDataURL('image/png', 0.9).split(',')[1];
+    } catch(e) {
+        img = c.toDataURL().split(',')[1];
+    }
     document.body.className = "uploading";
 
-    var fd = new FormData(); // https://hacks.mozilla.org/2011/01/how-to-develop-a-html5-image-uploader/
-    fd.append("image", img); // Append the file
+    var fd = new FormData();
+    fd.append("image", img);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.imgur.com/3/image");
     xhr.setRequestHeader('Authorization', 'Client-ID '+ 'a99bb8d1259dab1');
     xhr.onload = function() {
         photo_url = JSON.parse(xhr.responseText).data.link;
-        do_api_share(access_token, photo_url);
+        post_to_facebook(FB_access_token, photo_url);
     }
     xhr.send(fd);
-    
 }
 
 </script>
