@@ -4,14 +4,10 @@
 		<meta charset="UTF-8">
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
 		<link href="custom.css" type="text/css" rel="stylesheet"/>
-		<meta property="og:url" content="http://alipman88.github.io/debt/index.html"/>
-		<meta property="og:site_name" content="Student Loan Interest Calculator"/>
-		<meta property="og:type" content="website" />
-		<meta property="og:description" content="What will happen if student loan interest rates double? Find out the real costs to students' futures." />
 		<title>Student Loan Interest Calculator</title>
 	</head>
 
-	<body>
+	<body style="margin:auto;min-height:1000px;">
 
 		<script>
 			// Initialize Facebook API
@@ -33,6 +29,8 @@
 	         }(document, 'script', 'facebook-jssdk'));
 		</script>
 
+		<h3 style="text-align:center;">Student Loan Interest Calculator:</h3>
+
 		<p>Big banks enjoy government interest rates as low as 0.75 percent. Meanwhile, student loans are set to double if Congress doesn't take any action. If House Republicans have their way, rates could rise even higher!</p>
 		<p>Senator Elizabeth Warren recently proposed a bill tying student loan interest rates to the rate big banks pay. Use our calculator to explore how various proposals would affect your future.</p>
 
@@ -48,18 +46,16 @@
 					<td>$</td>
 					<td><input type="text" id="monthly_payment_field" size="26" value="180"></td>
 				</tr>
-				<!-- Obama proposal based on recent 12-month average of 1.8 + 0.93-->
 				<tr>
 					<td></td><td></td>
 					<td><input type="submit" value="How much interest will I pay?"/></td>
-					<!-- <td><input type="button" id="submit" value="Calculate!"></td> -->
 				</tr>
 			</table>
 		</form>
 
 		<p class="center">(Based on <a href= "http://www.motherjones.com/politics/2013/05/student-loan-interest-rate-plan-obama-republican-warren" target="_BLANK">proposed changes</a> to Subsidized Stafford Loan Rates.)
 
-			<div class="fixed-alt hidden">
+			<div class="fixed-alt hidden" id="main_graph">
 				<div id="m_warren" class="test"></div><div id="warren" class="graph"></div>
 				<div id="m_no_change" class="test"></div><div id="no_change" class="graph"></div>
 				<div id="m_no_action" class="test"></div><div id="no_action" class="graph"></div>
@@ -77,14 +73,16 @@
 			</tr>
 		</table>
 
+		<br/>
+
 		<p class="center legend">
-			<a href="http://youpower.democracyforamerica.com/petitions/search?q=Student+loans" target="_BLANK">Sign a Petition!</a> Or, share your story on Facebook:
+			<a href="http://youpower.democracyforamerica.com/petitions/search?q=Student+loans" target="_BLANK">Sign a Petition!</a> Or, create an image to share on Facebook:
 		</p>
 
 		<p class="center hidden2">
 			<textarea id="fb_form" ></textarea>
 			<br/>
-			<button id="fb-share" ><img src="facebook.png" width="16px" height="16px"> <b id="sharing">Share!</b></button>
+			<button id="fb-share" ><img src="facebook.png" width="16px" height="16px"> <b id="sharing">Log in!</b></button>
 		</p>
 
 
@@ -103,11 +101,12 @@
 $( document ).ready(function() {
 	document.getElementById("fb-upload").disabled = false;
 	document.getElementById("fb-share").disabled = false;
+	scroll_counter = 1;
 });
 
 // event handlers
 $("#fb-share").click(function() {
-	$('#sharing').html("Loading...");
+	$('#sharing').html("Connecting...");
 	document.getElementById("fb-share").disabled = true;
 	check_facebook_auth_status();
 });
@@ -117,71 +116,78 @@ $("#fb-upload").click(function() {
 	upload('myCanvas');
 });
 
+function numberWithCommas(x) {
+    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+}
+function stripNonDigits(x) {
+	return Number(x.toString().replace(/[^\d.]/g, ""));
+}
+
 // calculator logic
 $("#debt_form").submit(function() {
-	principle = Number($("#principle_field").val());
-	monthly_payment = Number($("#monthly_payment_field").val());
-	r0 = 0.01 * 0.75 / 12;
-	months0 = Math.log( 1 + r0 / (monthly_payment/principle - r0) ) / Math.log(1 + r0);
+	var principle = stripNonDigits($("#principle_field").val());
+	var monthly_payment = Number($("#monthly_payment_field").val());
+	var r0 = 0.01 * 0.75 / 12;
+	var months0 = Math.log( 1 + r0 / (monthly_payment/principle - r0) ) / Math.log(1 + r0);
 	if (isNaN(principle) || isNaN(monthly_payment) || principle <= 0 || monthly_payment <= 0) {
 		alert('Error: Please enter positive numbers.');
 	} else if (isFinite(months0) == false) {
 		alert('Error: Monthly payment too low.');
 	} else {
-		r1 = 0.01 * 3.4 / 12;
-		r2 = 0.01 * 6.8 / 12;
-		r3 = 0.01 * 8.5 / 12;
+		var r1 = 0.01 * 3.4 / 12;
+		var r2 = 0.01 * 6.8 / 12;
+		var r3 = 0.01 * 8.5 / 12;
 
-		interest0 = Math.floor(monthly_payment * months0 - principle);
-		months1 = Math.log( 1 + r1 / (monthly_payment/principle - r1) ) / Math.log(1 + r1);
-		interest1 = Math.floor(monthly_payment * months1 - principle);
-		months2 = Math.log( 1 + r2 / (monthly_payment/principle - r2) ) / Math.log(1 + r2);
-		interest2 = Math.floor(monthly_payment * months2 - principle);
-		months3 = Math.log( 1 + r3 / (monthly_payment/principle - r3) ) / Math.log(1 + r3);
-		interest3 = Math.floor(monthly_payment * months3 - principle);
+		var interest0 = Math.floor(monthly_payment * months0 - principle);
+		var months1 = Math.log( 1 + r1 / (monthly_payment/principle - r1) ) / Math.log(1 + r1);
+		var interest1 = Math.floor(monthly_payment * months1 - principle);
+		var months2 = Math.log( 1 + r2 / (monthly_payment/principle - r2) ) / Math.log(1 + r2);
+		var interest2 = Math.floor(monthly_payment * months2 - principle);
+		var months3 = Math.log( 1 + r3 / (monthly_payment/principle - r3) ) / Math.log(1 + r3);
+		var interest3 = Math.floor(monthly_payment * months3 - principle);
 
-		yrs0 = Math.floor(months0 / 12);
-		mns0 = Math.floor(months0 - yrs0*12);
-		yrs1 = Math.floor(months1 / 12);
-		mns1 = Math.floor(months1 - yrs1*12);
-		yrs2 = Math.floor(months2 / 12);
-		mns2 = Math.floor(months2 - yrs2*12);
-		yrs3 = Math.floor(months3 / 12);
-		mns3 = Math.floor(months3 - yrs3*12);
+		var yrs0 = Math.floor(months0 / 12);
+		var mns0 = Math.floor(months0 - yrs0*12);
+		var yrs1 = Math.floor(months1 / 12);
+		var mns1 = Math.floor(months1 - yrs1*12);
+		var yrs2 = Math.floor(months2 / 12);
+		var mns2 = Math.floor(months2 - yrs2*12);
+		var yrs3 = Math.floor(months3 / 12);
+		var mns3 = Math.floor(months3 - yrs3*12);
 
 		SCALE = 80;
 		WIDTH = 800;
 
-		message0 = "$" + interest0 + "<br/>You'll have your loan paid off by " + (2014 + yrs0) + ".";
-		message1 = "$" + interest1 + "<br/>You'll have your loan paid off by " + (2014 + yrs1) + ".";
-		message2 = "$" + interest2 + "<br/>You'll have your loan paid off by " + (2014 + yrs2) + ".";
-		message3 = "$" + interest3 + "<br/>You'll have your loan paid off by " + (2014 + yrs3) + ".";
+		var message0 = "<b>$" + numberWithCommas(interest0) + "</b><br/>You'll have your loan paid off by <b>" + (2014 + yrs0) + "</b>.";
+		var message1 = "<b>$" + numberWithCommas(interest1) + "</b><br/>You'll have your loan paid off by <b>" + (2014 + yrs1) + "</b>.";
+		var message2 = "<b>$" + numberWithCommas(interest2) + "</b><br/>You'll have your loan paid off by <b>" + (2014 + yrs2) + "</b>.";
+		var message3 = "<b>$" + numberWithCommas(interest3) + "</b><br/>You'll have your loan paid off by <b>" + (2014 + yrs3) + "</b>.";
 		
-		if (isFinite(interest3) == false) {
-			gop_message = "could pay more than $" + (Math.floor(40.74 * interest0)) + "!";
+		if (isFinite(interest2) == false) {
+			var gop_message = "could pay more than $" + numberWithCommas((Math.floor(22.56 * interest0))) + "!";
 		} else {
-			gop_message = "could pay $" + interest3 + "!";
+			var gop_message = "could pay $" + interest2 + "!";
 		}
 
-		var fb_message = "If my student loan interest was the same rate Wall Street pays, I'd only pay $" + interest0 + " in interest. If the right wing has it's way, a student like me " + gop_message;
+		var fb_message = "If my student loan interest was the same rate Wall Street pays, I'd only pay $" + numberWithCommas(interest0) + " in interest. If Congress fails to act, a student like me " + gop_message;
 
 		$('#fb_form').html(fb_message);
 
 		if (isFinite(interest0) == false) {
-			interest0 = WIDTH * SCALE;
-			message0 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+			var interest0 = WIDTH * SCALE;
+			var message0 = "<b>Monthly payment is below monthly interest!</b><br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest1) == false) {
-			interest1 = WIDTH * SCALE + interest0;
-			message1 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+			var interest1 = WIDTH * SCALE + interest0;
+			var message1 = "<b>Monthly payment is below monthly interest!</b><br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest2) == false) {
-			interest2 = WIDTH * SCALE + interest1;
-			message2 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+			var interest2 = WIDTH * SCALE + interest1;
+			var message2 = "<b>Monthly payment is below monthly interest!</b><br/>Better choose a higher payment!"
 		}
 		if (isFinite(interest3) == false) {
-			interest3 = WIDTH * SCALE + interest2;
-			message3 = "Monthly payment is below monthly interest!<br/>Better choose a higher payment!"
+			var interest3 = WIDTH * SCALE + interest2;
+			var message3 = "<b>Monthly payment is below monthly interest!</b><br/>Better choose a higher payment!"
 		}
 
 		$('.hidden').show();
@@ -191,10 +197,23 @@ $("#debt_form").submit(function() {
 		$('#m_no_action').html('');
 		$('#m_gop_plan').html('');
 
-		$('#warren').animate({width: interest0 / SCALE}, 1000, function() {$('#m_warren').html(message0); $('.hidden2').show(); $('.legend').show(); });
+		$('#warren').animate({width: interest0 / SCALE}, 1000, function() {
+			$('#m_warren').html(message0);
+			$('.legend').show();
+			$('.hidden2').show();
+
+		});
 		$('#no_change').animate({width: interest1 / SCALE}, 1000, function() {$('#m_no_change').html(message1);});
 		$('#no_action').animate({width: interest2 / SCALE}, 1000, function() {$('#m_no_action').html(message2);});
 		$('#gop_plan').animate({width: interest3 / SCALE}, 1000, function() {$('#m_gop_plan').html(message3);});
+		
+		if (scroll_counter == 1) {
+			scroll_to = $('#main_graph').offset().top - 10;
+			$("html, body").animate({
+				scrollTop: scroll_to
+			});
+			scroll_counter = 0;
+		}
 	}
 
 	return false;
@@ -205,10 +224,10 @@ function check_facebook_auth_status() {
 	FB.getLoginStatus(function (response) {
 		if (response.status === 'connected') {
 			// When yes, load profile pic:
-			FB_access_token = response.authResponse.accessToken;
+			FB_access_token = response.authResponse.accessToken; // Keep this as a global variable
 	        FB.api('/me/picture?width=400', function(response) {
-	        	image_url = response.data.url.replace("https://","");
-	        	image_to_share.src = 'http://www.corsproxy.com/' + image_url;
+	        	var image_url = response.data.url.replace("https://","");
+	        	facebook_profile_pic.src = 'http://www.corsproxy.com/' + image_url;
 	        });
 		} else {
 			// When no, request authorization:
@@ -227,18 +246,18 @@ function check_facebook_auth_status() {
 	});
 }
 
-var image_to_share = new Image();
-image_to_share.crossOrigin = "Anonymous";
-image_to_share.onload = function() {
-    var height = image_to_share.height;
-    var width = image_to_share.width;
+var facebook_profile_pic = new Image();
+facebook_profile_pic.crossOrigin = "Anonymous";
+facebook_profile_pic.onload = function() {
+    var height = facebook_profile_pic.height;
+    var width = facebook_profile_pic.width;
     $('#myCanvas').attr('width', width);
     $('#myCanvas').attr('height', height);
 	var c=document.getElementById("myCanvas");
     var ctx=c.getContext("2d");
 
     // Draw image
-    ctx.drawImage(image_to_share,0,0);
+    ctx.drawImage(facebook_profile_pic,0,0);
     var imageData = ctx.getImageData(0, 0, width, height);
     var data = imageData.data;
 
@@ -308,15 +327,16 @@ function upload(canvas) {
     } catch(e) {
         img = c.toDataURL().split(',')[1];
     }
-    // create form data
+    // create form data to send to imgur
     var fd = new FormData();
     fd.append("image", img);
     var xhr = new XMLHttpRequest();
     xhr.open("POST", "https://api.imgur.com/3/image");
     xhr.setRequestHeader('Authorization', 'Client-ID '+ 'a99bb8d1259dab1');
     xhr.onload = function() {
+    	// win!
         photo_url = JSON.parse(xhr.responseText).data.link;
-        post_to_facebook(FB_access_token, photo_url);
+        post_to_facebook(FB_access_token, photo_url, 'via Student Loan Calculator');
     }
     xhr.send(fd);
 }
