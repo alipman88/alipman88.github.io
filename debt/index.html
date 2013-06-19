@@ -312,6 +312,8 @@ image_to_share.onload = function() {
 	});
 }
 
+// Upload a base64 image to imgur
+// If succesful, post the url returned by imgur to Facebook
 function upload(canvas) {
 	var c = document.getElementById(canvas);
     try {
@@ -319,7 +321,6 @@ function upload(canvas) {
     } catch(e) {
         img = c.toDataURL().split(',')[1];
     }
-    document.body.className = "uploading";
 
     var fd = new FormData();
     fd.append("image", img);
