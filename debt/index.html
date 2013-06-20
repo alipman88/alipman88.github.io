@@ -166,7 +166,7 @@ $("#debt_form").submit(function() {
 		if (isFinite(interest2) == false) {
 			var gop_message = "could pay more than $" + numberWithCommas((Math.floor(22.56 * interest0))) + "!";
 		} else {
-			var gop_message = "could pay $" + interest2 + "!";
+			var gop_message = "could pay $" + numberWithCommas(interest2) + "!";
 		}
 
 		var fb_message = "If my student loan interest was the same rate Wall Street pays, I'd only pay $" + numberWithCommas(interest0) + " in interest. If Congress fails to act, a student like me " + gop_message;
