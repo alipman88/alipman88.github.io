@@ -40,7 +40,7 @@ contact {
 
 content {
 	display: block;
-	padding-top: 1.25in;
+	padding-top: 1.125in;
 	text-align: center;
 	width: 4.5in;
 	margin: auto;
@@ -85,6 +85,11 @@ blurb {
 
 blurb:first-line {
 	font-style:italic;
+}
+
+.no-italics:first-line {
+	font-style:normal;
+}
 }
 
 a:hover{opacity: 0.5;}
