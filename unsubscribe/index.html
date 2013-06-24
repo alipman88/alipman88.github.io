@@ -38,6 +38,13 @@
       
       /* lookin' green and bold */
       .box { background-color: rgb(200,255,200); }
+      .button_link {
+        color:#555;background-color:#f5f5f5;text-decoration:none;padding:10px;border-radius:4px;border: 1px solid gray;font-size:166%;
+      }
+      .button_link:hover {
+        background-color: #DFF4FF;
+        color: #369;
+      }
       h1, p.large.loud { font-weight: bold; color: rgb(36, 80, 36); }
   </style>
   
@@ -101,7 +108,7 @@
 
 <textarea style="height: 70px" name="action_survey"></textarea><p></p>
 
-<p><button value="Unsubscribe" style="border-radius:4px;border: 1px solid gray;position:relative;top:14px;">Unsubscribe</button><br/><button style="padding:10px;border-radius:4px;border: 1px solid gray;font-size:166%;" type="cancel" formaction="cancel.html">Wait, I changed my mind!</button></p>
+<p><button value="Unsubscribe" style="border-radius:4px;border: 1px solid gray;position:relative;top:6px;">Unsubscribe</button><br/><a class="button_link" style="" href="cancel.html">Wait, I changed my mind!</a></p>
 
 <input type="hidden" name="page" value="unsubscribe">
 
