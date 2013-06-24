@@ -1,0 +1,66 @@
+body.js form.ak-form,
+#ak-errors,
+#ak-confirmation,
+#ak-error-info,
+.ak-errors,
+.ak-confirmation,
+.ak-error-info { 
+    display: none 
+}
+input.ak-error, select.ak-error, textarea.ak-error { 
+    background-color: rgb(255,200,200); 
+    border-color: red; 
+}
+label.ak-error {
+    color: red;
+    font-weight: bold;
+}
+#ak-errors,
+#ak-confirmation,
+.ak-errors,
+.ak-confirmation {
+    list-style-type: none;
+    font-weight: bold;
+    color: white;
+    padding: 7px;
+    margin: 7px;
+}
+#ak-errors, .ak-errors {
+    background-color: red;
+}
+#ak-confirmation, .ak-confirmation {
+    background-color: green;
+}
+form.contains-errors #ak-errors, 
+form.contains-errors #ak-error-info,
+form.contains-errors .ak-errors, 
+form.contains-errors .ak-error-info {
+    display: block;
+}
+ul#ak-errors li,
+ul.ak-errors li {
+    padding: 0px;
+    margin: 0px;
+}
+#known_user, .known_user {
+    display: none;
+}
+.taf_body {
+    border: solid black 1px;
+    padding: 5px;
+}
+div.event-signup {
+    zoom: 1; /* work around IE 8 content-hiding bug */
+}
+
+/* Targets */
+div.target {}
+a.local_toggle {}
+span.local_toggle_label {font-size: 90%;font-weight:normal}
+div.office {display:none;font-weight:normal}
+span.office_phone {font-size:90%;color:#666;font-weight:normal}
+span.office_phone_label {font-wight:bold}
+span.office_fax {font-size:90%;color:#666;font-weight:normal}
+span.office_fax_label {font-wight:bold}
+
+
