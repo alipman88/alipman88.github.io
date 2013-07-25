@@ -195,6 +195,15 @@
 	height: 240px;
 }
 
+#footer {
+	text-align: center;
+	width: 500px;
+	margin: auto;
+	background-color: #fff;
+	margin-top: 25px;
+	margin-bottom: 100px;
+}
+
 body {
 	background-color:#ddd;
 }
