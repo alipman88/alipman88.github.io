@@ -191,7 +191,7 @@
             },
             append_how_you_did_section: function() {
                 correct_answers_element = jQuery('<span class="correct_answers">0</span>');
-                var how_you_did_element = jQuery('<p class="how_you_did span12"><a style="position:absolute;right:100px;top:0px;" onclick="closeReveal()" href="javascript:void(0);">&#215;</a></p>');
+                var how_you_did_element = jQuery('<p class="how_you_did span12"><a style="position:absolute;right:5px;top:0px;" onclick="closeReveal()" href="javascript:void(0);">&#215;</a></p>');
                 how_you_did_element.append(jQuery('<span>You got </span>'));
                 how_you_did_element.append(correct_answers_element);
                 how_you_did_element.append(jQuery('<span> correct answers out of ' + self.quiz_data.length + " questions.<br/><a href='#'>Now you have the facts -- sign the petition</a></span>"));
