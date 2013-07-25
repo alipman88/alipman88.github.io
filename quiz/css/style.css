@@ -4,7 +4,6 @@
 	font-weight: bold;
 	color: #21252E;
 	width: 98%;
-	margin-bottom:200px;
 }
 
 /*fluid grid layout using twitter bootstrap */
@@ -118,28 +117,14 @@
 }
 
 #quiz_container .how_you_did {
-	position: fixed;
-	bottom: -170px;
-	width: 100%;
 	text-align: center;
 	padding: 1em;
-	background-color: #99f;
+	background-color: rgb(254, 231, 88);
 	font-weight: bold;
-	font-size: 2.5em;
-	line-height: 1.25em;
-	z-index:95;
+	font-size: 1.25em;
 	-webkit-box-shadow: 0px 7px 5px rgba(50, 50, 50, 0.65);
 	-moz-box-shadow:    0px 7px 5px rgba(50, 50, 50, 0.65);
 	box-shadow:         0px 7px 5px rgba(50, 50, 50, 0.65);
-}
-
-#quiz_container .how_you_did a {
-	text-decoration:none;
-	color: #fb1;
-}
-
-#quiz_container .how_you_did a:hover {
-	color: #fc1;
 }
 
 /*multimedia styling*/
@@ -156,7 +141,8 @@
 
 .quiz_container .question img, .revealed_answer img, .selected img, .correct_answer img, .wrong_answer img {
     max-height: 18em;
-    display: block;
+    display: inline;
+    float: left;
 }
 
 .videoembed {
@@ -194,4 +180,25 @@
 	.quiz_container .question_container {
 		margin: 1em 0em 3.5em;
 	}
+}
+
+/* custom */
+
+.how_you_did {
+	position:fixed;
+	bottom:-200px;
+	width:990px;
+	background-color: #9cf !important;
+}
+
+#header {
+	height: 260px;
+}
+
+body {
+	background-color:#ddd;
+}
+
+IMG.middleimage {
+	margin-right: 25px;
 }

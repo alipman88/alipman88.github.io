@@ -12,15 +12,14 @@
 	<link href="css/style.css" rel="stylesheet" media="screen">
 </head>
     <body>
-
-        <h1 style="position:fixed;top:-10px;width:100%;background-color:#ddf;text-align:center;z-index:100">Title!
-        <br/><span style="font-size:80%">Hosted by <a href="#" target="_BLANK">Discophiles for Ambience</a>.</span></h1>
 	
 <!-- tabletop.js renders your spreadsheet data as HTML. Simply add a div below to wrap the whole thing -->
-        <div id="quiz_container" style="margin-top:100px;"></div>
+
+        <div id="header"></div>
+
+        <div style="width:1000px;margin:auto;background-color:#fff;padding-right:25px;padding-bottom:25px;"><div id="quiz_container"></div></div>
         <script type="text/javascript">
                 var quiz = jQuery('#quiz_container').quiz('0AjsZBk_lLhfddHFfUXZZWGdvblBzaTBBazFzWHUtUmc'); //your published spreadsheet key or URL goes here
         </script>
-        <p style="position:fixed;bottom:-20px;width:100%;background-color:#ddf;padding:20px;text-align:center;"><a href="https://github.com/motherjones/newsquiz" target="_BLANK">NewsQuiz.js</a> is an open-source project by Mother Jones.</p>
     </body>
 </html>
