@@ -190,11 +190,23 @@
                 return self;
             },
             append_how_you_did_section: function() {
+                var name = 'Hands off my Virginia!'.replace(' ', '%20');
+                var caption = 'Powered by Democracy for America'.replace(' ', '%20');
+                var description = 'I got ' + $('.correct_answers').text() + ' correct answers out of 4 questions. Think you can match my score?';
+                description.replace(' ', '%20');
                 correct_answers_element = jQuery('<span class="correct_answers">0</span>');
                 var how_you_did_element = jQuery('<p class="how_you_did span12"><a style="position:absolute;right:5px;top:0px;" onclick="closeReveal()" href="javascript:void(0);">&#215;</a></p>');
                 how_you_did_element.append(jQuery('<span>You got </span>'));
                 how_you_did_element.append(correct_answers_element);
-                how_you_did_element.append(jQuery('<span> correct answers out of ' + self.quiz_data.length + " questions.<br/><a href='#'>Now you have the facts -- sign the petition</a></span>"));
+                how_you_did_element.append(jQuery('<span> correct answers out of ' + self.quiz_data.length + " questions.<br/></span>"));
+                how_you_did_element.append(jQuery('<br/><a href="' + 
+                                                    'https://www.facebook.com/dialog/feed?app_id=39915705558' +
+                                                    '&amp;display=popup' +
+                                                    '&amp;picture=http://south.democracyforamerica.com/images/HAV-200x200.gif' +
+                                                    '&amp;redirect_uri=http://south.democracyforamerica.com/close.html' +
+                                                    '&amp;name=' + name +
+                                                    '&amp;caption=' + caption +
+                                                    '&amp;description=' + description + '&amp;link=http://south.democracyforamerica.com/Rick_Scott%3Fsource=fb_share" class="btn-facebook" onclick="window.open(this.href,&#x27;Share on Facebook&#x27;, &#x27;height=300, width=560, top=190, left=366, location=0&#x27;);return false;">Share on Facebook</a>'));
                 cover.append(how_you_did_element);
             },
 
@@ -453,7 +465,7 @@
                 container_elem.css('padding', '0px');
             },
             update_correct_answers_element: function() {
-                var right_answers = 0;
+                right_answers = 0;
                 for (var i = 0; i < self.quiz_data.length; i++) {
                     if (answer_tracking[i]) {
                         right_answers++;

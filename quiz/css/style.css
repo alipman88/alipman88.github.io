@@ -136,11 +136,14 @@
 }
 
 .quiz_container .possible_answer img {
+	/* edits */
 	max-height: 280px;
 }
 
 .quiz_container .question img, .revealed_answer img, .selected img, .correct_answer img, .wrong_answer img {
     max-height: 280px;
+
+    /* edits */
     display: inline;
     float: left;
 }
@@ -191,6 +194,11 @@
 	background-color: #9cf !important;
 }
 
+#main-content {
+	position: relative;
+	top: -20px;
+}
+
 #header {
 	height: 240px;
 }
@@ -204,8 +212,14 @@
 	margin-bottom: 100px;
 }
 
+html {
+	background-color:#333;
+}
+
 body {
-	background-color:#ddd;
+	width:1060px;
+	margin: auto;
+	background-color:#a8cdb9;
 }
 
 IMG.middleimage {
