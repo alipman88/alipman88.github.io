@@ -92,3 +92,12 @@ blurb:first-line {
 }
 
 a:hover{opacity: 0.5;}
+
+.ship{
+	position: fixed;
+	bottom: 10px;
+	left: 10px;
+	height: 75px;
+	background: url('../img/ship.png') no-repeat;
+	background-size: 75px;
+}
