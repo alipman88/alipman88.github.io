@@ -1,0 +1,19 @@
+<html>
+<head>
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script type="text/javascript" src="pawnshop.js"></script>
+</head>
+<body>
+	<p>Enter how much each housemate paid for their utility:
+		<br/>(Enter '0' for Abby.)</p>
+	<div style="font-family:'Courier New'">
+		Aaron:&nbsp;$<input id="aaron" value="0"><br/>
+		Abby:&nbsp;&nbsp;$<input id="abby" value="0"><br/>
+		Coori:&nbsp;$<input id="coori" value="0"><br/>
+		Zach:&nbsp;&nbsp;$<input id="zach" value="0"><br/>
+		<button onclick="calc();return false;">Calculate</button>
+	</div>
+	<p id="results" style="font-family:'Courier New'">
+	</p>
+</body>
+</html>
