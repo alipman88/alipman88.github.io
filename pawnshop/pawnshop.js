@@ -7,6 +7,7 @@ function calc() {
 	var sum = 0;
 	var length = 0;
 	array.forEach(function(e) {
+		if (e[1]) {} else {e[1] = 0;}
 		sum += parseInt(e[1]);
 		length += 1;
 	});
