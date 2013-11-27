@@ -48,17 +48,19 @@ function calc() {
 		$('#results').append(e[0] + " owes $" + Math.abs(e[1]).toFixed(2) + "<br>");
 	});
 	$('#results').append("----------------<br>");
-
-	for (i = -1; i < length; i++) {
-		if (Math.abs(owing.slice(-1)[0][1]) < Math.abs(owed.slice(-1)[0][1])) {
-			owed.slice(-1)[0][1] += owing.slice(-1)[0][1]
-			$('#results').append(owing.slice(-1)[0][0] + " pays " + owed.slice(-1)[0][0] + " $" + Math.abs(owing.slice(-1)[0][1]).toFixed(2) + "<br>");
-			owing.pop();
-			$('#results').append("----------------<br>");
-		} else {
-			owing.slice(-1)[0][1] += owed.slice(-1)[0][1]
-			$('#results').append(owing.slice(-1)[0][0] + " pays " + owed.slice(-1)[0][0] + " $" + Math.abs(owed.slice(-1)[0][1]).toFixed(2) + "<br>");
-			owed.pop();
+	try {
+		for (i = -1; i < length; i++) {
+			if (Math.abs(owing.slice(-1)[0][1]) < Math.abs(owed.slice(-1)[0][1])) {
+				owed.slice(-1)[0][1] += owing.slice(-1)[0][1]
+				$('#results').append(owing.slice(-1)[0][0] + " pays " + owed.slice(-1)[0][0] + " $" + Math.abs(owing.slice(-1)[0][1]).toFixed(2) + "<br>");
+				owing.pop();
+				$('#results').append("----------------<br>");
+			} else {
+				owing.slice(-1)[0][1] += owed.slice(-1)[0][1]
+				$('#results').append(owing.slice(-1)[0][0] + " pays " + owed.slice(-1)[0][0] + " $" + Math.abs(owed.slice(-1)[0][1]).toFixed(2) + "<br>");
+				owed.pop();
+			}
 		}
-	}
+	} catch(err) {return false;}
+	return false;
 }
