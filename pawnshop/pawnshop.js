@@ -14,8 +14,8 @@ function calc() {
 	var avg = sum / length;
 
 	$('#results').append("----------------<br>");
-	$('#results').append("total utilities: $" + sum + "<br>");
-	$('#results').append("individual share: $" + avg + "<br>");
+	$('#results').append("total utilities: $" + sum.toFixed(2) + "<br>");
+	$('#results').append("individual share: $" + avg.toFixed(2) + "<br>");
 	$('#results').append("----------------<br>");
 
 	for (i = 0; i < length; i++) {
@@ -39,24 +39,24 @@ function calc() {
 	});
 
 	owed.forEach(function(e) {
-		$('#results').append(e[0] + " is owed $" + Math.abs(e[1]) + "<br>");
+		$('#results').append(e[0] + " is owed $" + Math.abs(e[1]).toFixed(2) + "<br>");
 	});
 	$('#results').append("----------------<br>");
 
 	owing.forEach(function(e) {
-		$('#results').append(e[0] + " owes $" + Math.abs(e[1]) + "<br>");
+		$('#results').append(e[0] + " owes $" + Math.abs(e[1]).toFixed(2) + "<br>");
 	});
 	$('#results').append("----------------<br>");
 
 	for (i = -1; i < length; i++) {
 		if (Math.abs(owing.slice(-1)[0][1]) < Math.abs(owed.slice(-1)[0][1])) {
 			owed.slice(-1)[0][1] += owing.slice(-1)[0][1]
-			$('#results').append(owing.slice(-1)[0][0] + " pays " + owed.slice(-1)[0][0] + " $" + Math.abs(owing.slice(-1)[0][1]) + "<br>");
+			$('#results').append(owing.slice(-1)[0][0] + " pays " + owed.slice(-1)[0][0] + " $" + Math.abs(owing.slice(-1)[0][1]).toFixed(2) + "<br>");
 			owing.pop();
 			$('#results').append("----------------<br>");
 		} else {
 			owing.slice(-1)[0][1] += owed.slice(-1)[0][1]
-			$('#results').append(owing.slice(-1)[0][0] + " pays " + owed.slice(-1)[0][0] + " $" + Math.abs(owed.slice(-1)[0][1]) + "<br>");
+			$('#results').append(owing.slice(-1)[0][0] + " pays " + owed.slice(-1)[0][0] + " $" + Math.abs(owed.slice(-1)[0][1]).toFixed(2) + "<br>");
 			owed.pop();
 		}
 	}
