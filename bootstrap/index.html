@@ -129,10 +129,12 @@
         height: 100px;
         margin: 2px 10px;
       }
+      .text-center-sm { text-align: center; }
     }
 
     @media (min-width: 768px) {
       .btn-block { width: 75%; }
+      .text-right-md { text-align: right; }
     }
 
     </style>
@@ -198,7 +200,7 @@
             <li style="height: 0px; padding: 0px; margin: 0px;"></li>
           </ul>
         </div>
-        <div class="col-sm-12 col-md-4 full-bottom">
+        <div class="col-sm-8 col-sm-offset-2 col-md-offset-0 col-md-4 full-bottom">
           <form role="form">
             <div class="form-group">
               <label for="exampleInputName">Name</label>
@@ -251,18 +253,19 @@
       </div><!-- /.container -->
     </div>
  
-    <div class="container section no-bottom">
+    <div class="container section no-bottom" id="thanks">
       <h1>[Thank-you text] Thanks for submitting your endorsement!</h1>
       <p class="lead">[Thank-you text cont.] The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from "de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.</p>
     </div>
 
     <div class="container section">
       <div class="row">
-        <div class="col-sm-6 full-bottom">
+        <div class="col-sm-6 col-md-5 full-bottom">
           <div class="half-bottom">
           <h4 class="hidden-xs">Support Democracy for America:</h4>
-          <a class="btn btn-lg btn-block btn-warning">
-            Make a donation <input type="text" placeholder="$12" style="width: 60px; padding-left: 5px; border: none; border-radius: 4px;">
+          <a href="#" class="btn btn-lg btn-block btn-warning">
+            Make a donation <input type="text" placeholder="$15" onclick="return false;" style="width: 60px; padding-left: 5px; border: none; border-radius: 4px;" />
+
           </a>
           </div>
           <div class="half-bottom">
@@ -278,7 +281,7 @@
             <a href="mailto:info@example.com" class="btn btn-lg btn-block btn-success">Send an email now &#187;</a>
           </div>
         </div>
-        <div class="col-sm-6 hidden-xs">
+        <div class="col-sm-6 col-md-7 hidden-xs">
           <h4>Invite your friends:</h4>
           <div class="well">
             <p><b>Subject: [Tell-a-friend subject]</b></p>
@@ -299,16 +302,16 @@
     <div style="background-color: #333;">
       <div class="container section" id="footer">
         <div class="row">
-          <div class="col-sm-6">
-            <p>
+          <div class="col-sm-6 text-center-sm full-bottom">
+            <address><b>Democracy&nbsp;For&nbsp;America</b><br/>PO&nbsp;Box&nbsp;1717&nbsp;•&nbsp;Burlington,&nbsp;VT 05402
+            <br/>Phone:&nbsp;802.651.3200 •&nbsp;Fax:&nbsp;802.651.3299</address>
+          </div>
+          <div class="col-sm-6 full-bottom">
+            <p class="text-right-md text-center-sm">
               <a href="#">Privacy Policy</a>
               <br/>
               <a href="#">Contact us</a>
             </p>
-          </div>
-          <div class="col-sm-6">
-            <address><b>Democracy&nbsp;For&nbsp;America</b><br/>PO&nbsp;Box&nbsp;1717&nbsp;•&nbsp;Burlington,&nbsp;VT 05402
-            <br/>Phone:&nbsp;802.651.3200 •&nbsp;Fax:&nbsp;802.651.3299</address>
           </div>
           <div class="col-sm-12">
             <p class="text-center" style="padding: 15px; border: solid 1px #FFF;">
@@ -322,7 +325,7 @@ Contributions to Democracy for America are not tax deductible for federal income
 
     <script>
     // Script for timer
-      var end = new Date('11/15/2016');
+      var end = new Date('11/08/2016');
 
       var _second = 1000;
       var _minute = _second * 60;
