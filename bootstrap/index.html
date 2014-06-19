@@ -36,7 +36,7 @@
     <style>
     #sortable2 {list-style-type: none; }
     #sortable1 {list-style-type: decimal }
-    #sortable1 > li:last-child {
+    #sortable1 > li:last-child, #sortable1 > li:active {
      list-style-type: none; 
     }
     #sortable1, #sortable2 { margin: 0; min-width: 242px; height: 284px; padding: 5px; border: 1px solid #CCC; border-radius: 4px; }
@@ -141,14 +141,7 @@
     <script>
     $(function() {
       $( "#sortable1, #sortable2" ).sortable({
-        connectWith: ".connectedSortable",
-        sort: function(event, ui){        
-          $('#sortable1 li').css('list-style-type', 'none');
-        },
-        stop: function(event, ui){ 
-          $('#sortable1 li').css('list-style-type', 'decimal');
-          $('#sortable1 > li:last-child').css('list-style-type', 'none');
-        }
+        connectWith: ".connectedSortable"
       }).disableSelection();
     });
     </script>
