@@ -141,7 +141,14 @@
     <script>
     $(function() {
       $( "#sortable1, #sortable2" ).sortable({
-        connectWith: ".connectedSortable"
+        connectWith: ".connectedSortable",
+        sort: function(event, ui){        
+          $('#sortable1 li').css('list-style-type', 'none');
+        },
+        stop: function(event, ui){ 
+          $('#sortable1 li').css('list-style-type', 'decimal');
+          $('#sortable1 > li:last-child').css('list-style-type', 'none');
+        }
       }).disableSelection();
     });
     </script>
