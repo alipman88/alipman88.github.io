@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<!-- saved from url=(0108)http://acumen.org/wp-content/themes/acu-theme/BW/ACU/resources/mobile/components/hammerjs/examples/drag.html -->
+<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+    <title>Ball Zone</title>
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+    <style>
+
+        h1 {
+            margin: 30px;
+            text-align: center;
+        }
+
+        .drag {
+            position: absolute;
+            background: #9fe1e7;
+            border-radius: 50px;
+            width: 100px;
+            height: 100px;
+        }
+
+        .drag1 { z-index: 101; background:           aqua; left:  50px; top: 200px; }
+        .drag2 { z-index: 102; background:     aquamarine; left: 150px; top: 200px; }
+        .drag3 { z-index: 103; background:      burlywood; left: 250px; top: 200px; }
+        .drag4 { z-index: 104; background:      cadetblue; left:  50px; top: 300px; }
+        .drag5 { z-index: 105; background:     chartreuse; left: 150px; top: 300px; }
+        .drag6 { z-index: 106; background: cornflowerblue; left: 250px; top: 300px; }
+
+    </style>
+<style type="text/css"></style></head>
+
+<body style="zoom: 1;">
+
+<div style="height: 150px; background-color: #ddd;">
+    <h1>Drag the balls<br/>into the ball zone!</h1>
+</div>
+
+<div class="drag drag1"></div>
+<div class="drag drag2"></div>
+<div class="drag drag3"></div>
+<div class="drag drag4"></div>
+<div class="drag drag5"></div>
+<div class="drag drag6"></div>
+
+
+<!-- jQuery is just for the demo! Hammer.js works without jQuery :-) -->
+<script src="./Hammer.js_files/jquery.min.js"></script>
+<script src="./Hammer.js_files/modernizr.js"></script>
+<script src="./Hammer.js_files/jquery.hammer.js"></script>
+
+<script>
+
+    top_z_index = 107;
+
+    $(".drag")
+            .hammer({ drag_max_touches:0})
+            .on("touch drag", function(ev) {
+                var touches = ev.gesture.touches;
+                ev.gesture.preventDefault();
+                var target = $(touches[0].target);
+
+                target.css({
+                    zIndex: top_z_index,
+                    left: touches[0].pageX-50,
+                    top: touches[0].pageY-50
+                });
+            })
+            .on("dragstart touch", function(ev) {
+                var touches = ev.gesture.touches;
+                ev.gesture.preventDefault();
+                var target = $(touches[0].target);
+
+                top_z_index = top_z_index + 1;
+                target.css("box-shadow", "0px 0px 2px 1px #000");
+            })
+            .on("dragend release", function(ev) {
+                var touches = ev.gesture.touches;
+                ev.gesture.preventDefault();
+                var target = $(touches[0].target);
+
+                target.css("box-shadow", "none");
+            });
+
+
+</script>
+<script src="./Hammer.js_files/ga(1).js"></script>
+
+
+</body></html>
