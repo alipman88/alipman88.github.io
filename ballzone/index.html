@@ -11,8 +11,29 @@
 
     <style>
 
-        h1 {
-            margin: 30px;
+        .blue-gradient {
+            background: #0060b0; /* Old browsers */
+            background: -moz-linear-gradient(left,  #0060b0 0%, #004090 10%, #0070c0 20%, #004090 50%, #0070c0 75%, #0060b0 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0060b0), color-stop(10%,#004090), color-stop(20%,#0070c0), color-stop(50%,#004090), color-stop(75%,#0070c0), color-stop(100%,#0060b0)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* IE10+ */
+            background: linear-gradient(to right,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0060b0', endColorstr='#0060b0',GradientType=1 ); /* IE6-9 */
+        }
+
+        .red-gradient {
+            background: #d02020; /* Old browsers */
+            background: -moz-linear-gradient(left,  #d02020 0%, #900010 10%, #d02020 20%, #900010 50%, #d02020 75%, #d02020 100%); /* FF3.6+ */
+            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#d02020), color-stop(10%,#900010), color-stop(20%,#d02020), color-stop(50%,#900010), color-stop(75%,#d02020), color-stop(100%,#d02020)); /* Chrome,Safari4+ */
+            background: -webkit-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* Chrome10+,Safari5.1+ */
+            background: -o-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* Opera 11.10+ */
+            background: -ms-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* IE10+ */
+            background: linear-gradient(to right,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* W3C */
+            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d02020', endColorstr='#d02020',GradientType=1 ); /* IE6-9 */
+        }
+
+        h2 {
             text-align: center;
         }
 
@@ -23,6 +44,14 @@
             width: 100px;
             height: 100px;
             /*margin: 10px;*/
+        }
+
+        .box {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: solid 1px #ddd;
+            border-radius: 25px;
         }
 
         .drag1  { z-index: 101; background:           aqua; }
@@ -43,12 +72,23 @@
 
 <body style="zoom: 1;">
 
-<div style="height: 150px; width: 100%; background-color: #ddd;">
-    <h1 style="margin-top: 0;">Drag the balls<br/>into the ball zone!</h1>
+<div class="blue-gradient" style="width: 100%; height: 150px;"></div>
+<div class="red-gradient" style="width: 100%; height: 15px; margin-top: 1px;"></div>
+
+<div class="container" style="padding: 20px;">
+    <div class="sixteen columns" style="text-align: center;">
+        &nbsp;&nbsp;&nbsp;<div class="box"></div>&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<div class="box"></div>&nbsp;&nbsp;&nbsp;
+        &nbsp;&nbsp;&nbsp;<div class="box"></div>&nbsp;&nbsp;&nbsp;
+    </div>
 </div>
 
-<div class="container" style="padding-top: 25px;">
-    <div class="sixteen columns" style="text-align: center; line-height: 60px;">
+<div class="red-gradient" style="width: 100%; box-shadow: 0px 5px 10px #999;">
+    <h2 style="color: #fff;">Drag the balls into the ball zone!</h2>
+</div>
+
+<div class="container">
+    <div class="sixteen columns" style="text-align: center; margin-top: 20px; line-height: 60px;">
         <div class="drag drag1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="drag drag2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         <div class="drag drag3"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -116,7 +156,7 @@
                 var target = $(touches[0].target);
 
                 top_z_index = top_z_index + 1;
-                target.css("box-shadow", "0px 0px 2px 1px #000");
+                target.css("box-shadow", "0px 0px 2px 1px #aaa");
             })
             .on("dragend release", function(ev) {
                 var touches = ev.gesture.touches;
