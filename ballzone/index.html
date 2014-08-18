@@ -4,6 +4,11 @@
     <title>Ball Zone</title>
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/skeleton.css">
+    <link rel="stylesheet" href="css/layout.css">
+
     <style>
 
         h1 {
@@ -12,35 +17,51 @@
         }
 
         .drag {
-            position: absolute;
+            display: inline-block;
             background: #9fe1e7;
-            border-radius: 50px;
+            border-radius: 25px;
             width: 100px;
             height: 100px;
         }
 
-        .drag1 { z-index: 101; background:           aqua; left:  50px; top: 200px; }
-        .drag2 { z-index: 102; background:     aquamarine; left: 150px; top: 200px; }
-        .drag3 { z-index: 103; background:      burlywood; left: 250px; top: 200px; }
-        .drag4 { z-index: 104; background:      cadetblue; left:  50px; top: 300px; }
-        .drag5 { z-index: 105; background:     chartreuse; left: 150px; top: 300px; }
-        .drag6 { z-index: 106; background: cornflowerblue; left: 250px; top: 300px; }
+        .drag1  { z-index: 101; background:           aqua; }
+        .drag2  { z-index: 102; background:     aquamarine; }
+        .drag3  { z-index: 103; background:      burlywood; }
+        .drag4  { z-index: 104; background:      cadetblue; }
+        .drag5  { z-index: 105; background:     chartreuse; }
+        .drag6  { z-index: 106; background: cornflowerblue; }
+        .drag7  { z-index: 107; background:           aqua; }
+        .drag8  { z-index: 108; background:     aquamarine; }
+        .drag9  { z-index: 109; background:      burlywood; }
+        .drag10 { z-index: 110; background:      cadetblue; }
+        .drag11 { z-index: 111; background:     chartreuse; }
+        .drag12 { z-index: 112; background: cornflowerblue; }
 
     </style>
 <style type="text/css"></style></head>
 
 <body style="zoom: 1;">
 
-<div style="height: 150px; background-color: #ddd;">
-    <h1>Drag the balls<br/>into the ball zone!</h1>
+<div style="height: 150px; width: 100%; background-color: #ddd;">
+    <h1 style="margin-top: 0;">Drag the balls<br/>into the ball zone!</h1>
 </div>
 
-<div class="drag drag1"></div>
-<div class="drag drag2"></div>
-<div class="drag drag3"></div>
-<div class="drag drag4"></div>
-<div class="drag drag5"></div>
-<div class="drag drag6"></div>
+<div class="container">
+    <div class="sixteen columns">
+        <div class="drag drag1"></div>
+        <div class="drag drag2"></div>
+        <div class="drag drag3"></div>
+        <div class="drag drag4"></div>
+        <div class="drag drag5"></div>
+        <div class="drag drag6"></div>
+        <div class="drag drag7"></div>
+        <div class="drag drag8"></div>
+        <div class="drag drag9"></div>
+        <div class="drag drag10"></div>
+        <div class="drag drag11"></div>
+        <div class="drag drag12"></div>
+    </div>
+</div>
 
 
 <!-- jQuery is just for the demo! Hammer.js works without jQuery :-) -->
@@ -50,7 +71,30 @@
 
 <script>
 
-    top_z_index = 107;
+    function findAbsolute(element) {
+        var left = element.offset().left
+        var  top = element.offset().top
+        element.data('left', left);
+        element.data('top', top);
+    }
+
+    function makeAbsolute(element) {
+        element.css({
+            position: "fixed",
+            left: element.data('left'),
+            top: element.data('top')
+        });
+    }
+
+    $('.drag').each(function() {
+        findAbsolute( $(this) );
+    });   
+
+    $('.drag').each(function() {
+        makeAbsolute( $(this) );
+    });
+
+    top_z_index = 199;
 
     $(".drag")
             .hammer({ drag_max_touches:0})
@@ -79,11 +123,16 @@
                 var target = $(touches[0].target);
 
                 target.css("box-shadow", "none");
+
+                if (touches[0].pageY-50 > 150) {
+                    console.log('not ballzone');
+                } else {
+                    console.log('ballzone');
+                }
             });
 
 
 </script>
-<script src="./Hammer.js_files/ga(1).js"></script>
 
 
 </body></html>
