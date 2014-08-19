@@ -228,13 +228,12 @@
                 ev.gesture.preventDefault();
                 target.css({
                     position: "absolute",
+                    zIndex: 999,
                     left: touches[0].pageX-75,
                     top: touches[0].pageY-50,
                     boxShadow: "5px 5px 10px #999"
                 });
             }
-
-            target.css('z-index', 999);
         })
         .on("dragend release", function(ev) {
             // set a draggable element's position upon release
@@ -259,12 +258,13 @@
                 ev.gesture.preventDefault();
                 target.css({
                     boxShadow: "none",
-                    zIndex: z_base + top_z_index,
                     top: touches[0].pageY - (50+scroll_offset),
                     position: position
                 });
             }
-            $('.blue-gradient').text( touches[0].pageY - $(window).scrollTop() );
+
+            target.css('z-index', z_base + top_z_index);
+            $('.blue-gradient').html( touches[0].pageY - $(window).scrollTop() );
         });
 </script>
 
