@@ -31,12 +31,16 @@
 <div class="white ribbon" style="top: 150px; height: 1px;"></div>
 <div class="red-gradient ribbon" style="top: 151px; height: 15px;"></div>
 
-<div class="white ribbon" style="top: 166px; height: 156px;">
-    <h3 style="margin: 12px 20px; color: #ccc;">Drag and drop your top choices for the 2016 Democratic Presidential Primary from the list below into this area.</h3>
+<div id="drop-div" class="white ribbon" style="top: 166px; height: 156px;">
+    <h3 style="color: #ccc; height: 156px;">
+        Drag and drop your top choices for
+        <br class="monitor">the 2016 Democratic Presidential Primary
+        <br class="monitor">from the list below into this area.
+    </h3>
 </div>
 
-<div class="red-gradient ribbon" style="top: 320px; height: 36px; box-shadow: 0px 5px 10px #999;">
-    <h3 style="padding: 5px 0; color: #fff; font-weight: bold;">SELECT YOUR TOP THREE!</h3>
+<div id="red-ribbon" class="red-gradient ribbon" style="top: 320px; height: 36px; box-shadow: 0px 5px 10px #999;">
+    <h3 style="color: #fff;">SELECT YOUR TOP THREE!</h3>
 </div>
 
 <div>
@@ -129,16 +133,8 @@
         }
     }
 
-    function makeStatic(element) {
-        if ( element.css("position") != "fixed" ) {
-            element.css("position", "static");
-        }
-    }
-
     function reGrid() {
-        $('.drag').each(function() {
-            makeStatic( $(this) );
-        });  
+        $('.drag:not(.fixed)').css("position", "static") 
 
         $('.drag').each(function() {
             findAbsolute( $(this) );
@@ -150,7 +146,6 @@
     }
 
     $( window ).resize(function() {
-        console.log('win');
         reGrid();
     });
 
@@ -197,19 +192,22 @@
             // set a draggable element's position upon release
 
             var touches = ev.gesture.touches;
+            var vertical = touches[0].pageY - $(window).scrollTop()
 
             // ensure that the last-touched element has the highest z-index
             top_z_index = top_z_index + 1;
 
             // set CSS according to whether the draggable element has been dropped in the target zone
-            if ( touches[0].pageY - $(window).scrollTop() <= 405 ) {
+            if ( vertical <= 405 ) {
                 var z_base = 900;
                 var scroll_offset = $(window).scrollTop();
                 var position = 'fixed'
+                target.addClass('fixed');
             } else {
                 var z_base = 100;
                 var scroll_offset = 0;
                 var position = 'absolute'
+                target.removeClass('fixed');
             }
 
             if ( !$(touches[0].target).is('input') ) {
@@ -222,7 +220,7 @@
             }
 
             // snap to grid
-            if ( touches[0].pageY - $(window).scrollTop() <= 320 ) {
+            if ( vertical <= 320 && vertical >= 170 ) {
                 target.animate({top: 185}, "fast");
                 target.addClass('top-three');
                 target.children('.office').slideUp();
