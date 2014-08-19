@@ -97,10 +97,10 @@
         }
 
         .worry::after {
+            content: "";
             position: absolute;
-            content: " ";
-            width: 120px;
-            height: 80px;
+            width: 114px;
+            height: 74px;
             top: -20px;
             right: -60px;
             background-image: url('img/worry.png');
@@ -275,11 +275,13 @@
                 var scroll_offset = $(window).scrollTop();
                 var position = 'fixed'
                 target.addClass('top-three');
+                target.children('.office').slideUp();
             } else {
                 var z_base = 100;
                 var scroll_offset = 0;
                 var position = 'absolute'
                 target.removeClass('top-three');
+                target.children('.office').slideDown();
             }
 
             if ( !$(touches[0].target).is('input') ) {
