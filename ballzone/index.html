@@ -74,6 +74,13 @@
         .drag11 { z-index: 111; }
         .drag12 { z-index: 112; }
 
+        .write-in {
+            width: 90px !important;
+            font-size: 12px !important;
+            padding: 2px 4px !important;
+            margin-top: 4px !important;
+        }
+
     </style>
 </head>
 
@@ -98,64 +105,63 @@
 <div>
     <div style="text-align: center; margin-top: 32px; line-height: 80px;">
         <div class="drag drag1">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag2">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag3">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag4">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag5">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag6">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag7">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag8">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag9">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag10">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag11">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+            <img src="img/bernie-sanders.jpg">
+            <span class="office">Vermont Senator</span>
+            <span class="candidate">Bernie Sanders</span>
         </div>
-        <div class="drag drag12">
-                <img src="img/bernie-sanders.jpg">
-                <span class="office">Vermont Senator</span>
-                <span class="candidate">Bernie Sanders</span>
+        <div class="drag drag12" style="vertical-align: top;">
+            <img src="img/default-profile.jpg">
+            <input class="write-in" type="text" placeholder="YOUR WRITE-IN" />
         </div>
     </div>
 </div>
@@ -206,7 +212,11 @@
         })
         .on("dragstart touch", function(ev) {
             var touches = ev.gesture.touches;
-            ev.gesture.preventDefault();
+
+            if ( !$(touches[0].target).is('input') ) {
+                ev.gesture.preventDefault();
+            }
+
             target = $(touches[0].target).closest('.drag');
 
             top_z_index = top_z_index + 1;
@@ -227,4 +237,5 @@
         });
 </script>
 
-</body></html>
+</body>
+</html>
