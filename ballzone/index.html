@@ -80,6 +80,22 @@
         .drag11 { z-index: 100; }
         .drag12 { z-index: 100; }
 
+        .top-three::before {
+            line-height: 38px;
+            content: "1";
+            height: 36px;
+            width: 36px;
+            position: absolute;
+            left: -18px;
+            top: 0px;
+            color: #fff;
+            font-size: 24px;
+            font-weight: bold;
+            border-radius: 20px;
+            box-shadow: 0px 2px 10px #555;
+            border: solid 2px #fff;
+        }
+
         .write-in {
             width: 90px !important;
             font-size: 12px !important;
@@ -248,10 +264,12 @@
                 var z_base = 900;
                 var scroll_offset = $(window).scrollTop();
                 var position = 'fixed'
+                target.addClass('top-three');
             } else {
                 var z_base = 100;
                 var scroll_offset = 0;
                 var position = 'absolute'
+                target.removeClass('top-three');
             }
 
             if ( !$(touches[0].target).is('input') ) {
