@@ -1,0 +1,100 @@
+h3 {
+    line-height: 100%;
+    text-align: center;
+}
+
+.ribbon {
+    position: fixed;
+    width: 100%;
+    z-index: 900;
+}
+
+.drag {
+    line-height: 14px;
+    display: inline-block;
+    border-radius: 25px;
+    width: 100px;
+    height: 100px;
+    margin: 0 25px 60px;
+    cursor: move;
+}
+
+.drag img {
+    height: 100px;
+    width: 100px;
+    border-radius: 25px;
+}
+
+.office, .candidate {
+    display: block;
+    position: relative;
+    left: -25px;
+    width: 150px;
+}
+
+.office {
+    font-size: 12px;
+}
+
+.candidate {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.drop {
+    color: #ddd;
+    line-height: 100px;
+    font-size: 80px;
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    border: solid 1px #ddd;
+    border-radius: 25px;
+    margin: 0 25px;
+}
+
+.drag1  { z-index: 100; }
+.drag2  { z-index: 100; }
+.drag3  { z-index: 100; }
+.drag4  { z-index: 100; }
+.drag5  { z-index: 100; }
+.drag6  { z-index: 100; }
+.drag7  { z-index: 100; }
+.drag8  { z-index: 100; }
+.drag9  { z-index: 100; }
+.drag10 { z-index: 100; }
+.drag11 { z-index: 100; }
+.drag12 { z-index: 100; }
+
+.top-three::before {
+    line-height: 38px;
+    content: "3";
+    height: 36px;
+    width: 36px;
+    position: absolute;
+    left: -18px;
+    top: 0px;
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 20px;
+    box-shadow: 0px 2px 10px #555;
+    border: solid 2px #fff;
+}
+
+.worry::after {
+    content: "";
+    position: absolute;
+    width: 114px;
+    height: 74px;
+    top: -20px;
+    right: -60px;
+    background-image: url('img/worry.png');
+}
+
+.write-in {
+    width: 90px !important;
+    font-size: 12px !important;
+    padding: 2px 4px !important;
+    margin-top: 4px !important;
+}
