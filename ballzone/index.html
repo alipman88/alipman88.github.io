@@ -42,8 +42,8 @@
         .office, .candidate {
             display: block;
             position: relative;
-            left: -50px;
-            width: 200px;
+            left: -25px;
+            width: 150px;
         }
 
         .office {
@@ -206,17 +206,15 @@
             // set a draggable element's position while being dragged
 
             var touches = ev.gesture.touches;
-            ev.gesture.preventDefault();
 
             if ( !$(touches[0].target).is('input') ) {
                 ev.gesture.preventDefault();
+                target.css({
+                    position: "absolute",
+                    left: touches[0].pageX-75,
+                    top: touches[0].pageY-50
+                });
             }
-
-            target.css({
-                position: "absolute",
-                left: touches[0].pageX-75,
-                top: touches[0].pageY-50
-            });
         })
         .on("dragstart touch", function(ev) {
             // bring a draggable element to the front when clicked upon
@@ -227,18 +225,20 @@
 
             if ( !$(touches[0].target).is('input') ) {
                 ev.gesture.preventDefault();
+                target.css({
+                    position: "absolute",
+                    left: touches[0].pageX-75,
+                    top: touches[0].pageY-50,
+                    boxShadow: "5px 5px 10px #999"
+                });
             }
 
-            target.css({
-                zIndex: 999,
-                boxShadow: "5px 5px 10px #999"
-            });
+            target.css('z-index', 999);
         })
         .on("dragend release", function(ev) {
             // set a draggable element's position upon release
 
             var touches = ev.gesture.touches;
-            ev.gesture.preventDefault();
 
             // ensure that the last-touched element has the highest z-index
             top_z_index = top_z_index + 1;
@@ -254,15 +254,15 @@
                 var position = 'absolute'
             }
 
-            target.css({
-                boxShadow: "none",
-                zIndex: z_base + top_z_index,
-                top: touches[0].pageY - (50+scroll_offset),
-                position: position
-            });
-
-            console.log(ev.gesture);
-
+            if ( !$(touches[0].target).is('input') ) {
+                ev.gesture.preventDefault();
+                target.css({
+                    boxShadow: "none",
+                    zIndex: z_base + top_z_index,
+                    top: touches[0].pageY - (50+scroll_offset),
+                    position: position
+                });
+            }
         });
 </script>
 
