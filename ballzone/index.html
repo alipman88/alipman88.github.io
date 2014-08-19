@@ -10,6 +10,19 @@
     <link rel="stylesheet" href="css/layout.css">
     <link rel="stylesheet" href="css/gradients.css">
     <link rel="stylesheet" href="css/drag.css">
+
+    <style>
+        .worry::after {
+            content: "";
+            position: absolute;
+            width: 114px;
+            height: 74px;
+            top: -20px;
+            right: -60px;
+            background-image: url('img/worry.png');
+        }
+    </style>
+
 </head>
 
 <body style="zoom: 1; padding-top: 350px;">
@@ -193,14 +206,10 @@
                 var z_base = 900;
                 var scroll_offset = $(window).scrollTop();
                 var position = 'fixed'
-                target.addClass('top-three');
-                target.children('.office').slideUp();
             } else {
                 var z_base = 100;
                 var scroll_offset = 0;
                 var position = 'absolute'
-                target.removeClass('top-three');
-                target.children('.office').slideDown();
             }
 
             if ( !$(touches[0].target).is('input') ) {
@@ -210,6 +219,16 @@
                     top: touches[0].pageY - (50+scroll_offset),
                     position: position
                 });
+            }
+
+            // snap to grid
+            if ( touches[0].pageY - $(window).scrollTop() <= 320 ) {
+                target.animate({top: 185}, "fast");
+                target.addClass('top-three');
+                target.children('.office').slideUp();
+            } else {
+                target.removeClass('top-three');
+                target.children('.office').slideDown();
             }
 
             target.css('z-index', z_base + top_z_index);
