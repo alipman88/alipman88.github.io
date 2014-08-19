@@ -8,99 +8,145 @@
     <link rel="stylesheet" href="css/base.css">
     <link rel="stylesheet" href="css/skeleton.css">
     <link rel="stylesheet" href="css/layout.css">
+    <link rel="stylesheet" href="css/gradients.css">
 
     <style>
-
-        .blue-gradient {
-            background: #0060b0; /* Old browsers */
-            background: -moz-linear-gradient(left,  #0060b0 0%, #004090 10%, #0070c0 20%, #004090 50%, #0070c0 75%, #0060b0 100%); /* FF3.6+ */
-            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0060b0), color-stop(10%,#004090), color-stop(20%,#0070c0), color-stop(50%,#004090), color-stop(75%,#0070c0), color-stop(100%,#0060b0)); /* Chrome,Safari4+ */
-            background: -webkit-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* Chrome10+,Safari5.1+ */
-            background: -o-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* Opera 11.10+ */
-            background: -ms-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* IE10+ */
-            background: linear-gradient(to right,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* W3C */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0060b0', endColorstr='#0060b0',GradientType=1 ); /* IE6-9 */
-        }
-
-        .red-gradient {
-            background: #d02020; /* Old browsers */
-            background: -moz-linear-gradient(left,  #d02020 0%, #900010 10%, #d02020 20%, #900010 50%, #d02020 75%, #d02020 100%); /* FF3.6+ */
-            background: -webkit-gradient(linear, left top, right top, color-stop(0%,#d02020), color-stop(10%,#900010), color-stop(20%,#d02020), color-stop(50%,#900010), color-stop(75%,#d02020), color-stop(100%,#d02020)); /* Chrome,Safari4+ */
-            background: -webkit-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* Chrome10+,Safari5.1+ */
-            background: -o-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* Opera 11.10+ */
-            background: -ms-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* IE10+ */
-            background: linear-gradient(to right,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* W3C */
-            filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d02020', endColorstr='#d02020',GradientType=1 ); /* IE6-9 */
-        }
 
         h2 {
             text-align: center;
         }
 
         .drag {
+            line-height: 14px;
             display: inline-block;
-            background: #9fe1e7;
             border-radius: 25px;
             width: 100px;
             height: 100px;
-            /*margin: 10px;*/
+            margin: 0 25px;
         }
 
-        .box {
+        .drag img {
+            height: 100px;
+            width: 100px;
+            border-radius: 25px;
+        }
+
+        .office, .candidate {
+            display: block;
+            position: relative;
+            left: -50px;
+            width: 200px;
+        }
+
+        .candidate {
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .drop {
             display: inline-block;
             width: 100px;
             height: 100px;
             border: solid 1px #ddd;
             border-radius: 25px;
+            margin: 0 25px;
         }
 
-        .drag1  { z-index: 101; background:           aqua; }
-        .drag2  { z-index: 102; background:     aquamarine; }
-        .drag3  { z-index: 103; background:      burlywood; }
-        .drag4  { z-index: 104; background:      cadetblue; }
-        .drag5  { z-index: 105; background:     chartreuse; }
-        .drag6  { z-index: 106; background: cornflowerblue; }
-        .drag7  { z-index: 107; background:           aqua; }
-        .drag8  { z-index: 108; background:     aquamarine; }
-        .drag9  { z-index: 109; background:      burlywood; }
-        .drag10 { z-index: 110; background:      cadetblue; }
-        .drag11 { z-index: 111; background:     chartreuse; }
-        .drag12 { z-index: 112; background: cornflowerblue; }
+        .drag1  { z-index: 101; }
+        .drag2  { z-index: 102; }
+        .drag3  { z-index: 103; }
+        .drag4  { z-index: 104; }
+        .drag5  { z-index: 105; }
+        .drag6  { z-index: 106; }
+        .drag7  { z-index: 107; }
+        .drag8  { z-index: 108; }
+        .drag9  { z-index: 109; }
+        .drag10 { z-index: 110; }
+        .drag11 { z-index: 111; }
+        .drag12 { z-index: 112; }
 
     </style>
-<style type="text/css"></style></head>
+</head>
 
 <body style="zoom: 1;">
 
 <div class="blue-gradient" style="width: 100%; height: 150px;"></div>
 <div class="red-gradient" style="width: 100%; height: 15px; margin-top: 1px;"></div>
 
-<div class="container" style="padding: 20px;">
+<div class="container" style="padding: 20px 0 60px;">
     <div class="sixteen columns" style="text-align: center;">
-        &nbsp;&nbsp;&nbsp;<div class="box"></div>&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;<div class="box"></div>&nbsp;&nbsp;&nbsp;
-        &nbsp;&nbsp;&nbsp;<div class="box"></div>&nbsp;&nbsp;&nbsp;
+        <div class="drop"></div>
+        <div class="drop"></div>
+        <div class="drop"></div>
     </div>
 </div>
 
 <div class="red-gradient" style="width: 100%; box-shadow: 0px 5px 10px #999;">
-    <h2 style="color: #fff;">Drag the balls into the ball zone!</h2>
+    <h2 style="color: #fff;">Select your top three!</h2>
 </div>
 
 <div class="container">
-    <div class="sixteen columns" style="text-align: center; margin-top: 20px; line-height: 60px;">
-        <div class="drag drag1"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag2"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag3"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag4"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag5"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag6"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag7"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag8"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag9"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag10"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag11"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="drag drag12"></div>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="sixteen columns" style="text-align: center; margin-top: 20px; line-height: 80px;">
+        <div class="drag drag1">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag2">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag3">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag4">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag5">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag6">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag7">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag8">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag9">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag10">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag11">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
+        <div class="drag drag12">
+                <img src="img/bernie-sanders.jpg">
+                <span class="office">Vermont Senator</span>
+                <span class="candidate">Bernie Sanders</span>
+        </div>
     </div>
 </div>
 
@@ -113,15 +159,15 @@
 <script>
 
     function findAbsolute(element) {
-        var left = element.offset().left
-        var  top = element.offset().top
+        var left = element.position().left
+        var  top = element.position().top
         element.data('left', left);
         element.data('top', top);
     }
 
     function makeAbsolute(element) {
         element.css({
-            position: "fixed",
+            position: "absolute",
             left: element.data('left'),
             top: element.data('top')
         });
@@ -137,23 +183,27 @@
 
     top_z_index = 199;
 
-    $(".drag")
+    $(".drag:not(.drag *)")
             .hammer({ drag_max_touches:0})
             .on("touch drag", function(ev) {
                 var touches = ev.gesture.touches;
                 ev.gesture.preventDefault();
-                var target = $(touches[0].target);
+                var target = $(touches[0].target).closest('.drag');
+
+                console.log(target);
 
                 target.css({
                     zIndex: top_z_index,
-                    left: touches[0].pageX-50,
+                    left: touches[0].pageX-75,
                     top: touches[0].pageY-50
                 });
             })
             .on("dragstart touch", function(ev) {
                 var touches = ev.gesture.touches;
                 ev.gesture.preventDefault();
-                var target = $(touches[0].target);
+                var target = $(touches[0].target).closest('.drag');
+
+                console.log(target);
 
                 top_z_index = top_z_index + 1;
                 target.css("box-shadow", "0px 0px 2px 1px #aaa");
@@ -161,7 +211,9 @@
             .on("dragend release", function(ev) {
                 var touches = ev.gesture.touches;
                 ev.gesture.preventDefault();
-                var target = $(touches[0].target);
+                var target = $(touches[0].target).closest('.drag');
+
+                console.log(target);
 
                 target.css("box-shadow", "none");
 

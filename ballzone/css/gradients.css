@@ -1,0 +1,21 @@
+.blue-gradient {
+    background: #0060b0; /* Old browsers */
+    background: -moz-linear-gradient(left,  #0060b0 0%, #004090 10%, #0070c0 20%, #004090 50%, #0070c0 75%, #0060b0 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#0060b0), color-stop(10%,#004090), color-stop(20%,#0070c0), color-stop(50%,#004090), color-stop(75%,#0070c0), color-stop(100%,#0060b0)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* IE10+ */
+    background: linear-gradient(to right,  #0060b0 0%,#004090 10%,#0070c0 20%,#004090 50%,#0070c0 75%,#0060b0 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#0060b0', endColorstr='#0060b0',GradientType=1 ); /* IE6-9 */
+}
+
+.red-gradient {
+    background: #d02020; /* Old browsers */
+    background: -moz-linear-gradient(left,  #d02020 0%, #900010 10%, #d02020 20%, #900010 50%, #d02020 75%, #d02020 100%); /* FF3.6+ */
+    background: -webkit-gradient(linear, left top, right top, color-stop(0%,#d02020), color-stop(10%,#900010), color-stop(20%,#d02020), color-stop(50%,#900010), color-stop(75%,#d02020), color-stop(100%,#d02020)); /* Chrome,Safari4+ */
+    background: -webkit-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* Chrome10+,Safari5.1+ */
+    background: -o-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* Opera 11.10+ */
+    background: -ms-linear-gradient(left,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* IE10+ */
+    background: linear-gradient(to right,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* W3C */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d02020', endColorstr='#d02020',GradientType=1 ); /* IE6-9 */
+}
