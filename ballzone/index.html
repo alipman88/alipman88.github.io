@@ -92,7 +92,7 @@
 
 <body style="zoom: 1; padding-top: 350px;">
 
-<div class="blue-gradient ribbon" style="top: 0px; height: 150px;"></div>
+<div class="blue-gradient ribbon" style="color: #fff; top: 0px; height: 150px;"></div>
 <div class="white ribbon" style="top: 150px; height: 1px;"></div>
 <div class="red-gradient ribbon" style="top: 151px; height: 15px;"></div>
 
@@ -215,6 +215,7 @@
                     top: touches[0].pageY-50
                 });
             }
+            $('.blue-gradient').text( touches[0].pageY - $(window).scrollTop() );
         })
         .on("dragstart touch", function(ev) {
             // bring a draggable element to the front when clicked upon
@@ -244,7 +245,7 @@
             top_z_index = top_z_index + 1;
 
             // set CSS according to whether the draggable element has been dropped in the target zone
-            if ( touches[0].pageY - $(window).scrollTop() < 370 ) {
+            if ( touches[0].pageY - $(window).scrollTop() <= 405 ) {
                 var z_base = 900;
                 var scroll_offset = $(window).scrollTop();
                 var position = 'fixed'
@@ -263,6 +264,7 @@
                     position: position
                 });
             }
+            $('.blue-gradient').text( touches[0].pageY - $(window).scrollTop() );
         });
 </script>
 
