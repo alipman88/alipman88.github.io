@@ -17,6 +17,12 @@
             text-align: center;
         }
 
+        .ribbon {
+            position: fixed;
+            width: 100%;
+            z-index: 900;
+        }
+
         .drag {
             line-height: 14px;
             display: inline-block;
@@ -61,18 +67,18 @@
             margin: 0 25px;
         }
 
-        .drag1  { z-index: 101; }
-        .drag2  { z-index: 102; }
-        .drag3  { z-index: 103; }
-        .drag4  { z-index: 104; }
-        .drag5  { z-index: 105; }
-        .drag6  { z-index: 106; }
-        .drag7  { z-index: 107; }
-        .drag8  { z-index: 108; }
-        .drag9  { z-index: 109; }
-        .drag10 { z-index: 110; }
-        .drag11 { z-index: 111; }
-        .drag12 { z-index: 112; }
+        .drag1  { z-index: 100; }
+        .drag2  { z-index: 100; }
+        .drag3  { z-index: 100; }
+        .drag4  { z-index: 100; }
+        .drag5  { z-index: 100; }
+        .drag6  { z-index: 100; }
+        .drag7  { z-index: 100; }
+        .drag8  { z-index: 100; }
+        .drag9  { z-index: 100; }
+        .drag10 { z-index: 100; }
+        .drag11 { z-index: 100; }
+        .drag12 { z-index: 100; }
 
         .write-in {
             width: 90px !important;
@@ -84,21 +90,17 @@
     </style>
 </head>
 
-<body style="zoom: 1;">
+<body style="zoom: 1; padding-top: 350px;">
 
-<div class="blue-gradient" style="width: 100%; height: 150px;"></div>
-<div class="red-gradient" style="width: 100%; height: 15px; margin-top: 1px;"></div>
+<div class="blue-gradient ribbon" style="top: 0px; height: 150px;"></div>
+<div class="white ribbon" style="top: 150px; height: 1px;"></div>
+<div class="red-gradient ribbon" style="top: 151px; height: 15px;"></div>
 
-<div>
-    <div style="padding: 20px 0 32px; text-align: center;">
-        <div class="drop">1</div>
-        <div class="drop">2</div>
-        <div class="drop">3</div>
-    </div>
+<div class="white ribbon" style="top: 166px; height: 156px;">
     <h3 style="margin: 12px 20px; color: #ccc;">Drag and drop your top choices for the 2016 Democratic Presidential Primary from the list below into this area.</h3>
 </div>
 
-<div class="red-gradient" style="width: 100%; box-shadow: 0px 5px 10px #999;">
+<div class="red-gradient ribbon" style="top: 320px; height: 36px; box-shadow: 0px 5px 10px #999;">
     <h3 style="padding: 5px 0; color: #fff; font-weight: bold;">SELECT YOUR TOP THREE!</h3>
 </div>
 
@@ -196,43 +198,70 @@
         makeAbsolute( $(this) );
     });
 
-    top_z_index = 199;
+    top_z_index = 0;
 
     $(".drag")
         .hammer({ drag_max_touches:0})
         .on("drag", function(ev) {
+            // set a draggable element's position while being dragged
+
             var touches = ev.gesture.touches;
             ev.gesture.preventDefault();
-
-            target.css({
-                zIndex: top_z_index,
-                left: touches[0].pageX-75,
-                top: touches[0].pageY-50
-            });
-        })
-        .on("dragstart touch", function(ev) {
-            var touches = ev.gesture.touches;
 
             if ( !$(touches[0].target).is('input') ) {
                 ev.gesture.preventDefault();
             }
 
+            target.css({
+                position: "absolute",
+                left: touches[0].pageX-75,
+                top: touches[0].pageY-50
+            });
+        })
+        .on("dragstart touch", function(ev) {
+            // bring a draggable element to the front when clicked upon
+
+            var touches = ev.gesture.touches;
+
             target = $(touches[0].target).closest('.drag');
 
-            top_z_index = top_z_index + 1;
-            target.css("box-shadow", "0px 0px 2px 1px #aaa");
+            if ( !$(touches[0].target).is('input') ) {
+                ev.gesture.preventDefault();
+            }
+
+            target.css({
+                zIndex: 999,
+                boxShadow: "5px 5px 10px #999"
+            });
         })
         .on("dragend release", function(ev) {
+            // set a draggable element's position upon release
+
             var touches = ev.gesture.touches;
             ev.gesture.preventDefault();
 
-            target.css("box-shadow", "none");
+            // ensure that the last-touched element has the highest z-index
+            top_z_index = top_z_index + 1;
 
-            if (touches[0].pageY-50 > 150) {
-                console.log('not ballzone');
+            // set CSS according to whether the draggable element has been dropped in the target zone
+            if ( touches[0].pageY - $(window).scrollTop() < 370 ) {
+                var z_base = 900;
+                var scroll_offset = $(window).scrollTop();
+                var position = 'fixed'
             } else {
-                console.log('ballzone');
+                var z_base = 100;
+                var scroll_offset = 0;
+                var position = 'absolute'
             }
+
+            target.css({
+                boxShadow: "none",
+                zIndex: z_base + top_z_index,
+                top: touches[0].pageY - (50+scroll_offset),
+                position: position
+            });
+
+            console.log(ev.gesture);
 
         });
 </script>

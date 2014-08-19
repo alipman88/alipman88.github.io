@@ -19,3 +19,7 @@
     background: linear-gradient(to right,  #d02020 0%,#900010 10%,#d02020 20%,#900010 50%,#d02020 75%,#d02020 100%); /* W3C */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#d02020', endColorstr='#d02020',GradientType=1 ); /* IE6-9 */
 }
+
+.white {
+    background-color: #FFF;
+}
