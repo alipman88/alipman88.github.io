@@ -1,8 +1,7 @@
 <!DOCTYPE html>
-<!-- saved from url=(0108)http://acumen.org/wp-content/themes/acu-theme/BW/ACU/resources/mobile/components/hammerjs/examples/drag.html -->
-<html class=" js flexbox canvas canvastext webgl no-touch geolocation postmessage websqldatabase indexeddb hashchange history draganddrop websockets rgba hsla multiplebgs backgroundsize borderimage borderradius boxshadow textshadow opacity cssanimations csscolumns cssgradients cssreflections csstransforms csstransforms3d csstransitions fontface generatedcontent video audio localstorage sessionstorage webworkers applicationcache svg inlinesvg smil svgclippaths"><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<html>
+<head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
     <title>Ball Zone</title>
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="css/base.css">
@@ -192,7 +191,7 @@
             // set a draggable element's position upon release
 
             var touches = ev.gesture.touches;
-            var vertical = touches[0].pageY - $(window).scrollTop()
+            var vertical = touches[0].pageY - $(window).scrollTop();
 
             // ensure that the last-touched element has the highest z-index
             top_z_index = top_z_index + 1;
@@ -227,6 +226,12 @@
             } else {
                 target.removeClass('top-three');
                 target.children('.office').slideDown();
+            }
+
+            if ( $('.top-three').length > 0 ) {
+                $('#drop-div h3').fadeOut();
+            } else {
+                $('#drop-div h3').fadeIn();
             }
 
             target.css('z-index', z_base + top_z_index);
