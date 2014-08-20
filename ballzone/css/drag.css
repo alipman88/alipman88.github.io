@@ -12,6 +12,7 @@ h3 {
 }
 
 .drag {
+    vertical-align: top;
     line-height: 14px;
     display: inline-block;
     border-radius: 25px;
@@ -28,6 +29,7 @@ h3 {
 }
 
 .office, .candidate {
+    letter-spacing: -0.5px;
     display: block;
     position: relative;
     left: -25px;
@@ -106,7 +108,10 @@ h3 {
 
 @media only screen and (max-width: 479px) {
   .drop, .drag, .drag img { width: 80px; height: 80px; }
-  .drop { margin: 33px 25px 0; font-size: 60px; line-height: 80px; }
+  .drop { margin: 33px 15px 0; font-size: 60px; line-height: 80px; }
   .office, .candidate { width: 130px; font-size: 11px; }
   .top-three { margin-top: 15px; }
 }
+
+.drop1 { margin-left: 0px; }
+.drop3 { margin-right: 0px; }

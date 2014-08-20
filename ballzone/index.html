@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-    <title>Ball Zone</title>
+    <title>Progressive Poll 2016</title>
     <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
 
     <link rel="stylesheet" href="css/base.css">
@@ -46,24 +46,24 @@
 <div>
     <div style="text-align: center; margin-top: 32px;">
         <div class="drag drag1">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">Flordia Congressman</span>
+            <span class="candidate">Alan Grayson</span>
         </div>
         <div class="drag drag2">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">Minnesota Senator</span>
+            <span class="candidate">Al Franklin</span>
         </div>
         <div class="drag drag3">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">Minnesota Senator</span>
+            <span class="candidate">Amy Klobuchar</span>
         </div>
         <div class="drag drag4">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">New York Governor</span>
+            <span class="candidate">Andrew Cuomo</span>
         </div>
         <div class="drag drag5">
             <img src="img/bernie-sanders.jpg">
@@ -71,34 +71,49 @@
             <span class="candidate">Bernie Sanders</span>
         </div>
         <div class="drag drag6">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">Former Montana Governor</span>
+            <span class="candidate">Brian Schweitzer</span>
         </div>
         <div class="drag drag7">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">Massachusetts Senator</span>
+            <span class="candidate">Elizabeth Warren</span>
         </div>
         <div class="drag drag8">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">Former Secretary of State</span>
+            <span class="candidate">Hillary Clinton</span>
         </div>
         <div class="drag drag9">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">Former Vermont Governor</span>
+            <span class="candidate">Howard Dean</span>
         </div>
         <div class="drag drag10">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">California Governor</span>
+            <span class="candidate">Jerry Brown</span>
         </div>
         <div class="drag drag11">
-            <img src="img/bernie-sanders.jpg">
-            <span class="office">Vermont Senator</span>
-            <span class="candidate">Bernie Sanders</span>
+            <img src="img/alfred.png">
+            <span class="office">Vice President</span>
+            <span class="candidate">Joe Biden</span>
+        </div>
+        <div class="drag drag11">
+            <img src="img/alfred.png">
+            <span class="office">New York Senator</span>
+            <span class="candidate">Kirsten Gillibrand</span>
+        </div>
+        <div class="drag drag11">
+            <img src="img/alfred.png">
+            <span class="office">Maryland Governor</span>
+            <span class="candidate">Martin O'Malley</span>
+        </div>
+        <div class="drag drag11">
+            <img src="img/alfred.png">
+            <span class="office">Former Labor Secretary</span>
+            <span class="candidate">Robert Reich</span>
         </div>
         <div class="drag drag12 what" style="vertical-align: top;">
             <img src="img/alfred.png">
@@ -169,6 +184,7 @@
                 });
             }
             $('.blue-gradient').text( touches[0].pageY - $(window).scrollTop() );
+            $('#drop-div h3').fadeOut('fast');
         })
         .on("dragstart touch", function(ev) {
             // bring a draggable element to the front when clicked upon
