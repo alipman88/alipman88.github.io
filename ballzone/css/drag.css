@@ -52,7 +52,7 @@ h3 {
     height: 100px;
     border: solid 1px #ddd;
     border-radius: 25px;
-    margin: 0 25px;
+    margin: 18px 25px 0;
 }
 
 .drag1  { z-index: 100; }
@@ -94,7 +94,7 @@ h3 {
 @media only screen and (max-width: 767px) {
   h3 { font-size: 24px; }
   .monitor { display: none; }
-  #red-ribbon h3 { padding: 8px 0; }
+  #red-ribbon h3 { font-size: 18px; letter-spacing: -1px; padding: 10px 0; }
   #drop-div h3 { padding: 30px 0; }
 
 }
@@ -105,7 +105,8 @@ h3 {
 }
 
 @media only screen and (max-width: 479px) {
-  .drag, .drag img { width: 80px; height: 80px; }
+  .drop, .drag, .drag img { width: 80px; height: 80px; }
+  .drop { margin: 33px 25px 0; font-size: 60px; line-height: 80px; }
   .office, .candidate { width: 130px; font-size: 11px; }
   .top-three { margin-top: 15px; }
 }
