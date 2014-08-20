@@ -39,7 +39,7 @@
 </div>
 
 <div id="red-ribbon" class="red-gradient ribbon" style="top: 320px; height: 36px; box-shadow: 0px 5px 10px #999;">
-    <h3 style="color: #fff;">SELECT YOUR TOP THREE!</h3>
+    <h3 style="display: none; color: #fff;"></h3>
 </div>
 
 <div>
@@ -229,9 +229,16 @@
             }
 
             if ( $('.top-three').length > 0 ) {
-                $('#drop-div h3').fadeOut();
+                $('#drop-div h3').fadeOut('fast');
             } else {
-                $('#drop-div h3').fadeIn();
+                $('#drop-div h3').fadeIn('fast');
+            }
+
+            if ( $('.top-three').length >= 3 ) {
+                $('#red-ribbon h3').text('CLICK HERE TO SAVE & SHARE YOUR CHOICES');
+                $('#red-ribbon h3').fadeIn();
+            } else {
+                $('#red-ribbon h3').fadeOut();
             }
 
             target.css('z-index', z_base + top_z_index);
