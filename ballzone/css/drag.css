@@ -12,6 +12,7 @@ h3 {
 }
 
 .drag {
+    z-index: 100;
     color: #333;
     line-height: 14px;
     border-radius: 25px;
@@ -69,19 +70,6 @@ h3 {
     background-color: #ccc;
     color: #fff;
 }
-
-.drag1  { z-index: 100; }
-.drag2  { z-index: 100; }
-.drag3  { z-index: 100; }
-.drag4  { z-index: 100; }
-.drag5  { z-index: 100; }
-.drag6  { z-index: 100; }
-.drag7  { z-index: 100; }
-.drag8  { z-index: 100; }
-.drag9  { z-index: 100; }
-.drag10 { z-index: 100; }
-.drag11 { z-index: 100; }
-.drag12 { z-index: 100; }
 
 .drop .drag::before {
     line-height: 38px;

@@ -47,106 +47,106 @@
 
 <div>
     <div style="text-align: center; margin-top: 32px;">
-        <div class="drag-wrap">
-            <div class="drag drag1">
+        <div id="drag-wrap1" class="drag-wrap">
+            <div id="drag1" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Flordia Congressman</span>
                 <span class="candidate">Alan Grayson</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag2">
+        <div id="drag-wrap2" class="drag-wrap">
+            <div id="drag2" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Minnesota Senator</span>
                 <span class="candidate">Al Franklin</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag3">
+        <div id="drag-wrap3" class="drag-wrap">
+            <div id="drag3" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Minnesota Senator</span>
                 <span class="candidate">Amy Klobuchar</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag4">
+        <div id="drag-wrap4" class="drag-wrap">
+            <div id="drag4" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">New York Governor</span>
                 <span class="candidate">Andrew Cuomo</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag5">
+        <div id="drag-wrap5" class="drag-wrap">
+            <div id="drag5" class="drag">
                 <img src="img/bernie-sanders.jpg">
                 <span class="office">Vermont Senator</span>
                 <span class="candidate">Bernie Sanders</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag6">
+        <div id="drag-wrap6" class="drag-wrap">
+            <div id="drag6" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Former Montana Governor</span>
                 <span class="candidate">Brian Schweitzer</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag7">
+        <div id="drag-wrap7" class="drag-wrap">
+            <div id="drag7" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Massachusetts Senator</span>
                 <span class="candidate">Elizabeth Warren</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag8">
+        <div id="drag-wrap8" class="drag-wrap">
+            <div id="drag8" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Former Secretary of State</span>
                 <span class="candidate">Hillary Clinton</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag9">
+        <div id="drag-wrap9" class="drag-wrap">
+            <div id="drag9" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Former Vermont Governor</span>
                 <span class="candidate">Howard Dean</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag10">
+        <div id="drag-wrap10" class="drag-wrap">
+            <div id="drag10" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">California Governor</span>
                 <span class="candidate">Jerry Brown</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag11">
+        <div id="drag-wrap11" class="drag-wrap">
+            <div id="drag11" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Vice President</span>
                 <span class="candidate">Joe Biden</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag11">
+        <div id="drag-wrap12" class="drag-wrap">
+            <div id="drag12" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">New York Senator</span>
                 <span class="candidate">Kirsten Gillibrand</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag11">
+        <div id="drag-wrap13" class="drag-wrap">
+            <div id="drag13" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Maryland Governor</span>
                 <span class="candidate">Martin O'Malley</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag11">
+        <div id="drag-wrap14" class="drag-wrap">
+            <div id="drag14" class="drag">
                 <img src="img/alfred.png">
                 <span class="office">Former Labor Secretary</span>
                 <span class="candidate">Robert Reich</span>
             </div>
         </div>
-        <div class="drag-wrap">
-            <div class="drag drag12 what" style="vertical-align: top;">
+        <div id="drag-wrap15" class="drag-wrap">
+            <div id="drag15" class="drag what" style="vertical-align: top;">
                 <img src="img/alfred.png">
                 <input class="write-in" type="text" placeholder="YOUR WRITE-IN" />
             </div>
@@ -179,7 +179,7 @@
             var vertical = touches[0].pageY;
             var horizontal = touches[0].pageX;
 
-            if ( !$(touches[0].target).is('input') ) {
+            if ( is_not_input ) {
                 ev.gesture.preventDefault();
                 target.css({
                     left: horizontal-50,
@@ -207,17 +207,19 @@
             var horizontal = touches[0].pageX;
 
             target = $(touches[0].target).closest('.drag');
+            is_not_input = !$(touches[0].target).is('input');
 
-            if ( !$(touches[0].target).is('input') ) {
+            if ( is_not_input ) {
                 ev.gesture.preventDefault();
                 target.css({
                     position: "fixed",
                     left: horizontal-50,
                     top: vertical-(50+$(window).scrollTop()),
-                    zIndex: 999,
                     boxShadow: "5px 5px 10px #999"
                 });
             }
+
+            target.css('z-index', 999);
         })
         .on("release", function(ev) {
             // set a draggable element's position upon release
@@ -225,8 +227,6 @@
             var touches = ev.gesture.touches;
             var vertical = parseInt(target.css('top'));
             var horizontal = touches[0].pageX;
-
-            console.log(vertical);
 
             // ensure that the last-touched element has the highest z-index
             top_z_index = top_z_index + 1;
@@ -236,15 +236,13 @@
                 var z_base = 900;
                 var position = 'fixed'
                 var vertical_offset = 0;
-                target.addClass('fixed');
             } else {
                 var z_base = 100;
                 var position = 'absolute'
                 var vertical_offset = $(window).scrollTop();
-                target.removeClass('fixed');
             }
 
-            if ( !$(touches[0].target).is('input') ) {
+            if ( is_not_input ) {
                 ev.gesture.preventDefault();
                 target.css({
                     boxShadow: "none",
@@ -257,12 +255,28 @@
                 zIndex: z_base + top_z_index,
             });
 
-            // ['.drop1','.drop2','.drop3'].forEach( function(i) {
-            //     if ( vertical >= $(i).offset().top && vertical <= $(i).offset().top + $(i).height() && horizontal >= $(i).offset().left && horizontal <= $(i).offset().left + $(i).width() ) {
-            //             $(i).prepend( target ) ;
-            //             target.css('position','static');
-            //     }
-            // });
+            var in_target = false;
+            ['.drop1','.drop2','.drop3'].forEach( function(i) {
+                if
+                ( 
+                         vertical + $(window).scrollTop() + 50 >= $(i).offset().top
+                    &&   vertical + $(window).scrollTop() + 50 <= $(i).offset().top + $(i).height()
+                    && horizontal >= $(i).offset().left
+                    && horizontal <= $(i).offset().left + $(i).width()
+                )
+                {
+                    in_target = true;
+                    $(i).prepend( target ) ;
+                    target.css('position','static');
+                }
+            });
+
+            if (in_target) {
+
+            } else {
+                var drop_zone = target[0].id.replace('drag','#drag-wrap');
+                $(drop_zone).prepend( target )
+            }
 
             $('.drop').removeClass('hover');
         });
