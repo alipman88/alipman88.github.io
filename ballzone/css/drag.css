@@ -13,6 +13,9 @@ h3 {
     text-align: center;
 }
 
+strong {
+    color: inherit;
+}
 
 .ribbon {
     position: fixed;
@@ -134,6 +137,25 @@ h3 {
     font-size: 12px !important;
     padding: 0px 4px !important;
     margin-top: 0px !important;
+}
+
+.disclaimer {
+    border: solid 1px #004090;
+    color: #004090;
+    width: 75%;
+    padding: 12px;
+    margin: 25px auto;
+    text-align: center;
+}
+
+.contact {
+    margin: 25px;
+    text-align: center;
+    color: #004090;
+}
+
+.contact span {
+    display: inline-block;
 }
 
 /*@media only screen and (max-width: 767px) {
