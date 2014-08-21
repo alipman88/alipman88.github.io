@@ -33,11 +33,11 @@
 <div class="red-gradient ribbon" style="top: 151px; height: 15px;"></div>
 
 <div id="drop-div" class="white ribbon" style="top: 166px; height: 156px; overflow: hidden; text-align: center;">
-    <h3 style="color: #ccc; height: 156px;">
+<!--     <h3 style="color: #ccc; height: 156px;">
         Drag and drop your top choices for
         <br class="monitor">the 2016 Democratic Presidential Primary
         <br class="monitor">from the list below into this area.
-    </h3>
+    </h3> -->
     <div class="drop drop1">1</div><div class="drop drop2">2</div><div class="drop drop3">3</div>
 </div>
 
@@ -176,8 +176,6 @@
 
             var touches = ev.gesture.touches;
 
-            scroll_distance = $(window).scrollTop();
-
             var vertical = touches[0].pageY;
             var horizontal = touches[0].pageX;
 
@@ -185,7 +183,7 @@
                 ev.gesture.preventDefault();
                 target.css({
                     position: "fixed",
-                    left: horizontal-75,
+                    left: horizontal-50,
                     top: vertical-(50+$(window).scrollTop())
                 });
             }
@@ -198,15 +196,13 @@
                 }
             });
 
-            $('.blue-gradient').html( touches[0].pageY - $(window).scrollTop() + '<br>' + scroll_distance );
+            $('.blue-gradient').html( target.offset().top - $(window).scrollTop() );
             $('#drop-div h3').fadeOut('fast');
         })
         .on("dragstart touch", function(ev) {
             // bring a draggable element to the front when clicked upon
 
             var touches = ev.gesture.touches;
-
-            scroll_distance = 0;
 
             target = $(touches[0].target).closest('.drag');
 
@@ -222,21 +218,19 @@
             // set a draggable element's position upon release
 
             var touches = ev.gesture.touches;
-            var vertical = touches[0].pageY + scroll_distance;
+            var vertical = target.offset().top - $(window).scrollTop()
             var horizontal = touches[0].pageX;
 
             // ensure that the last-touched element has the highest z-index
             top_z_index = top_z_index + 1;
 
             // set CSS according to whether the draggable element has been dropped in the target zone
-            if ( vertical <= 405 ) {
+            if ( vertical <= 355 ) {
                 var z_base = 900;
-                var scroll_offset = $(window).scrollTop();
                 var position = 'fixed'
                 target.addClass('fixed');
             } else {
                 var z_base = 100;
-                var scroll_offset = scroll_distance - $(window).scrollTop();
                 var position = 'absolute'
                 target.removeClass('fixed');
             }
@@ -245,46 +239,22 @@
                 ev.gesture.preventDefault();
                 target.css({
                     boxShadow: "none",
-                    top: touches[0].pageY - (50+scroll_offset),
                     position: position
                 });
             }
 
             target.css({
                 zIndex: z_base + top_z_index,
-                position: position
             });
 
-            // remove helper text
-            if ( vertical <= 320 && vertical >= 170 ) {
-                target.addClass('in-drop-zone');
-            } else {
-                target.removeClass('in-drop-zone');
-            }
-            if ( $('.in-drop-zone').length > 0 ) {
-                $('#drop-div h3').fadeOut('fast');
-            } else {
-                $('#drop-div h3').fadeIn('fast');
-            }
-
-            var vertical = touches[0].pageY + scroll_distance - $(window).scrollTop();
-
-            ['.drop1','.drop2','.drop3'].forEach( function(i) {
-                if ( vertical >= $(i).offset().top && vertical <= $(i).offset().top + $(i).height() && horizontal >= $(i).offset().left && horizontal <= $(i).offset().left + $(i).width() ) {
-                        $(i).prepend( target ) ;
-                        target.css('position','static');
-                }
-            });
-
-            if ( $('.top-three').length >= 3 ) {
-                $('#red-ribbon h3').text('CLICK HERE TO SAVE & SHARE YOUR CHOICES');
-                $('#red-ribbon h3').fadeIn();
-            } else {
-                $('#red-ribbon h3').fadeOut();
-            }
+            // ['.drop1','.drop2','.drop3'].forEach( function(i) {
+            //     if ( vertical >= $(i).offset().top && vertical <= $(i).offset().top + $(i).height() && horizontal >= $(i).offset().left && horizontal <= $(i).offset().left + $(i).width() ) {
+            //             $(i).prepend( target ) ;
+            //             target.css('position','static');
+            //     }
+            // });
 
             $('.drop').removeClass('hover');
-            $('.blue-gradient').html( touches[0].pageY - $(window).scrollTop() + '<br>' + scroll_distance );
         });
 
     $('.write-in').on('input', function(){
