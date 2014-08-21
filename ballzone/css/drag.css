@@ -56,14 +56,16 @@ h3 {
     position: relative;
     vertical-align: top;
     color: #ddd;
-/*    line-height: 100px;
-    font-size: 80px;*/
     display: inline-block;
     width: 100px;
     height: 100px;
     border: solid 1px #ddd;
     border-radius: 25px;
     margin: 18px 25px 0;
+}
+
+.drop .office {
+    display: none;
 }
 
 .hover {
