@@ -167,8 +167,6 @@
         $('.drag').css("position", "static");
     });
 
-    // reGrid();
-
     top_z_index = 0;
 
     $(".drag")
@@ -180,6 +178,18 @@
 
             var vertical = touches[0].pageY;
             var horizontal = touches[0].pageX;
+
+            if ( vertical < $(window).scrollTop() ) {
+                vertical = $(window).scrollTop();
+            }
+
+            if (horizontal < 0) {
+                horizontal = 0;
+            }
+
+            if (horizontal > $(window).width() ) {
+                horizontal = $(window).width();
+            }
 
             if ( is_not_input ) {
                 ev.gesture.preventDefault();
