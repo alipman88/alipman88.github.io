@@ -236,8 +236,7 @@
                     top: vertical-(50+$(window).scrollTop()),
                     boxShadow: "5px 5px 10px #999"
                 });
-                var drop_zone = target[0].id.replace('drag','#drag-wrap');
-
+                var drop_zone = $('.drag-wrap:blank:first');
                 former_parent = target.parent();
                 $(drop_zone).prepend( target )
             }
@@ -254,15 +253,6 @@
                 var touches = ev.gesture.touches;
                 var vertical = parseInt(target.css('top'));
                 var horizontal = touches[0].pageX;
-
-                if ( vertical >= 66 && vertical <= 320) {
-                    target.addClass('in-drop-zone');
-                } else {
-                    target.removeClass('in-drop-zone')
-                }
-                if ( $('.in-drop-zone').length + $('.drop .drag').length == 0 ) {
-                    $('#drop-div h3').fadeIn('fast');
-                }
 
                 // set CSS according to whether the draggable element has been dropped in the target zone
                 if ( vertical <= 355 ) {
@@ -294,14 +284,20 @@
                         in_target = true;
                         var former_occupant = $(i).children('.drag').first();
                         $(i).prepend( target ) ;
-                        if ( former_parent.hasClass('drag-wrap') ) {
-                            former_parent = $('.drag-wrap:blank:first');
-                        }
                         former_parent.prepend( former_occupant );
                         former_occupant.removeClass('in-drop-zone');
                         target.css('position','static');
                     }
                 });
+
+                if ( vertical >= 66 && vertical <= 320) {
+                    target.addClass('in-drop-zone');
+                } else {
+                    target.removeClass('in-drop-zone')
+                }
+                if ( $('.in-drop-zone').length + $('.drop .drag').length == 0 ) {
+                    $('#drop-div h3').fadeIn('fast');
+                }
 
                 if ( $('.drop .drag').length >= 3 ) {
                     $('#red-ribbon h3').text('CLICK TO SAVE & SHARE YOUR CHOICES')
