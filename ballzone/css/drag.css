@@ -1,3 +1,12 @@
+body {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
 h3 {
     font-weight: bold;
     line-height: 100%;
@@ -22,6 +31,8 @@ h3 {
 }
 
 .drag-wrap {
+    background-color: #f7f7f7;
+    border-radius: 25px;
     width: 100px;
     height: 100px;
     vertical-align: top;
@@ -80,6 +91,7 @@ h3 {
 .hover {
     background-color: #ccc;
     color: #fff;
+    opacity: 0.5;
 }
 
 .drop .drag::before {

@@ -33,11 +33,11 @@
 <div class="red-gradient ribbon" style="top: 151px; height: 15px;"></div>
 
 <div id="drop-div" class="white ribbon" style="top: 166px; height: 156px; overflow: hidden; text-align: center;">
-<!--     <h3 style="color: #ccc; height: 156px;">
+    <h3 style="color: #ccc; height: 156px;">
         Drag and drop your top choices for
         <br class="monitor">the 2016 Democratic Presidential Primary
         <br class="monitor">from the list below into this area.
-    </h3> -->
+    </h3>
     <div class="drop drop1"></div>
     <div class="drop drop2"></div>
     <div class="drop drop3"></div>
@@ -220,6 +220,8 @@
                     boxShadow: "5px 5px 10px #999"
                 });
                 var drop_zone = target[0].id.replace('drag','#drag-wrap');
+                
+                former_parent = target.parent();
                 $(drop_zone).prepend( target )
             }
 
@@ -235,6 +237,15 @@
                 var touches = ev.gesture.touches;
                 var vertical = parseInt(target.css('top'));
                 var horizontal = touches[0].pageX;
+
+                if ( vertical >= 66 && vertical <= 320) {
+                    target.addClass('in-drop-zone');
+                } else {
+                    target.removeClass('in-drop-zone')
+                }
+                if ( $('.in-drop-zone').length == 0 ) {
+                    $('#drop-div h3').fadeIn('fast');
+                }
 
                 // set CSS according to whether the draggable element has been dropped in the target zone
                 if ( vertical <= 355 ) {
@@ -252,6 +263,7 @@
                     top: vertical + vertical_offset,
                     position: position
                 });
+
                 var in_target = false;
                 ['.drop1','.drop2','.drop3'].forEach( function(i) {
                     if
@@ -263,16 +275,18 @@
                     )
                     {
                         in_target = true;
+                        var former_occupant = $(i).children('.drag').first();
                         $(i).prepend( target ) ;
+                        former_parent.prepend( former_occupant )
                         target.css('position','static');
                     }
                 });
 
-                if (in_target) {
-
+                if ( $('.drop .drag').length >= 3 ) {
+                    $('#red-ribbon h3').text('CLICK TO SAVE & SHARE YOUR CHOICES')
+                    $('#red-ribbon h3').fadeIn();
                 } else {
-                    // var drop_zone = target[0].id.replace('drag','#drag-wrap');
-                    // $(drop_zone).prepend( target )
+                    $('#red-ribbon h3').fadeOut();
                 }
             }
 
