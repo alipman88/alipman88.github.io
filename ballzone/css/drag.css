@@ -65,6 +65,7 @@ h3 {
 }
 
 .drop {
+    z-index: 0;
     position: relative;
     vertical-align: top;
     color: #ddd;
@@ -76,13 +77,20 @@ h3 {
     margin: 18px 25px 0;
 }
 
-/*.drop::before {
+.drop::after {
     position: absolute;
-    content: "1";
+    z-index: -1;
+    top: 0px;
+    font-size: 80px;
+    line-height: 100px;
     display: block;
     width: 100px;
     text-align: center;
-}*/
+}
+
+.drop1::after { content: "1"; }
+.drop2::after { content: "2"; }
+.drop3::after { content: "3"; }
 
 .drop .office {
     display: none;
