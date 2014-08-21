@@ -220,7 +220,7 @@
                     boxShadow: "5px 5px 10px #999"
                 });
                 var drop_zone = target[0].id.replace('drag','#drag-wrap');
-                
+
                 former_parent = target.parent();
                 $(drop_zone).prepend( target )
             }
@@ -243,7 +243,7 @@
                 } else {
                     target.removeClass('in-drop-zone')
                 }
-                if ( $('.in-drop-zone').length == 0 ) {
+                if ( $('.in-drop-zone').length + $('.drop .drag').length == 0 ) {
                     $('#drop-div h3').fadeIn('fast');
                 }
 
@@ -277,7 +277,8 @@
                         in_target = true;
                         var former_occupant = $(i).children('.drag').first();
                         $(i).prepend( target ) ;
-                        former_parent.prepend( former_occupant )
+                        former_parent.prepend( former_occupant );
+                        former_occupant.removeClass('in-drop-zone');
                         target.css('position','static');
                     }
                 });
