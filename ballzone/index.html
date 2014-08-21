@@ -182,7 +182,6 @@
             if ( !$(touches[0].target).is('input') ) {
                 ev.gesture.preventDefault();
                 target.css({
-                    position: "fixed",
                     left: horizontal-50,
                     top: vertical-(50+$(window).scrollTop())
                 });
@@ -199,27 +198,35 @@
             $('.blue-gradient').html( target.offset().top - $(window).scrollTop() );
             $('#drop-div h3').fadeOut('fast');
         })
-        .on("dragstart touch", function(ev) {
+        .on("touch", function(ev) {
             // bring a draggable element to the front when clicked upon
 
             var touches = ev.gesture.touches;
+
+            var vertical = touches[0].pageY;
+            var horizontal = touches[0].pageX;
 
             target = $(touches[0].target).closest('.drag');
 
             if ( !$(touches[0].target).is('input') ) {
                 ev.gesture.preventDefault();
                 target.css({
+                    position: "fixed",
+                    left: horizontal-50,
+                    top: vertical-(50+$(window).scrollTop()),
                     zIndex: 999,
                     boxShadow: "5px 5px 10px #999"
                 });
             }
         })
-        .on("dragend release", function(ev) {
+        .on("release", function(ev) {
             // set a draggable element's position upon release
 
             var touches = ev.gesture.touches;
-            var vertical = target.offset().top - $(window).scrollTop()
+            var vertical = parseInt(target.css('top'));
             var horizontal = touches[0].pageX;
+
+            console.log(vertical);
 
             // ensure that the last-touched element has the highest z-index
             top_z_index = top_z_index + 1;
@@ -228,10 +235,12 @@
             if ( vertical <= 355 ) {
                 var z_base = 900;
                 var position = 'fixed'
+                var vertical_offset = 0;
                 target.addClass('fixed');
             } else {
                 var z_base = 100;
                 var position = 'absolute'
+                var vertical_offset = $(window).scrollTop();
                 target.removeClass('fixed');
             }
 
@@ -239,6 +248,7 @@
                 ev.gesture.preventDefault();
                 target.css({
                     boxShadow: "none",
+                    top: vertical + vertical_offset,
                     position: position
                 });
             }
