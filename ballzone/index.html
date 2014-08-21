@@ -219,6 +219,8 @@
                     top: vertical-(50+$(window).scrollTop()),
                     boxShadow: "5px 5px 10px #999"
                 });
+                var drop_zone = target[0].id.replace('drag','#drag-wrap');
+                $(drop_zone).prepend( target )
             }
 
             target.css('z-index', 999);
@@ -269,8 +271,8 @@
                 if (in_target) {
 
                 } else {
-                    var drop_zone = target[0].id.replace('drag','#drag-wrap');
-                    $(drop_zone).prepend( target )
+                    // var drop_zone = target[0].id.replace('drag','#drag-wrap');
+                    // $(drop_zone).prepend( target )
                 }
             }
 
