@@ -163,6 +163,13 @@
 
 <script>
 
+    // syntactic sugar for finding empty DOM elements
+    // e.g.
+    // $('.klass:blank')
+    $.expr[':'].blank = function(obj){
+      return obj.innerHTML.trim().length === 0;
+    };
+
     $( window ).resize(function() {
         $('.drag').css("position", "static");
     });
@@ -287,6 +294,9 @@
                         in_target = true;
                         var former_occupant = $(i).children('.drag').first();
                         $(i).prepend( target ) ;
+                        if ( former_parent.hasClass('drag-wrap') ) {
+                            former_parent = $('.drag-wrap:blank:first');
+                        }
                         former_parent.prepend( former_occupant );
                         former_occupant.removeClass('in-drop-zone');
                         target.css('position','static');
