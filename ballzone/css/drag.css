@@ -36,7 +36,6 @@ h3 {
 }
 
 .office, .candidate {
-    letter-spacing: -0.5px;
     display: block;
     position: relative;
     left: -25px;
@@ -44,10 +43,12 @@ h3 {
 }
 
 .office {
+    letter-spacing: -0.5px;
     font-size: 12px;
 }
 
 .candidate {
+    letter-spacing: -1px;
     font-weight: bold;
     text-transform: uppercase;
 }
@@ -64,13 +65,13 @@ h3 {
     margin: 18px 25px 0;
 }
 
-.drop::before {
+/*.drop::before {
     position: absolute;
     content: "1";
     display: block;
     width: 100px;
     text-align: center;
-}
+}*/
 
 .drop .office {
     display: none;
