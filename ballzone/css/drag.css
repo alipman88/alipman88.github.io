@@ -12,14 +12,20 @@ h3 {
 }
 
 .drag {
-    vertical-align: top;
+    color: #333;
     line-height: 14px;
-    display: inline-block;
     border-radius: 25px;
     width: 100px;
     height: 100px;
-    margin: 0 25px 60px;
     cursor: move;
+}
+
+.drag-wrap {
+    width: 100px;
+    height: 100px;
+    vertical-align: top;
+    display: inline-block;
+    margin: 0 25px 60px;
 }
 
 .drag img {
@@ -46,15 +52,22 @@ h3 {
 }
 
 .drop {
+    position: relative;
+    vertical-align: top;
     color: #ddd;
-    line-height: 100px;
-    font-size: 80px;
+/*    line-height: 100px;
+    font-size: 80px;*/
     display: inline-block;
     width: 100px;
     height: 100px;
     border: solid 1px #ddd;
     border-radius: 25px;
     margin: 18px 25px 0;
+}
+
+.hover {
+    background-color: #ccc;
+    color: #fff;
 }
 
 .drag1  { z-index: 100; }
@@ -70,9 +83,8 @@ h3 {
 .drag11 { z-index: 100; }
 .drag12 { z-index: 100; }
 
-.top-three::before {
+.drop .drag::before {
     line-height: 38px;
-    content: "3";
     height: 36px;
     width: 36px;
     position: absolute;
@@ -86,6 +98,18 @@ h3 {
     border: solid 2px #fff;
 }
 
+.drop1 .drag::before {
+    content: "1";
+}
+
+.drop2 .drag::before {
+    content: "2";
+}
+
+.drop3 .drag::before {
+    content: "3";
+}
+
 .write-in {
     width: 90px !important;
     font-size: 12px !important;
@@ -93,12 +117,11 @@ h3 {
     margin-top: 0px !important;
 }
 
-@media only screen and (max-width: 767px) {
+/*@media only screen and (max-width: 767px) {
   h3 { font-size: 24px; }
   .monitor { display: none; }
   #red-ribbon h3 { font-size: 18px; letter-spacing: -1px; padding: 10px 0; }
   #drop-div h3 { padding: 30px 0; }
-
 }
 
 @media only screen and (min-width: 768px) {
@@ -111,7 +134,7 @@ h3 {
   .drop { margin: 33px 15px 0; font-size: 60px; line-height: 80px; }
   .office, .candidate { width: 130px; font-size: 11px; }
   .top-three { margin-top: 15px; }
-}
+}*/
 
 .drop1 { margin-left: 0px; }
 .drop3 { margin-right: 0px; }
