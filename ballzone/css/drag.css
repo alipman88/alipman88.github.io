@@ -7,11 +7,17 @@ body {
     user-select: none;
 }
 
+a {
+    text-decoration: none;
+}
+
 h3 {
     font-weight: bold;
     line-height: 100%;
     text-align: center;
 }
+
+label { color: #999; }
 
 strong {
     color: inherit;
@@ -139,17 +145,37 @@ strong {
     margin-top: 0px !important;
 }
 
+#red-ribbon h3, #red-ribbon h3 > a {
+    color: #FFF;
+}
+
+.btn-lrg, .btn-lrg:hover {
+    font-family: "Montserrat", "Gotham", "Futura", "Avenir", "Futura", "Trebuchet MS", Helvetica, Arial, sans-serif;
+    padding: 12px;
+    font-size: 18px;
+    border-radius: 12px;
+    border: none;
+}
+
+.btn-blue, .btn-blue:hover {
+    color: #FFF;
+    background: #0058A0;
+}
+
+.btn-white, .btn-white:hover {
+    font-size: 16px;
+    color: #F00;
+    background: #FFF;
+}
+
 .disclaimer {
     border: solid 1px #004090;
     color: #004090;
-    width: 75%;
     padding: 12px;
-    margin: 25px auto;
     text-align: center;
 }
 
 .contact {
-    margin: 25px;
     text-align: center;
     color: #004090;
 }
@@ -158,24 +184,29 @@ strong {
     display: inline-block;
 }
 
-/*@media only screen and (max-width: 767px) {
-  h3 { font-size: 24px; }
+@media only screen and (max-width: 767px) {
   .monitor { display: none; }
+  h3 { font-size: 24px; }
   #red-ribbon h3 { font-size: 18px; letter-spacing: -1px; padding: 10px 0; }
-  #drop-div h3 { padding: 30px 0; }
+  #drop-div h3 { padding: 30px 0; }*/
 }
 
 @media only screen and (min-width: 768px) {
-  #red-ribbon h3 { padding: 5px 0; }
+  #red-ribbon h3 { padding: 4px 0; }
   #drop-div h3 { padding: 30px 0; }
 }
 
 @media only screen and (max-width: 479px) {
-  .drop, .drag, .drag img { width: 80px; height: 80px; }
+  .drop, .drag, .drag-wrap, .drag img { width: 80px; height: 80px; }
   .drop { margin: 33px 15px 0; font-size: 60px; line-height: 80px; }
   .office, .candidate { width: 130px; font-size: 11px; }
   .top-three { margin-top: 15px; }
-}*/
+  .drop::after {
+    font-size: 60px;
+    line-height: 80px;
+    width: 80px;
+  }
+}
 
 .drop1 { margin-left: 0px; }
 .drop3 { margin-right: 0px; }

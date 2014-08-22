@@ -44,11 +44,11 @@
 </div>
 
 <div id="red-ribbon" class="red-gradient ribbon" style="top: 320px; height: 36px; box-shadow: 0px 5px 10px #999;">
-    <h3 style="display: none; color: #fff;"></h3>
+    <h3 style="display: none;"></h3>
 </div>
 
-<div>
-    <div style="text-align: center; max-width: 900px; margin: 32px auto 0;">
+<div style="margin: 32px auto 0;">
+    <div id="candidates" style="display: show; text-align: center; max-width: 900px; margin: auto;">
         <div id="drag-wrap1" class="drag-wrap">
             <div id="drag1" class="drag">
                 <img src="img/AlanGrayson.png">
@@ -154,17 +154,59 @@
             </div>
         </div>
     </div>
+
+
+    <div id="user-form" class="container" style="display:none;">
+        <div class="sixteen columns">
+            <h4 style="text-align: center;">Save your choices by submitting the form below.</h4>
+            <p style="text-align: center;">You'll be provided with a link to share your selections, and you can <br class="monitor">come back and update them at any time.</p>
+        </div>
+        <div class="twelve columns offset-by-two add-bottom">
+            <div class="four columns alpha">
+                <label>Name</label>
+                <div style="padding-right: 12px;">
+                    <input name="test" style="width: 100%; padding: 5px; margin: 0px; border: solid 1px #ccc;" />
+                </div>
+            </div>
+            <div class="four columns">
+                <label>Email</label>
+                <div style="padding-right: 12px;">
+                    <input name="test" style="width: 100%; padding: 5px; margin: 0px; border: solid 1px #ccc;" />
+                </div>            </div>
+            <div class="four columns omega">
+                <label>Zip</label>
+                <div style="padding-right: 12px;">
+                    <input name="test" style="width: 100%; padding: 5px; margin: 0px; border: solid 1px #ccc;" />
+                </div>
+            </div>
+            <br class="clear">
+        </div>
+        <div class="eight columns offset-by-six">
+            <div class="four columns alpha" style="max-width: 50%;">
+                <div style="padding: 5px; text-align: center;">
+                    <button class="btn-lrg btn-blue" style="width: 75%;">SUBMIT</button>
+                </div>
+            </div>
+            <div class="four columns omega" style="max-width: 50%;">
+                <div style="padding: 5px; text-align: right;">
+                    <button class="btn-lrg btn-white" style="width: 75%; text-align: right;">CANCEL</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
-<div class="disclaimer">
+<div class="container">
+<div class="disclaimer add-bottom">
     Paid for by Democracy for America and not authorized by any candidate. Contributions to Democracy for America are not tax deductible for federal income tax purposes.
 </div>
 
-<div class="contact">
+<div class="contact add-bottom">
     <strong><span>Democracy for America</span> | <span>PO Box 1717</span> | <span>Burlington, VT 05402</span>
     <br><span>Phone: 802-651-3200</span> | <span>Fax: 802-651-3299</span></strong>
     <br>
     <br><span>Copyright &copy;2014 Democracy for America,</span> <span>All Rights Reserved</span>
+</div>
 </div>
 
 <!-- jQuery is just for the demo! Hammer.js works without jQuery :-) -->
@@ -311,7 +353,7 @@
                 }
 
                 if ( $('.drop .drag').length >= 3 ) {
-                    $('#red-ribbon h3').text('CLICK TO SAVE & SHARE YOUR CHOICES')
+                    $('#red-ribbon h3').html('<a href="#" onclick="selectPicks(); return false;">CLICK TO SAVE & SHARE YOUR CHOICES<a/>')
                     $('#red-ribbon h3').fadeIn();
                 } else {
                     $('#red-ribbon h3').fadeOut();
@@ -332,6 +374,12 @@
             $('.what').removeClass('worry');
         }
     });
+
+    function selectPicks() {
+        $('#candidates').hide()
+        $('#user-form').show();
+        document.body.scrollTop = document.documentElement.scrollTop = 0;
+    }
 </script>
 
 </body>
