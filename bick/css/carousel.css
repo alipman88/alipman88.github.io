@@ -1,0 +1,6 @@
+.slick-prev:before, .slick-next:before { color: #CCC; }
+
+.slick-next { right: 6px; }
+.slick-prev { left: 6px; }
+
+.slick-dots li button:before { font-size: 12px; }

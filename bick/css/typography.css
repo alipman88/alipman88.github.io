@@ -1,0 +1,23 @@
+@font-face {
+  font-family: 'montserrathairline';
+  src: url('montserrat-hairline-webfont.eot');
+  src: url('montserrat-hairline-webfont.eot?#iefix') format('embedded-opentype'),
+       url('montserrat-hairline-webfont.woff2') format('woff2'),
+       url('montserrat-hairline-webfont.woff') format('woff'),
+       url('montserrat-hairline-webfont.ttf') format('truetype'),
+       url('montserrat-hairline-webfont.svg#montserrathairline') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+body { font-family: 'montserrathairline'; }
+
+h1 { font-size: 5vw; }
+
+a { color: #000; text-decoration: none; }
+a:hover { opacity: 0.75; }
+
+/* Mobile devices */
+@media (max-width: 749px) {
+  h1 { font-size: 36px; }
+}

@@ -1,0 +1,21 @@
+.container { margin: 3.2vw 4vw 0; }
+
+.header { margin-bottom: 2vw; }
+
+.carousel img { width: 100%; height: auto; }
+
+.footer { margin: 24px 0 12px; text-align: center; font-size: 24px; }
+
+/* Non-mobile devices */
+@media (min-width: 600px) {
+  /*.carousel { display: inline-block !important; }*/
+  .carousel.left { width: 26.4%; float: left; }
+  .carousel.right { width: 70.4%; float: right; }
+  .header { padding-left: 7.2vw; }
+}
+
+/* Mobile devices */
+@media (max-width: 599px) {
+  .carousel { margin-bottom: 80px !important; }
+  .footer { margin-bottom: 36px; }
+}
