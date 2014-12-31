@@ -15,7 +15,7 @@ body { font-family: 'montserrathairline'; }
 h1 { font-size: 5vw; }
 
 a { color: #000; text-decoration: none; }
-a:hover { opacity: 0.75; }
+a:hover, a > img:hover { opacity: 0.75; }
 
 /* Mobile devices */
 @media (max-width: 749px) {
