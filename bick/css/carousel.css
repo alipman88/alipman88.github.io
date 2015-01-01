@@ -1,6 +1,8 @@
 .slick-prev:before, .slick-next:before { color: #CCC; }
 
-.slick-next { right: 6px; }
-.slick-prev { left: 6px; }
+.slick-next { right: 2px; }
+.slick-prev { left: 2px; }
 
 .slick-dots li button:before { font-size: 12px; }
+
+/*.carousel img { border-left: solid 1px #FFF; }*/

@@ -8,6 +8,7 @@
     <link href="css/reset.css" rel="stylesheet">
     <link href="css/layout.css" rel="stylesheet">
     <link href="css/typography.css" rel="stylesheet">
+    <link href="css/modal.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="http://cdn.jsdelivr.net/jquery.slick/1.3.15/slick.css"/>
     <link href="css/carousel.css" rel="stylesheet">
   </head>
@@ -18,13 +19,13 @@
       </div><!-- END HEADER -->
       <div class="main">
         <div class="carousel right">
-          <div><a href="#"><img src="img/dont_worry_about_me.png"/></a></div>
-          <div><a href="#"><img src="img/unnamed.jpg"/></a></div>
-          <div><a href="#"><img src="//www.dinosaurfact.net/backgrounds/j3-1600-900.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="right-1" href="http://vimeo.com/77595948"><img src="img/dont_worry_about_me.png"/></a></div>
+          <div><a class="reveal" data-reveal="right-2" href="https://www.youtube.com/watch?v=lX6JcybgDFo"><img src="//i.vimeocdn.com/video/449778792_1280x720.jpg"/></a></div>
         </div><!-- END RIGHT CAROUSEL -->
         <div class="carousel left">
-          <div><a href="#"><img src="img/Vachon_Headshot_Cropped.jpg"/></a></div>
-          <div><a href="#"><img src="img/IMG_0034edit2web.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="left-1" href="img/Vachon_Headshot_Cropped.jpg"><img src="img/Vachon_Headshot_Cropped.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="left-2" href="img/IMG_0034edit2web.jpg"><img src="img/IMG_0034edit2web.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="left-3" href="img/unnamed_headshot.jpg"><img src="img/unnamed_headshot.jpg"/></a></div>
         </div><!-- END LEFT CAROUSEL -->
         <div style="clear: both;"></div>
       </div><!-- END MAIN -->
@@ -32,15 +33,74 @@
         <a href="mailto:contact@dannybick.com">contact@dannybick.com</a>
       </div><!-- END FOOTER -->
     </div><!-- END CONTAINER -->
+    <!-- MODAL CONTENT -->
+    <div class="overlay">
+    </div>
+    <div id="left-1" class="modal">
+      <a class="close" href="#">&times;</a>
+      <img src="img/Vachon_Headshot_Cropped.jpg"/>
+    </div>
+    <div id="left-2" class="modal">
+      <a class="close" href="#">&times;</a>
+      <img src="img/IMG_0034edit2web.jpg"/>
+    </div>
+    <div id="left-3" class="modal">
+      <a class="close" href="#">&times;</a>
+      <img src="img/unnamed.jpg"/>
+    </div>
+    <div id="right-1" class="modal">
+      <a class="close" href="#">&times;</a>
+      <iframe id="video-1" class="vimeo" src="//player.vimeo.com/video/77595948?color=ffffff&api=1&player_id=video-1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+    </div>
+    <div id="right-2" class="modal">
+      <a class="close" href="#">&times;</a>
+      <iframe id="video-2" class="youtube" src="//www.youtube.com/embed/lX6JcybgDFo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+    </div>
+    <!-- END MODAL CONTENT -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="//cdn.jsdelivr.net/jquery.slick/1.3.15/slick.min.js"></script>
+    <script src="js/jquery.vimeo.api.min.js"></script>
+    <script src="js/youtube.api.js"></script>
     <script>
+      // INITIALIZE CAROUSELS
       $(document).ready(function(){
         $('.left, .right').slick({
           arrows: true,
           dots: true
         });
       });
+
+      // CLOSE MODAL & STOP VIDEO PLAYBACK
+      $('.close, .overlay').on('click', function() {
+        $('.modal').animate({'top': '100%'}, function() {$('.overlay').hide();});
+        var v = $('.visible').children('.vimeo');
+        if(v[0]){v.vimeo('pause');}
+        var y = $('.visible').children('.youtube');
+        if(y[0]){ players[$(y).attr('id')].pauseVideo(); }
+        $('.visible').removeClass('visible');
+        return false;
+      });
+
+      // OPEN MODAL & START VIDEO PLAYBACK
+      $('.reveal').on('click', function() {
+        var reveal = '#' + $(this).data('reveal');
+        $(reveal).addClass('visible');
+        var v = $(reveal).children('.vimeo');
+        if(v[0]){v.vimeo('play');}
+        var y = $(reveal).children('.youtube');
+        if(y[0]){ players[$(y).attr('id')].playVideo(); }
+        $('.overlay').show();
+        $(reveal).animate({'top': '9%'});
+        return false;
+      });
+
+      // INITIALIZE YOUTUBE PLAYERS
+      players = {};
+      function onYouTubeIframeAPIReady() {
+        $('.youtube').each(function() {
+          players[this.id] = new YT.Player(this.id);
+        });
+      }
     </script>
   </body>
 </html>
