@@ -9,8 +9,7 @@
   .container { margin: 2.8vw 4vw 0; }
   .carousel.left { width: 26.4%; float: left; }
   .carousel.right { width: 70.4%; float: right; }
-  .header { padding-left: 7.2vw; }
-}
+  .header { padding-left: 6.85vw; }
 
 /* Mobile devices */
 @media (max-width: 599px) {
