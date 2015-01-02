@@ -24,8 +24,9 @@
   height: 24px;
   top: 6px;
   right: 6px;
-  font-size: 48px;
-  line-height: 24px;
+  font-size: 36px;
+  font-weight: normal;
+  line-height: 18px;
   color: #FFF;
 }
 
@@ -35,6 +36,21 @@
   max-width: 904px;
 }
 
-.modal img {
+.modal {
+  text-align:center; /* Align center inline elements */
+  font: 0/0 a;       /* Hide the characters like spaces */
+}
+
+.modal:before {
+  content: ' ';
+  display: inline-block;
+  vertical-align: middle;
   height: 100%;
+}
+
+.modal img {
+  max-height: 100%;
+  max-width: 100%;
+  vertical-align: middle;
+  display: inline-block;
 }

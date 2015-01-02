@@ -3,6 +3,6 @@
 .slick-next { right: 2px; }
 .slick-prev { left: 2px; }
 
-.slick-dots li button:before { font-size: 12px; }
+.slick-dots li button:before { font-size: 8px; }
 
 /*.carousel img { border-left: solid 1px #FFF; }*/
