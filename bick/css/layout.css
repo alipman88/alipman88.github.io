@@ -1,4 +1,4 @@
-.header { margin-bottom: 2vw; }
+.header { margin-bottom: 1.6vw; }
 
 .carousel img { width: 100%; height: auto; }
 
@@ -6,7 +6,7 @@
 
 /* Non-mobile devices */
 @media (min-width: 600px) {
-  .container { margin: 3.2vw 4vw 0; }
+  .container { margin: 2.8vw 4vw 0; }
   .carousel.left { width: 26.4%; float: left; }
   .carousel.right { width: 70.4%; float: right; }
   .header { padding-left: 7.2vw; }
@@ -15,6 +15,6 @@
 /* Mobile devices */
 @media (max-width: 599px) {
   .container { margin: 3.2vw 0 0; }
-  .carousel { margin-bottom: 80px !important; }
+  .carousel { margin-bottom: 50px !important; }
   .footer { margin-bottom: 36px; }
 }
