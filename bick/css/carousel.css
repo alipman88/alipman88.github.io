@@ -5,4 +5,6 @@
 
 .slick-dots li button:before { font-size: 8px; }
 
+.slick-dots { bottom: -36px; }
+
 /*.carousel img { border-left: solid 1px #FFF; }*/
