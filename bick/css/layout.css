@@ -6,10 +6,10 @@
 
 /* Non-mobile devices */
 @media (min-width: 600px) {
-  .container { margin: 2.8vw 4vw 0; }
+  .container { margin: 3.4vw 4vw 0; }
   .carousel.left { width: 26.4%; float: left; }
   .carousel.right { width: 70.4%; float: right; }
-  .header { padding-left: 7.2vw; }
+  .header { padding-left: 14.4vw; }
 }
 
 /* Mobile devices */
