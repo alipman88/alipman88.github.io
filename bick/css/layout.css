@@ -4,12 +4,20 @@
 
 .footer { margin: 24px 0 12px; text-align: center; font-size: 18px; }
 
+/* Large monitors */
+@media (min-width: 1280px) {
+  .container { margin: 44px auto 0; max-width: 1180px; }
+  .carousel.left { width: 26.4%; float: left; }
+  .carousel.right { width: 70.4%; float: right; }
+  .header { padding-left: 184px; }
+}
+
 /* Non-mobile devices */
-@media (min-width: 600px) {
+@media (min-width: 600px) and (max-width: 1279px) {
   .container { margin: 3.4vw 4vw 0; }
   .carousel.left { width: 26.4%; float: left; }
   .carousel.right { width: 70.4%; float: right; }
-  .header { padding-left: 14.4vw; }
+  .header { padding-left: 14vw; }
 }
 
 /* Mobile devices */

@@ -24,3 +24,8 @@ a:hover, a > img:hover { opacity: 0.75; }
 @media (max-width: 599px) {
   h1 { text-align: center; }
 }
+
+/* Large Monitors */
+@media (min-width: 1279px) {
+  h1 { font-size: 54px; }
+}
