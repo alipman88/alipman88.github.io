@@ -3,8 +3,17 @@
 .slick-next { right: 2px; }
 .slick-prev { left: 2px; }
 
+.carousel-modal .slick-next { right: 18px; width: 36px; height: 36px; }
+.carousel-modal .slick-prev { left: 18px; width: 36px; height: 36px; }
+.carousel-modal .slick-next:before, .carousel-modal .slick-prev:before { font-size: 36px; }
+
 .slick-dots li button:before { font-size: 8px; }
 
 .slick-dots { bottom: -25px; }
+
+.carousel-modal, .carousel-modal .slick-list, .carousel-modal .slick-track { height: 100%; }
+
+.carousel-modal .slick-slide { text-align: center; }
+.carousel-modal img { display: inline; }
 
 /*.carousel img { border-left: solid 1px #FFF; }*/

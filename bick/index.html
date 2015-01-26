@@ -19,13 +19,14 @@
       </div><!-- END HEADER -->
       <div class="main">
         <div class="carousel right">
-          <div><a class="reveal" data-reveal="right-1" href="http://vimeo.com/77595948"><img src="img/dont_worry_about_me.jpg"/></a></div>
-          <div><a class="reveal" data-reveal="right-2" href="https://www.youtube.com/watch?v=lX6JcybgDFo"><img src="//i.vimeocdn.com/video/449778792_1280x720.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="4" href="http://vimeo.com/77595948"><img src="img/dont_worry_about_me.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="5" href="https://www.youtube.com/watch?v=lX6JcybgDFo"><img src="//i.vimeocdn.com/video/449778792_1280x720.jpg"/></a></div>
         </div><!-- END RIGHT CAROUSEL -->
         <div class="carousel left">
-          <div><a class="reveal" data-reveal="left-1" href="img/Vachon_Headshot_Cropped.jpg"><img src="img/Vachon_Headshot_Cropped.jpg"/></a></div>
-          <div><a class="reveal" data-reveal="left-2" href="img/IMG_0034edit2web.jpg"><img src="img/IMG_0034edit2web.jpg"/></a></div>
-          <div><a class="reveal" data-reveal="left-3" href="img/unnamed.jpg"><img src="img/unnamed_headshot.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="0" href="img/1.jpg"><img src="img/1.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="1" href="img/2.jpg"><img src="img/2.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="2" href="img/3.jpg"><img src="img/3.jpg"/></a></div>
+          <div><a class="reveal" data-reveal="3" href="img/4.jpg"><img src="img/4.jpg"/></a></div>
         </div><!-- END LEFT CAROUSEL -->
         <div style="clear: both;"></div>
       </div><!-- END MAIN -->
@@ -36,25 +37,20 @@
     <!-- MODAL CONTENT -->
     <div class="overlay">
     </div>
-    <div id="left-1" class="modal">
+    <div class="modal">
       <a class="close" href="#">&times;</a>
-      <img src="img/Vachon_Headshot_Cropped.jpg"/>
-    </div>
-    <div id="left-2" class="modal">
-      <a class="close" href="#">&times;</a>
-      <img src="img/IMG_0034edit2web.jpg"/>
-    </div>
-    <div id="left-3" class="modal">
-      <a class="close" href="#">&times;</a>
-      <img src="img/unnamed.jpg"/>
-    </div>
-    <div id="right-1" class="modal">
-      <a class="close" href="#">&times;</a>
-      <iframe id="video-1" class="vimeo" src="//player.vimeo.com/video/77595948?color=ffffff&api=1&player_id=video-1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
-    </div>
-    <div id="right-2" class="modal">
-      <a class="close" href="#">&times;</a>
-      <iframe id="video-2" class="youtube" src="//www.youtube.com/embed/lX6JcybgDFo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+      <div class="carousel-modal">
+        <div><img src="img/1.jpg"/></div>
+        <div><img src="img/2.jpg"/></div>
+        <div><img src="img/3.jpg"/></div>
+        <div><img src="img/4.jpg"/></div>
+        <div>
+          <iframe id="video-1" class="vimeo" src="//player.vimeo.com/video/77595948?color=ffffff&api=1&player_id=video-1" frameborder="0" webkitallowfullscreen mozallowfullscreen allowfullscreen></iframe>
+        </div>
+        <div>
+          <iframe id="video-2" class="youtube" src="//www.youtube.com/embed/lX6JcybgDFo?enablejsapi=1" frameborder="0" allowfullscreen></iframe>
+        </div>
+      </div>
     </div>
     <!-- END MODAL CONTENT -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
@@ -64,33 +60,38 @@
     <script>
       // INITIALIZE CAROUSELS
       $(document).ready(function(){
-        $('.left, .right').slick({
+        $('.left, .right, .carousel-modal').slick({
           arrows: true,
-          dots: true
+          dots: true,
+          onBeforeChange: function(){stopAllVideo();}
         });
       });
 
       // CLOSE MODAL & STOP VIDEO PLAYBACK
       $('.close, .overlay').on('click', function() {
         $('.modal').animate({'top': '100%'}, function() {$('.overlay').hide();});
-        var v = $('.visible').children('.vimeo');
-        if(v[0]){v.vimeo('pause');}
-        var y = $('.visible').children('.youtube');
-        if(y[0]){ players[$(y).attr('id')].pauseVideo(); }
-        $('.visible').removeClass('visible');
+        stopAllVideo();
         return false;
       });
 
+      // STOP VIDEO PLAYBACK
+      function stopAllVideo() {
+        var v = $('.slick-active').children('.vimeo');
+        if(v[0]){v.vimeo('pause');}
+        var y = $('.slick-active').children('.youtube');
+        if(y[0]){ players[$(y).attr('id')].pauseVideo(); }
+      }
+
       // OPEN MODAL & START VIDEO PLAYBACK
       $('.reveal').on('click', function() {
-        var reveal = '#' + $(this).data('reveal');
-        $(reveal).addClass('visible');
-        var v = $(reveal).children('.vimeo');
+        var reveal = $(this).data('reveal');
+        $('.carousel-modal').slickGoTo(reveal, true);        
+        var v = $('.slick-active').children('.vimeo');
         if(v[0]){v.vimeo('play');}
-        var y = $(reveal).children('.youtube');
+        var y = $('.slick-active').children('.youtube');
         if(y[0]){ players[$(y).attr('id')].playVideo(); }
         $('.overlay').show();
-        $(reveal).animate({'top': '9%'});
+        $('.modal').animate({'top': '9%'});
         return false;
       });
 
