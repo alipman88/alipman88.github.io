@@ -9,7 +9,11 @@
 
 .slick-dots li button:before { font-size: 8px; }
 
+.carousel-modal .slick-dots li button:before { color: #FFF; }
+
 .slick-dots { bottom: -25px; }
+
+.carousel-modal .slick-dots { bottom: -23px; }
 
 .carousel-modal, .carousel-modal .slick-list, .carousel-modal .slick-track { height: 100%; }
 
