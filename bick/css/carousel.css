@@ -1,6 +1,6 @@
 .slick-prev:before, .slick-next:before { color: #CCC; }
 
-.slick-next { right: 2px; }
+.slick-next { right: 3px; }
 .slick-prev { left: 2px; }
 
 .carousel-modal .slick-next { right: 18px; width: 36px; height: 36px; }
