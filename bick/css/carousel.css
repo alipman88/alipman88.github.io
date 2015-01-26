@@ -20,4 +20,13 @@
 .carousel-modal .slick-slide { text-align: center; }
 .carousel-modal img { display: inline; }
 
-/*.carousel img { border-left: solid 1px #FFF; }*/
+/* Fixes weird glitch where a 1px sliver of the next image in a carousel is sometimes visible, due to how percentage widths are rounded */
+.carousel:after {
+  content: ' ';
+  position: absolute;
+  width: 1px;
+  height: 100%;
+  background-color: #fFF;
+  top: 0px;
+  right: 0px;
+}
