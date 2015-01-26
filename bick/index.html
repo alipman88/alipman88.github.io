@@ -39,7 +39,7 @@
     </div>
     <div class="modal">
       <a class="close" href="#">&times;</a>
-      <div class="carousel-modal">
+      <div class="carousel-modal" style="padding: 30px 0;">
         <div><img src="img/1.jpg"/></div>
         <div><img src="img/2.jpg"/></div>
         <div><img src="img/3.jpg"/></div>
@@ -91,7 +91,7 @@
         var y = $('.slick-active').children('.youtube');
         if(y[0]){ players[$(y).attr('id')].playVideo(); }
         $('.overlay').show();
-        $('.modal').animate({'top': '9%'});
+        $('.modal').animate({'top': '10%'});
         return false;
       });
 

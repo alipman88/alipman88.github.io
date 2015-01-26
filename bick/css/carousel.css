@@ -13,7 +13,7 @@
 
 .slick-dots { bottom: -25px; }
 
-.carousel-modal .slick-dots { bottom: -23px; }
+.carousel-modal .slick-dots { bottom: 4px; }
 
 .carousel-modal, .carousel-modal .slick-list, .carousel-modal .slick-track { height: 100%; }
 
