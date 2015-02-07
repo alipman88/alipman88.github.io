@@ -2,7 +2,7 @@ function calc() {
 
 	$('#results').html("");
 
-	array = [['aaron' , $('#aaron').val().replace('$','')],['abby'  , $('#abby').val().replace('$','')],['ariel' , $('#ariel').val().replace('$','')],['warren'  , $('#warren').val().replace('$','')]];
+	array = [['aaron' , $('#aaron').val().replace('$','')],['abby'  , $('#abby').val().replace('$','')],['ariel' , $('#ariel').val().replace('$','')],['taylor'  , $('#taylor').val().replace('$','')]];
 
 	var sum = 0;
 	var length = 0;
