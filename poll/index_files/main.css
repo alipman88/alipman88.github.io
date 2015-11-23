@@ -1,0 +1,39 @@
+#marker-container {
+  position: absolute;
+  top: -6px;
+  bottom: 6px;
+  left: 72px;
+  right: 6px; }
+  #marker-container #marker {
+    position: absolute;
+    top: 50%;
+    left: 67%;
+    height: 72px; }
+    #marker-container #marker #marker-rel-adjust {
+      position: relative;
+      top: -50%;
+      height: 100%; }
+      #marker-container #marker #marker-rel-adjust #arrow, #marker-container #marker #marker-rel-adjust #endorsement-threshold {
+        color: #FFF;
+        display: block;
+        vertical-align: middle; }
+      #marker-container #marker #marker-rel-adjust #arrow > #arr {
+        height: 36px;
+        font-size: 36px;
+        line-height: 36px; }
+      #marker-container #marker #marker-rel-adjust #endorsement-threshold {
+        position: relative;
+        left: -50px;
+        padding-left: 12px;
+        text-align: center; }
+
+@media (min-width: 750px) {
+  #marker-container #marker #marker-rel-adjust #arrow, #marker-container #marker #marker-rel-adjust #endorsement-threshold {
+    display: inline-block; }
+  #marker-container #marker #marker-rel-adjust #arrow > #arr {
+    height: 72px;
+    line-height: 72px; }
+  #marker-container #marker #marker-rel-adjust #endorsement-threshold {
+    position: static;
+    padding-left: 0px;
+    text-align: left; } }

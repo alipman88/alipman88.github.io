@@ -1,0 +1,179 @@
+body.js form.ak-form,
+#ak-errors,
+#ak-confirmation,
+#ak-error-info,
+.ak-errors,
+.ak-confirmation,
+.ak-error-info { 
+    display: none 
+}
+input.ak-error, select.ak-error, textarea.ak-error { 
+    background-color: rgb(255,200,200); 
+    border-color: red; 
+}
+label.ak-error {
+    color: red;
+    font-weight: bold;
+}
+#ak-errors,
+#ak-confirmation,
+.ak-errors,
+.ak-confirmation {
+    list-style-type: none;
+    font-weight: bold;
+    color: white;
+    padding: 7px;
+    margin: 7px;
+}
+#ak-errors, .ak-errors {
+    background-color: red;
+}
+#ak-confirmation, .ak-confirmation {
+    background-color: green;
+}
+form.contains-errors #ak-errors, 
+form.contains-errors #ak-error-info,
+form.contains-errors .ak-errors, 
+form.contains-errors .ak-error-info {
+    display: block;
+}
+.ak-err { /* inline error */
+    color: red;
+    list-style-type: none;
+    padding: 0px;
+    margin: 0px;
+}
+.ak-err-above .ak-err { margin-top: 0.5em; }
+.ak-err-below .ak-err { margin-bottom: 0.5em; }
+ul#ak-errors li,
+ul.ak-errors li {
+    padding: 0px;
+    margin: 0px;
+}
+#known_user, .known_user {
+    display: none;
+}
+.taf_body {
+    border: solid rgb(128,128,128) 1px;
+    padding: 5px;
+}
+div.event-signup {
+    zoom: 1; /* work around IE 8 content-hiding bug */
+}
+
+/* Targets */
+div.target {}
+a.local_toggle {}
+span.local_toggle_label {font-size: 90%;font-weight:normal}
+div.office {display:none;font-weight:normal}
+span.office_phone {font-size:90%;color:#666;font-weight:normal}
+span.office_phone_label {font-wight:bold}
+span.office_fax {font-size:90%;color:#666;font-weight:normal}
+span.office_fax_label {font-wight:bold}
+
+/* sets a parent for some other positioning styles */
+.ak-labels-above, .ak-labels-overlaid { 
+  position: relative 
+}
+.ak-labels-above input, .ak-labels-overlaid input,
+.ak-labels-above textarea, .ak-labels-overlaid textarea, .ak-labels-above select, .ak-labels-overlaid select {
+  border: solid rgb(160,160,160) 1px;
+  margin: 3px 0px;
+  font-weight: bold;
+  font-weight: normal;
+}
+.ak-labels-above input, .ak-labels-overlaid input,
+.ak-labels-above textarea, .ak-labels-overlaid textarea {
+  padding: 3px;
+}
+.ak-labels-above input, .ak-labels-above select, .ak-labels-above textarea,
+.ak-no-js .ak-labels-overlaid input, .ak-no-js .ak-labels-overlaid select, 
+.ak-no-js .ak-labels-overlaid textarea {
+  margin-top: 0px;
+}
+.ak-err li {
+  line-height: 1.4em;
+}
+.ak-labels-overlaid input, .ak-labels-overlaid textarea, .ak-labels-overlaid select, .ak-labels-overlaid label,
+.ak-labels-before input, .ak-labels-before textarea, .ak-labels-before select, .ak-labels-before label {
+  width: 100%;
+  box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  -ms-box-sizing: border-box;
+}
+.ak-labels-overlaid input[type="radio"],
+.ak-labels-overlaid input[type="checkbox"] {
+    width: auto;
+}
+.ak-labels-overlaid textarea {
+    vertical-align: top;
+}
+
+/* labels to left (right if RTL) */
+.ak-labels-before label { width: 32%; float: left; display: inline-block; text-align: right; }
+.ak-labels-before label:after { content: ":"; }
+.ak-labels-before input, .ak-labels-before select, .ak-labels-before textarea, .ak-labels-before .ak-err { width: 65%; float: right; }
+.ak-labels-before > * { clear: both; }
+
+/* labels above */
+.ak-labels-above label, .ak-labels-above .ak-checkbox-field, .ak-label-above, .ak-no-js .ak-labels-overlaid label { display: block; font-weight: bold;  margin-top: 0.5em; color: rgb(100,100,100); }
+
+/* labels overlaid */
+.js .ak-labels-overlaid label {
+  position: absolute;
+  padding: 4px;
+  color: rgb(100,100,100);
+  /* These are redundant, but IE7 needs them */
+  left: 0px;
+  z-index: 1;
+}
+.js .ak-labels-overlaid label.active {
+  color: rgb(140,140,140);
+}
+.js .ak-labels-overlaid label.has-content {
+  display: none;
+}
+.ak-labels-overlaid > div {
+  position: relative;
+}
+.ak-required-flag { color: red; }
+
+/* mirror the styles if RTL */
+.ak-rtl { direction: rtl; }
+.ak-rtl .ak-labels-before input, .ak-rtl .ak-labels-before select, .ak-rtl .ak-labels-before textarea { width: 65%; float: left; }
+.ak-rtl .ak-labels-before label { float: right; text-align: left }
+
+.taf-mailto { clear: both; }
+
+#progress { text-align: center; position: relative; }
+.progress-holder { margin-left: auto; margin-right: auto; height: 50px; width: 300px; max-width: 100%; position: relative; }
+.progress-bar { position: absolute; height: 50px; z-index: 1; left: 0px; }
+.progress-percent { position: relative; z-index: 2; font-weight: bold; padding-top: 10px; font-size: 20pt; line-height: 24pt; }
+.progress-caption { padding-top: 2px; }
+
+
+/* classic-progress: green gradient bar with images from actionkit day 1 */
+.classic-progress .progress-holder { background-image: url(/samples/green-bar-0.png); }
+.classic-progress .progress-bar {  background-image: url(/samples/green-bar-100.png); }
+
+/* rounded-progress: sort of a blingy css3 rounded bar (displays square on old browsers) */
+.rounded-progress .progress-holder { border: solid #aaa 2px; background-color: white; border-style: inset; border-radius: 25px; }
+.rounded-progress .progress-bar { background-color: #7a7; border-radius: 23px; }
+
+/* basic-progress: neutral-looking grey bar */
+.basic-progress .progress-holder { border: solid #aaa 2px; background-color: white; background-color: rgba(255,255,255,0.2); border-radius: 5px; }
+.basic-progress .progress-bar { background-color: #777; border-radius: 3px; }
+
+/* use an "ak-continued" link to jump to explanatory content on mobile */
+.ak-mobile-lead, .ak-continued { 
+  /* hiding this way keeps it visible to screenreaders which could also use the link */
+  position: absolute; left: -999em; 
+} 
+.ak-nodisplay { display: none; }
+
+/* Explicit opt-in checkbox styles */
+#id_subscription_consent_box { display: none; }
+#id_subscription_consent { display: inline; width: auto; }
+#id_subscription_consent_box label { display: inline; position: static; color: inherit; }
+#id_subscription_consent_more { display: none; }
