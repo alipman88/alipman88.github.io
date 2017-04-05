@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>DFA's MD5-hashing utility</title>
+
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+<body>
+  <h2>Democracy for America's MD5-hashing utility</h2>
+
+  <h3>About this tool</h3>
+
+  <p>
+    This is an open-source JavaScript application that hashes email addresses contained in a CSV file using the <a href="http://en.wikipedia.org/wiki/MD5" target="_blank">MD5 algorithm</a>. The process is handled by an HTML5 web worker, which enables the application to handle really large files (up to around 700 MB), without freezing or crashing.
+  </p>
+
+  <p>
+    Because the application is run entirely within your browser, no sensitive information will be sent from your computer to a server. (If you want to be extra cautious, you may disconnect your computer from the internet, after loading this page. Once you've received your hashed list, simply close your browser before reconnecting to the internet.)
+  </p>
+
+  <p>If you're curious, the <a href="https://github.com/Democracy-for-America/Democracy-for-America.github.io/tree/master/md5-hash" target="_blank">source code</a> is available on Github.</p>
+
+  <p>
+    This application will accept CSV and TSV files. If no extension is provided, the file is assumed to be a CSV.
+  </p>
+
+  <p>
+    Have direct access to your SQL database? Then you can manually export a hashed tsv, without using this tool. Simply run a command like:
+  </p>
+  <p>
+    <span class="code">mysql -u username -p'password' -h client-db.example.com database_name -e "SELECT MD5('salt' + UPPER(TRIM(email))) FROM users" > hashed_email_list.tsv</span>
+  </p>
+  <p>
+    (The exact command may vary, depending on your database set up.)
+  </p>
+
+  <h3>About MD5 Hashing</h3>
+
+  <p>
+    Hashing allows two organizations to determine the overlap of their email lists, without sharing the actual email addresses of their members. Each email address is transformed into a scrambled sequence of characters, or "hash." Organizations can then compare their hashed lists -- if two hashes match, each organization knows they both have the same email address on their lists.
+  </p>
+
+  <p>(Any sequence of characters, or "string" may be hashed, not just email addresses. For example, the MD5 hash of "hello" is 5d41402abc4b2a76b9719d911017c592.)</p>
+
+  <p>
+    Strings with uppercase and lowercase letters will have different hashes. (e.g. the hash of "HELLO" will be different from that of "Hello" or "hello.") So, organizations typically set a standard by converting all emails to lowercase or uppercase, before creating hash files to share. Removing extra whitespace is also advisable. In pseudo-code, the function to hash an email address looks something like <span class="code">MD5(UPPER(TRIM(email)))</span>
+  </p>
+
+  <p>
+    We recommend using a <a href="http://en.wikipedia.org/wiki/Salt_%28cryptography%29" target="_blank">salt</a>, to help ensure your hashes are unique. This helps protect against <a href="http://en.wikipedia.org/wiki/Rainbow_table" target="_blank">rainbow tables</a>.
+  </p>
+
+  <h2>Settings</h2>
+
+  <form id="file-form" onsubmit="return false;">
+    <fieldset>
+      <div class="form-inputs">
+        <label>Column to hash: </label>
+        <input type="text" id="column_to_hash" value="email" />
+      </div>
+
+      <div class="form-inputs">
+        <label>Remove original values: </label>
+        <select id="delete_originals">
+          <option value="yes">Yes</option>
+          <option value="no">No</option>
+        </select>
+      </div>
+
+      <div class="form-inputs">
+        <label>Convert email to: </label>
+        <select id="case">
+          <option value="upper">UPPER CASE</option>
+          <option value="lower">lower case</option>
+        </select>
+      </div>
+
+      <div class="form-inputs">
+        <label>Text delimiter: </label>
+        <select id="quoted_fields">
+          <option value="true">Quotation mark</option>
+          <option value="false">None</option>
+        </select>
+      </div>
+
+      <div class="form-inputs">
+        <label>Salt (optional): </label>
+        <input type="text" id="salt" value="" />
+      </div>
+
+      <div class="form-inputs">
+        <label>Select a file to hash:</label><br />
+        <input type="file" id="fileinput" />
+      </div>
+
+      <div class="form-inputs">
+        <input type="submit" value="Submit">
+      </div>
+    </fieldset>
+
+    <fieldset>
+      <div>Progress:</div>
+      <pre id="progress"></pre>
+
+      <div>Errors:</div>
+      <pre id="errors"></pre>
+    </fieldset>
+  </form>
+
+  <script type="text/javascript" src="index.js"></script>
+</body>
+</html>

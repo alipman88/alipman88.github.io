@@ -1,0 +1,10 @@
+body {
+  max-width: 960px;
+  margin: auto;
+}
+
+fieldset, .form-inputs:not(:last-child) {
+  margin-bottom: 1em;
+}
+
+pre, .code { font-family: monospace; background-color: #CCC; }
