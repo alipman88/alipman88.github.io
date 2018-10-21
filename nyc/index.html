@@ -64,11 +64,11 @@
 
   <script>
     // File reader for user-provided CSVs
-    var reader = new FileReader();  
+    var reader = new FileReader();
 
     function parseFile() {
       window.voterData = d3.csvParse(reader.result, function(d) {
-        return d;   
+        return d;
       });
 
       if (!window.voterData[0].longitude || !window.voterData[0].latitude) {
