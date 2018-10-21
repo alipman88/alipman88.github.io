@@ -41,21 +41,21 @@
   </div>
 
   <div class="container">
-    <div class="row">
+    <div class="row" style="border-bottom: 1px solid #CCC; padding-bottom: 1rem;">
       <div class="twelve columns">
-        <label>Click start to reverse geocode New York City Council districts for voter data contained in <span id="fileName"><a href="data/nyc_voter_data.csv" target="_blank">nyc_voter_data.csv</a></span>.</label>
+        <label id="instructions">Click start to reverse geocode New York City Council districts from voters' longitude and latitude coordinates contained in <span id="fileName"><a href="data/nyc_dfa_members.csv" target="_blank">nyc_dfa_members.csv</a></span>.</label>
         <a id="startButton" href="#" class="button button-primary" style="background-color: #CCC; border-color: #CCC; cursor: default;">Start</a>
-        <a id="selectCSV" href="#" class="button button-primary" style="background-color: #CCC; border-color: #CCC;" onclick="d3.select('#csvInputWrapper').attr('style', 'visibility: visible;'); return false;">Select a different CSV</a>
+        <a id="selectCSV" href="#" class="button" onclick="d3.select('#_csvInputWrapper').attr('style', 'visibility: visible;'); document.querySelector('input[name=csv]').click(); return false;">Select a different CSV</a>
       </div>
     </div>
-    <div id="csvInputWrapper" class="row" style="visibility: hidden;">
+    <div id="csvInputWrapper" class="row" style="display: none;">
       <div class="twelve columns">
         <input type="file" name="csv" onchange="loadFile();" />
       </div>
     </div>
     <div class="row">
       <div class="twelve columns">
-        <div>Hover over any district to view more info.</div>
+        <div>Hover over any district for more info.</div>
         <div id="svgContainer" style="width: 960px; height: 640px; background-color: #EEE;"></div>
         <p style="text-align: right;"><a href="https://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page" target="_blank" style="text-decoration: none;">GeoJSON source: https://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page</a></p>
       </div>
@@ -71,14 +71,24 @@
         return d;
       });
 
-      if (!window.voterData[0].longitude || !window.voterData[0].latitude) {
-        alert("Please ensure your CSV contains longitude and latitude columns")
+      if (!window.voterData || !window.voterData[0] || !window.voterData[0].longitude || !window.voterData[0].latitude) {
+        d3.select("#instructions")
+          .text("Please ensure your CSV contains longitude and latitude columns.");
+        setTimeout(function(){ alert("Please ensure your CSV contains longitude and latitude columns"); }, 1);
       } else {
-        d3.select('#csvInputWrapper').attr('style', 'visibility: hidden;');
+        var fileName = document.querySelector('input[name=csv]').files[0].name;
+        d3.select("#instructions")
+          .text("Click start to reverse geocode New York City Council districts from voters' longitude and latitude coordinates contained in " + fileName + ".");
+        d3.select("#startButton")
+          .attr("style", "background-color: #FF8C00; border-color: #FF8C00;")
+          .attr("onclick", "start(); return false;");
       }
     }
 
     function loadFile() {
+      d3.select("#startButton")
+        .attr("style", "background-color: #CCC; border-color: #CCC; cursor: default;")
+        .attr("onclick", "return false;");
       var file = document.querySelector('input[name=csv]').files[0];
       d3.select("#fileName").text(file.name);
       reader.addEventListener("load", parseFile, false);
@@ -261,7 +271,7 @@
               } else {
                 clearInterval(loader);
                 d3.select("#status1").text("Finished geocoding " + numberWithCommas(voterData.length));
-                d3.select("#status2").text("Voters");
+                d3.select("#status2").text("voters");
               }
             }
 
@@ -273,7 +283,7 @@
 
           if (typeof voterData === "undefined") {
             // Use sample data
-            d3.csv("data/nyc_voter_data.csv").then(function(sampleVoterData) {
+            d3.csv("data/nyc_dfa_members.csv").then(function(sampleVoterData) {
               geocodeVoters(sampleVoterData);
             });
           } else {
