@@ -5,7 +5,7 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  <title>NYC City Council District Reverse Geocoder</title>
+  <title>New York City Council District Reverse Geocoder</title>
 
   <!-- Mobile Specific Metas
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
@@ -34,7 +34,7 @@
     <div class="container" style="margin-bottom: 1rem;">
       <div class="row">
         <div class="twelve columns">
-          <h4 style="margin: 1rem 0; font-weight: bold; color: #FF8C00;">NYC City Council District Reverse Geocoder</h4>
+          <h4 style="margin: 1rem 0; font-weight: bold; color: #FF8C00;">New York City Council District Reverse Geocoder</h4>
         </div>
       </div>
     </div>
@@ -43,7 +43,7 @@
   <div class="container">
     <div class="row">
       <div class="twelve columns">
-        <label>Click start to reverse geocode NYC City Council districts from voter data contained in <span id="fileName"><a href="data/nyc_voter_data.csv" target="_blank">nyc_voter_data.csv</a></span>.</label>
+        <label>Click start to reverse geocode New York City Council districts for voter data contained in <span id="fileName"><a href="data/nyc_voter_data.csv" target="_blank">nyc_voter_data.csv</a></span>.</label>
         <a id="startButton" href="#" class="button button-primary" style="background-color: #CCC; border-color: #CCC; cursor: default;">Start</a>
         <a id="selectCSV" href="#" class="button button-primary" style="background-color: #CCC; border-color: #CCC;" onclick="d3.select('#csvInputWrapper').attr('style', 'visibility: visible;'); return false;">Select a different CSV</a>
       </div>
@@ -55,6 +55,7 @@
     </div>
     <div class="row">
       <div class="twelve columns">
+        <div>Hover over any district to view more info.</div>
         <div id="svgContainer" style="width: 960px; height: 640px; background-color: #EEE;"></div>
         <p style="text-align: right;"><a href="https://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page" target="_blank" style="text-decoration: none;">GeoJSON source: https://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page</a></p>
       </div>
@@ -72,11 +73,12 @@
 
       if (!window.voterData[0].longitude || !window.voterData[0].latitude) {
         alert("Please ensure your CSV contains longitude and latitude columns")
+      } else {
+        d3.select('#csvInputWrapper').attr('style', 'visibility: hidden;');
       }
     }
 
     function loadFile() {
-      d3.select('#csvInputWrapper').attr('style', 'visibility: hidden;');
       var file = document.querySelector('input[name=csv]').files[0];
       d3.select("#fileName").text(file.name);
       reader.addEventListener("load", parseFile, false);
@@ -208,7 +210,7 @@
             .attr("fill", shade);
         }
 
-        // Draw NYC City Council Districts
+        // Draw New York City Council Districts
         svg.selectAll('path')
           .data(districts)
           .enter().append('path')
@@ -221,6 +223,15 @@
           .on('mouseout', mouseout)
 
         window.start = function() {
+          // Abort existing process
+          window.loader;
+          clearInterval(window.loader);
+
+          // Reset voter counts
+          for (var key in districtHash) {
+            districtHash[key].Voters = 0;
+          }
+
           var geocodeVoters = function(voterData) {
             var geocodeVoter = function() {
               d3.select("#status1").text("Reverse geocoding voter " + numberWithCommas(i));
@@ -257,7 +268,7 @@
             // Use a setInterval with a one-millisecond pause to prevent the application UI from being blocked while voters are geocoded
             var i = 0;
             window.maxPopulation = 0;
-            var loader = setInterval(geocodeVoter, 1);
+            window.loader = setInterval(geocodeVoter, 1);
           }
 
           if (typeof voterData === "undefined") {
