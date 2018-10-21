@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+  <!-- Basic Page Needs
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta charset="utf-8">
+  <title>NYC City Council District Reverse Geocoder</title>
+
+  <!-- Mobile Specific Metas
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <!-- FONT
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link href="//fonts.googleapis.com/css?family=Raleway:400,300,600" rel="stylesheet" type="text/css">
+
+  <!-- CSS
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+
+  <!-- Favicon
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <link rel="icon" type="image/png" href="images/favicon.png">
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.7.0/d3.min.js"></script>
+</head>
+<body>
+
+  <!-- Primary Page Layout
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+  <div style="background-color: #333;">
+    <div class="container" style="margin-bottom: 1rem;">
+      <div class="row">
+        <div class="twelve columns">
+          <h4 style="margin: 1rem 0; font-weight: bold; color: #FF8C00;">NYC City Council District Reverse Geocoder</h4>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <label>Click start to reverse geocode NYC City Council districts from voter data contained in <span id="fileName"><a href="data/nyc_voter_data.csv" target="_blank">nyc_voter_data.csv</a></span>.</label>
+        <a id="startButton" href="#" class="button button-primary" style="background-color: #CCC; border-color: #CCC; cursor: default;">Start</a>
+        <a id="selectCSV" href="#" class="button button-primary" style="background-color: #CCC; border-color: #CCC;" onclick="d3.select('#csvInputWrapper').attr('style', 'visibility: visible;'); return false;">Select a different CSV</a>
+      </div>
+    </div>
+    <div id="csvInputWrapper" class="row" style="visibility: hidden;">
+      <div class="twelve columns">
+        <input type="file" name="csv" onchange="loadFile();" />
+      </div>
+    </div>
+    <div class="row">
+      <div class="twelve columns">
+        <div id="svgContainer" style="width: 960px; height: 640px; background-color: #EEE;"></div>
+        <p style="text-align: right;"><a href="https://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page" target="_blank" style="text-decoration: none;">GeoJSON source: https://www1.nyc.gov/site/planning/data-maps/open-data/districts-download-metadata.page</a></p>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // File reader for user-provided CSVs
+    var reader = new FileReader();  
+
+    function parseFile() {
+      window.voterData = d3.csvParse(reader.result, function(d) {
+        return d;   
+      });
+
+      if (!window.voterData[0].longitude || !window.voterData[0].latitude) {
+        alert("Please ensure your CSV contains longitude and latitude columns")
+      }
+    }
+
+    function loadFile() {
+      d3.select('#csvInputWrapper').attr('style', 'visibility: hidden;');
+      var file = document.querySelector('input[name=csv]').files[0];
+      d3.select("#fileName").text(file.name);
+      reader.addEventListener("load", parseFile, false);
+      if (file) {
+        reader.readAsText(file);
+      }
+    }
+
+    d3.csv("data/nyc_city_councilors.csv").then(function(councilorData) {
+      // build a hash of district data
+      var districtHash = councilorData.reduce(function(map, obj) {
+          obj.Voters = 0;
+          map[obj.DistrictNumber] = obj;
+          return map;
+        }, {});
+
+      d3.json("data/nyc_city_council_districts.geo.json").then(function(districtData) {
+        var districts = districtData.features;
+
+        // Prepare SVG
+        var width = 960;
+        var height = 640;
+
+        var projection = d3.geoMercator()
+          .center([-73.94, 40.70])
+          .scale(60000)
+          .translate([(width) / 2, (height)/2]);
+
+        var path = d3.geoPath().projection(projection);
+
+        var svg = d3.select("#svgContainer").append("svg")
+          .attr("width", width)
+          .attr("height", height);
+
+        svg.append("text")
+          .attr("x", 12).attr("y", 30)
+          .attr("id", "districtLabel")
+          .style("font-size", "24px")
+          .text("");
+
+        svg.append("text")
+          .attr("x", 12).attr("y", 54)
+          .attr("id", "districtCouncilor")
+          .style("font-size", "18px")
+          .text("");
+
+        svg.append("text")
+          .attr("x", 12).attr("y", 78)
+          .attr("id", "districtVoterCount")
+          .text("");
+
+        svg.append("text")
+          .attr("x", 12).attr("y", 102)
+          .attr("dy", 0)
+          .attr("id", "districtNeighborhoods")
+          .text("");
+
+        svg.append("text")
+          .attr("x", 720).attr("y", 24)
+          .attr("id", "status1")
+          .text("");
+
+        svg.append("text")
+          .attr("x", 720).attr("y", 42)
+          .attr("id", "status2")
+          .text("");
+
+        var mouseover = function(d){
+          // Highlight hovered district and display additional info
+          d3.select(this).style('stroke', '#FF8C00');
+          d3.select(this).style('stroke-width', 2);
+
+          svg.selectAll("path").sort(function (a, b) {
+            if (a.id != d.id) return -1;
+            else return 1;
+          });
+
+          var voterCount = districtHash[this.id.split('_')[1]].Voters;
+
+          d3.select("#districtLabel").text("District " + this.id.split('_')[1]);
+          d3.select("#districtVoterCount").text(numberWithCommas(voterCount) + " voter" + (voterCount == 1 ? "" : "s") + " identified in this district");
+          d3.select("#districtCouncilor").text(districtHash[this.id.split('_')[1]].Member + " (" + districtHash[this.id.split('_')[1]].Party + ")");
+          d3.select("#districtNeighborhoods").text("Neihborhoods: " + districtHash[this.id.split('_')[1]].Neighborhoods);
+          wrap("#districtNeighborhoods", 400);
+        }
+
+        var mouseout = function(d){
+          // Remove highlight from hovered district and hide info
+          d3.select(this).style('stroke', '#777');
+          d3.select(this).style('stroke-width', 1);
+          d3.select("#districtLabel").text("");
+          d3.select("#districtVoterCount").text("");
+          d3.select("#districtCouncilor").text("");
+          d3.select("#districtNeighborhoods").text("");
+        }
+
+        var numberWithCommas = function(number) {
+          return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        var wrap = function(id, width) {
+          var text = d3.select(id),
+            words = text.text().split(/\s+/).reverse(),
+            word,
+            line = [],
+            lineNumber = 0,
+            lineHeight = 1.2, // ems
+            y = text.attr("y"),
+            x = text.attr("x"),
+            dy = parseFloat(text.attr("dy")),
+            tspan = text.text(null).append("tspan").attr("x", x).attr("y", y).attr("dy", dy + "em");
+          while (word = words.pop()) {
+            line.push(word);
+            tspan.text(line.join(" "));
+            if (tspan.node().getComputedTextLength() > width) {
+              line.pop();
+              tspan.text(line.join(" "));
+              line = [word];
+              tspan = text.append("tspan").attr("x", x).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+            }
+          }
+        }
+
+        var reshadeDistrict = function(id, districtPopuplation, maxPopulation) {
+          rgb = Math.round(254 * (1 - 0.75 * districtPopuplation / maxPopulation));
+          shade = "rgb(" + rgb + ", " + rgb + ", " + rgb + ")";
+
+          d3.select("#id_" + id)
+            .attr("fill", shade);
+        }
+
+        // Draw NYC City Council Districts
+        svg.selectAll('path')
+          .data(districts)
+          .enter().append('path')
+          .attr('id', function(d) { return "id_" + d.properties.CounDist; })
+          .attr('d', path)
+          .attr('fill', '#FFF')
+          .attr('stroke', '#777')
+          .attr('stroke-width', 1)
+          .on('mouseover', mouseover)
+          .on('mouseout', mouseout)
+
+        window.start = function() {
+          var geocodeVoters = function(voterData) {
+            var geocodeVoter = function() {
+              d3.select("#status1").text("Reverse geocoding voter " + numberWithCommas(i));
+              d3.select("#status2").text("out of " + numberWithCommas(voterData.length));
+
+              if (i < voterData.length) {
+                var point = [voterData[i].longitude, voterData[i].latitude];
+
+                // Iterate through each city council district until finding one that contains the voter's longitude & latitude coordinates
+                for (var j = 0; j < districts.length; j++) {
+                  if ( d3.geoContains(districts[j], point) ) {
+                    districtHash[districts[j].properties.CounDist].Voters++;
+
+                    if (districtHash[districts[j].properties.CounDist].Voters > maxPopulation) {
+                      maxPopulation = districtHash[districts[j].properties.CounDist].Voters
+
+                      for (var k = 0; k < districts.length; k++) {
+                        reshadeDistrict(districts[k].properties.CounDist, districtHash[districts[k].properties.CounDist].Voters, maxPopulation);
+                      }
+                    } else {
+                      reshadeDistrict(districts[j].properties.CounDist, districtHash[districts[j].properties.CounDist].Voters, maxPopulation);
+                    }
+                  }
+                }
+
+                i++;
+              } else {
+                clearInterval(loader);
+                d3.select("#status1").text("Finished geocoding " + numberWithCommas(voterData.length));
+                d3.select("#status2").text("Voters");
+              }
+            }
+
+            // Use a setInterval with a one-millisecond pause to prevent the application UI from being blocked while voters are geocoded
+            var i = 0;
+            window.maxPopulation = 0;
+            var loader = setInterval(geocodeVoter, 1);
+          }
+
+          if (typeof voterData === "undefined") {
+            // Use sample data
+            d3.csv("data/nyc_voter_data.csv").then(function(sampleVoterData) {
+              geocodeVoters(sampleVoterData);
+            });
+          } else {
+            geocodeVoters(voterData);
+          }
+        }
+
+        d3.select("#startButton")
+          .attr("style", "background-color: #FF8C00; border-color: #FF8C00;")
+          .attr("onclick", "start(); return false;");
+      });
+    });
+  </script>
+<!-- End Document
+  –––––––––––––––––––––––––––––––––––––––––––––––––– -->
+</body>
+</html>
