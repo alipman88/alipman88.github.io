@@ -161,7 +161,7 @@
           d3.select("#districtLabel").text("District " + this.id.split('_')[1]);
           d3.select("#districtVoterCount").text(numberWithCommas(voterCount) + " voter" + (voterCount == 1 ? "" : "s") + " identified in this district");
           d3.select("#districtCouncilor").text(districtHash[this.id.split('_')[1]].Member + " (" + districtHash[this.id.split('_')[1]].Party + ")");
-          d3.select("#districtNeighborhoods").text("Neihborhoods: " + districtHash[this.id.split('_')[1]].Neighborhoods);
+          d3.select("#districtNeighborhoods").text("Neighborhoods: " + districtHash[this.id.split('_')[1]].Neighborhoods);
           wrap("#districtNeighborhoods", 400);
         }
 
