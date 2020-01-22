@@ -16,7 +16,10 @@ window.rcvCalculate = function() {
   rcvResultsData.forEach(function(ballot) {
     for (var col = 1; !(ballot[col] === undefined); col++) {
       var candidateId = ballot[col].normalize("NFD").replace(/\W/g, "");
-      if (!(candidateId in rcvCandidates) && ("Other" in rcvCandidates)) { candidateId = "Other"; }
+
+      if (!(candidateId in rcvCandidates)) {
+        if ("Other" in rcvCandidates) { candidateId = "Other"; } else { break; }
+      }
 
       if (ballot[col].length > 0 && !rcvRemovedCandidates[candidateId]) {
         rcvCandidates[candidateId]++;
@@ -57,13 +60,14 @@ window.rcvCalculate = function() {
   d3.select("#rcv-candidates")
     .style("display", "block");
 
+  console.log(rcvCandidates)
+
   // resize
   for (var candidate in rcvCandidates) {
     var candidateId = candidate.normalize("NFD").replace(/\W/g, "");
 
     d3.select("#" + candidateId + " .rcv-result-percent")
       .text((100.0 * rcvCandidates[candidate] / total).toFixed(2) + "%");
-
 
     d3.select("#" + candidateId + " .rcv-bar")
       .transition()
