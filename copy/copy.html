@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Clipboard Test</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <script charset="UTF-8">
+  // A minimal polyfill for `navigator.clipboard.writeText()` that works most of the time in most modern browsers.
+  // Note that:
+  // - In Edge, this may call `resolve()` even if copying failed.
+  // - In Safari, this may fail if there is nothing selected on the page.
+  // See https://github.com/lgarron/clipboard-polyfill for a more robust solution.
+  // License: public domain
+  function writeText(str) {
+    return new Promise(function(resolve, reject) {
+      var range = document.createRange();
+      range.selectNodeContents(document.body);
+      document.getSelection().addRange(range);
+      var success = false;
+
+      function listener(e) {
+        e.clipboardData.setData("text/html", str);
+        e.clipboardData.setData("text/plain", str);
+        e.preventDefault();
+        success = true;
+      }
+
+      document.addEventListener("copy", listener);
+      document.execCommand("copy");
+      document.removeEventListener("copy", listener);
+      document.getSelection().removeAllRanges();
+      success ? resolve(): reject();
+    });
+  };
+  </script>
+</head>
+
+<body>
+  <fieldset>
+    <textarea id="copy-source-1"> &bull; </textarea>
+    <br>
+    <button onclick="writeText(document.getElementById('copy-source-1').value)">Copy Textarea</button>
+  </fieldset>
+
+  <fieldset>
+    <div id="copy-source-2"><em>italicized</em> &bull; <strong>bold</strong> &bull; normal</div>
+    <br>
+    <button onclick="writeText(document.getElementById('copy-source-2').innerHTML)">Copy Formatted Text</button>
+  </fieldset>
+</body>
+</html>
