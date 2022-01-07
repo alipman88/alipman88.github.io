@@ -1,0 +1,19 @@
+body {
+  font-size: 1.8em;
+  font-family: 'Lora', serif; }
+
+h1, h2, h3, h4, h5, h6 { font-family: 'Arvo', serif; }
+
+a { text-decoration: none; }
+
+pre { border-radius: 4px; }
+
+.u-margin-auto { margin: auto !important; }
+
+.u-padding-0 { padding: 0px !important; }
+
+.u-border-0 { border: 0px !important; }
+
+.u-vertical-align-top { vertical-align: top !important; }
+
+.u-text-align-center { text-align: center; }
