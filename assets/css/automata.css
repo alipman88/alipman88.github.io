@@ -1,0 +1,29 @@
+#grid { width: 100px; height: 100px; }
+
+/*@media only screen and (min-width: 220px) and (min-height: 220px) {
+  #grid { width: 200px; height: 200px; margin: 2px; }
+}*/
+@media only screen and (min-width: 220px) and (min-height: 220px) {
+  #grid { width: 200px; height: 200px; margin: 2px; }
+}
+@media only screen and (min-width: 320px) and (min-height: 320px) {
+  #grid { width: 300px; height: 300px; margin: 3px; }
+}
+@media only screen and (min-width: 420px) and (min-height: 420px) {
+  #grid { width: 400px; height: 400px; margin: 4px; }
+}
+@media only screen and (min-width: 520px) and (min-height: 520px) {
+  #grid { width: 500px; height: 500px; margin: 5px; }
+}
+@media only screen and (min-width: 620px) and (min-height: 620px) {
+  #grid { width: 600px; height: 600px; margin: 6px; }
+}
+@media only screen and (min-width: 720px) and (min-height: 720px) {
+  #grid { width: 700px; height: 700px; margin: 7px; }
+}
+/*@media only screen and (min-width: 820px) and (min-height: 820px) {
+  #grid { width: 800px; height: 800px; margin: 8px; }
+}*/
+/*@media only screen and (min-width: 920px) and (min-height: 920px) {
+  #grid { width: 900px; height: 900px; margin: 9px; }
+}*/
