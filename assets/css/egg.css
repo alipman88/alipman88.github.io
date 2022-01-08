@@ -1,0 +1,14 @@
+#egg { width: 100px; height: 100px; }
+
+@media only screen and (min-width: 360px) and (min-height: 360px) {
+  #egg { width: 200px; height: 200px; }
+}
+@media only screen and (min-width: 460px) and (min-height: 460px) {
+  #egg { width: 300px; height: 300px; }
+}
+@media only screen and (min-width: 560px) and (min-height: 560px) {
+  #egg { width: 400px; height: 400px; }
+}
+@media only screen and (min-width: 660px) and (min-height: 660px) {
+  #egg { width: 500px; height: 500px; }
+}
