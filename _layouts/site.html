@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+  <meta charset='utf-8'>
+  <title>{{ page.title | default: site.title }}</title>
+  <meta name='{{ site.description }}' content=''>
+  <meta name='{{ site.author }}' content=''>
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  <link rel='preconnect' href='https://fonts.googleapis.com'>
+  <link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>
+  <link href='//fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,700;1,400&display=swap' rel='stylesheet'>
+  <link href='//fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap' rel='stylesheet'>
+  <link rel='stylesheet' href='/assets/css/normalize.css'>
+  <link rel='stylesheet' href='/assets/css/skeleton.css'>
+  <link rel='stylesheet' href='/assets/css/monokai.css'>
+  <link rel='stylesheet' href='/assets/css/custom.css'>
+  {% for stylesheet in page.stylesheets %}
+    <link rel='stylesheet' href='/assets/css/{{ stylesheet }}.css'>
+  {% endfor %}
+  <link rel='icon' type='image/png' href='assets/images/favicon.png'>
+  <script src='//d3js.org/d3.v7.min.js'></script>
+</head>
+<body style='background-color: #f8f8f2'>
+  <div style='background-color: #272822'>
+    <div class='container'>
+      <div class='row'>
+        <div class='twelve columns'>
+          <h2 style='margin: 1rem 0; color: #ffa727'>{{ page.title | default: site.title }}</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class='container'>
+    <div class='row'>
+      {{ content }}
+    </div>
+  </div>
+  {% for script in page.scripts %}
+    <script src='/assets/js/{{ script }}.js'></script>
+  {% endfor %}
+</body>
+</html>
