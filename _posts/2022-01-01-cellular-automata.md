@@ -8,7 +8,11 @@ scripts:
 stylesheets:
   - automata
 ---
-<div style='text-align: center;'>
+<div style='position: relative; text-align: center;'>
+  <div id='start' style='display: none; position: absolute; top: 40%; width: 200px; left: 50%; margin-left: -100px'>
+    <button class='button-primary' onclick='start(); return false;'>Start</button>
+    <p>(warning: strobe effect)</p>
+  </div>
   <svg id='grid' viewBox='0 0 100 100'></svg>
 </div>
 

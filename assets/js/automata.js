@@ -46,7 +46,7 @@ svg
   .attr('transform', (d, c) => `translate(${c}, 0)`)
   .attr('width', 1)
   .attr('height', 1)
-  .style('fill', 'white');
+  .style('fill', '#f8f8f2');
 
 const draw = function() {
   svg
@@ -99,5 +99,11 @@ const tick = function() {
   setTimeout(tick, 100 - f);
 }
 
-// start
-tick();
+const startScreen = d3.select('#start')
+
+const start = function() {
+  startScreen.style('display', 'none');
+  tick();
+}
+
+startScreen.style('display', 'block');
