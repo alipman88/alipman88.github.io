@@ -7,6 +7,7 @@ h1, h2, h3, h4, h5, h6 { font-family: 'Arvo', serif; }
 a { text-decoration: none; }
 
 pre { border-radius: 4px; }
+code { margin: 0; border: 0; background-color: #272822; }
 
 .u-margin-auto { margin: auto !important; }
 
