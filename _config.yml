@@ -27,6 +27,9 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: socket_wrench
 github_username: alipman88
 
+collections:
+  - posts
+
 # Build settings
 plugins:
   - jekyll-feed
