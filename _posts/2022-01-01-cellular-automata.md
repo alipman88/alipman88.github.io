@@ -22,4 +22,6 @@ Cells are represented by some state (A, B, C, etc.).
 
 On each tick, each cell takes the state of the largest non-majority of its neighbors. In the event of a tie, a cell keeps its current state.
 
-Patches of two states stabilize towards maze-like patterns, while patches of three or more states exhibit chaotic behavior.
+Patches of two states stabilize towards clusters of maze-like patterns, while patches of three or more states exhibit chaotic behavior. (Although there are three possible states in the randomly-generated seeds, all states are represented as either light or dark to better illustrate the behavior around cluster borders.)
+
+Shading is smoothed over an eight generation window. Original unsmoothed version [here](/automata?l=1).
