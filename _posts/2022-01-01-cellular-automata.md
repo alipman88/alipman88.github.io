@@ -7,6 +7,7 @@ scripts:
   - automata
 stylesheets:
   - automata
+image: automata.png
 ---
 <div style='position: relative; text-align: center;'>
   <div id='start' style='display: none; position: absolute; top: 40%; width: 200px; left: 50%; margin-left: -100px'>
