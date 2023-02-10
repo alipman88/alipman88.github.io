@@ -4,7 +4,7 @@
 
 layout: site
 ---
-<br>I'm a software engineer focused on building tools for community organizing and mutual aid. My open-source contributions include [Git](https://github.com/git/git/commits?author=alipman88) and [Ruby on Rails](https://github.com/rails/rails/commits?author=alipman88). I have a strong interest in natural mathematical phenomena, particularly in modeling botany, evolution, and other emergent behaviors through fractals and cellular automata.
+<br>I'm a software engineer focused on building technology for public interest. My open-source contributions include [Git](https://github.com/git/git/commits?author=alipman88) and [Ruby on Rails](https://github.com/rails/rails/commits?author=alipman88). I have a strong interest in natural mathematical phenomena, particularly in modeling botany, evolution, and other emergent behaviors through fractals and cellular automata.
 
 This site serves as a repository for various side projects and occasional blog posts:
 
