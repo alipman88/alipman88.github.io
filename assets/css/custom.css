@@ -8,6 +8,7 @@ a { text-decoration: none; }
 
 pre { border-radius: 4px; }
 code { margin: 0; border: 0; background-color: #272822; }
+code.language-plaintext { background-color: #DDD; color: #555; }
 
 .u-margin-auto { margin: auto !important; }
 
