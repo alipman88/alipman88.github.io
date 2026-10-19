@@ -1,4 +1,10 @@
+# OS files
 .DS_Store
+._*
+Thumbs.db
+desktop.ini
+
+# Jekyll
 _site
 .sass-cache
 .jekyll-cache
